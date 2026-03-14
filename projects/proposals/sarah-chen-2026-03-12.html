@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarah Chen - AI Lead Automation Proposal</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: Inter, Playfair Display, JetBrains Mono -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital@0;1&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- GSAP & ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .serif-drama {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+        }
+
+        .mono-data {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Noise overlay */
+        .noise-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            opacity: 0.05;
+            mix-blend-mode: overlay;
+            z-index: -1;
+        }
+
+        /* Midnight Luxe palette */
+        .primary { color: #0D0D12; }
+        .accent { color: #C9A84C; }
+        .bg-primary { background-color: #0D0D12; }
+        .bg-accent { background-color: #C9A84C; }
+        .bg-ivory { background-color: #FAF8F5; }
+        .text-slate { color: #2A2A35; }
+
+        /* Smooth scroll */
+        html { scroll-behavior: smooth; }
+
+        /* Magnetic button effect */
+        .btn-magnetic {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .btn-magnetic:hover {
+            transform: scale(1.03);
+        }
+
+        .btn-magnetic span {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Card animations */
+        .card-fade-up {
+            opacity: 0;
+            transform: translateY(40px);
+        }
+
+        /* Rounded corners */
+        .rounded-luxury {
+            border-radius: 2rem;
+        }
+    </style>
+</head>
+<body class="bg-ivory text-text-slate">
+
+    <!-- Noise Overlay SVG -->
+    <svg class="noise-overlay" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <filter id="noise">
+            <feTurbulence type="fractalNoise" baseFrequency="0.5" numOctaves="4" result="noise"/>
+        </filter>
+        <rect width="1000" height="1000" filter="url(#noise)"/>
+    </svg>
+
+    <!-- Navbar -->
+    <nav class="fixed top-8 left-1/2 -translate-x-1/2 z-50 px-8 py-4 rounded-full bg-opacity-20 backdrop-blur-lg border border-white/10 transition-all duration-300">
+        <div class="flex items-center justify-between gap-12">
+            <div class="text-xl font-bold text-primary">mismoi</div>
+            <div class="hidden md:flex gap-8 text-sm font-medium">
+                <a href="#hero" class="hover:text-accent transition">Proposal</a>
+                <a href="#problems" class="hover:text-accent transition">Problems</a>
+                <a href="#solution" class="hover:text-accent transition">Solution</a>
+                <a href="#pricing" class="hover:text-accent transition">Investment</a>
+            </div>
+            <button class="btn-magnetic px-6 py-2 bg-accent text-primary font-semibold rounded-full hover:bg-opacity-90">
+                <span>Approve</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="relative w-full h-[100dvh] flex items-end overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-t from-primary via-primary/50 to-transparent z-10"></div>
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&h=1600&fit=crop" alt="Luxury real estate" class="absolute inset-0 w-full h-full object-cover">
+
+        <div class="relative z-20 pb-16 px-8 md:px-16 max-w-2xl">
+            <div class="mb-4 text-sm text-gray-300 mono-data">March 12, 2026</div>
+            <h1 class="text-5xl md:text-7xl font-bold text-white mb-2 leading-tight">
+                Turn 15 Hours
+            </h1>
+            <h2 class="text-4xl md:text-6xl serif-drama text-accent mb-8">
+                Into Automated Closings.
+            </h2>
+            <p class="text-lg text-gray-200 mb-8 max-w-xl">
+                Your leads deserve personalized follow-up. Your time deserves automation.
+            </p>
+            <button class="btn-magnetic px-8 py-3 bg-accent text-primary font-semibold rounded-full hover:bg-opacity-90 text-lg">
+                <span>See How It Works</span>
+            </button>
+        </div>
+    </section>
+
+    <!-- Problems Section -->
+    <section id="problems" class="py-24 px-8 md:px-16 bg-ivory">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-bold text-primary mb-4">Your Real Estate Challenge</h2>
+            <p class="text-lg text-text-slate mb-16">
+                You're doing the work of three people. Here's what's costing you.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Problem 1 -->
+                <div class="bg-white rounded-luxury p-8 border border-gray-200 card-fade-up">
+                    <h3 class="text-2xl font-bold text-primary mb-4">Low Conversion Rate</h3>
+                    <p class="text-text-slate mb-4">
+                        You get 40-50 leads every month from Google Ads and Facebook, but only 3-5 close. That's a 6-12% conversion rate.
+                    </p>
+                    <p class="text-accent font-semibold mono-data">
+                        Cost: $100K+ monthly opportunity
+                    </p>
+                </div>
+
+                <!-- Problem 2 -->
+                <div class="bg-white rounded-luxury p-8 border border-gray-200 card-fade-up">
+                    <h3 class="text-2xl font-bold text-primary mb-4">15+ Hours Lost Weekly</h3>
+                    <p class="text-text-slate mb-4">
+                        Manual emails, texts, and calls consume 700+ hours annually. That's time you're not closing deals.
+                    </p>
+                    <p class="text-accent font-semibold mono-data">
+                        Cost: $50K+ in lost opportunity
+                    </p>
+                </div>
+
+                <!-- Problem 3 -->
+                <div class="bg-white rounded-luxury p-8 border border-gray-200 card-fade-up">
+                    <h3 class="text-2xl font-bold text-primary mb-4">No Lead Intelligence</h3>
+                    <p class="text-text-slate mb-4">
+                        Leads live in a spreadsheet. No way to tell which ones are serious, which channels convert best.
+                    </p>
+                    <p class="text-accent font-semibold mono-data">
+                        Cost: Blind marketing spend
+                    </p>
+                </div>
+
+                <!-- Problem 4 -->
+                <div class="bg-white rounded-luxury p-8 border border-gray-200 card-fade-up">
+                    <h3 class="text-2xl font-bold text-primary mb-4">Losing to Better Nurturers</h3>
+                    <p class="text-text-slate mb-4">
+                        Agents with automated follow-up stay top-of-mind. Your prospects go silent, then sign with someone else.
+                    </p>
+                    <p class="text-accent font-semibold mono-data">
+                        Cost: Lost deals every month
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Philosophy Section -->
+    <section class="py-24 px-8 md:px-16 bg-primary text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <img src="https://images.unsplash.com/photo-1600573472550-8090b5e0745e?w=1200&h=800&fit=crop" alt="Dark marble" class="w-full h-full object-cover">
+        </div>
+
+        <div class="relative z-10 max-w-4xl mx-auto text-center">
+            <p class="text-lg text-gray-300 mb-6">
+                Most real estate agents use generic email services or expensive CRMs. That means impersonal blasts or clunky interfaces that eat 2 hours daily.
+            </p>
+            <h3 class="text-5xl serif-drama text-accent mb-8">
+                We focus on AI-powered personalization at automation scale.
+            </h3>
+            <p class="text-gray-200">
+                Every lead gets a truly personal experience (using their name, property interest, timeline). You spend zero time managing sequences. Your system works while you sleep.
+            </p>
+        </div>
+    </section>
+
+    <!-- Solution / Protocol Section -->
+    <section id="solution" class="py-24 px-8 md:px-16 bg-ivory">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-bold text-primary mb-16">What We'll Build</h2>
+
+            <!-- Solution Cards -->
+            <div class="space-y-8">
+                <!-- Component 1 -->
+                <div class="bg-white rounded-luxury p-12 border-2 border-accent shadow-lg card-fade-up">
+                    <div class="flex items-start gap-8">
+                        <div class="text-5xl mono-data text-accent font-bold">01</div>
+                        <div class="flex-1">
+                            <h3 class="text-3xl font-bold text-primary mb-4">AI Lead Scorer</h3>
+                            <ul class="space-y-3 text-text-slate">
+                                <li class="flex gap-3">
+                                    <span class="text-accent">→</span>
+                                    <span>Every new lead automatically analyzed against your ideal buyer profile</span>
+                                </li>
+                                <li class="flex gap-3">
+                                    <span class="text-accent">→</span>
+                                    <span>Claude AI assigns "hot," "warm," or "cold" labels based on intent</span>
+                                </li>
+                                <li class="flex gap-3">
+                                    <span class="text-accent">→</span>
+                                    <span>Dashboard sorted by priority, not chronologically</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Component 2 -->
+                <div class="bg-white rounded-luxury p-12 border-2 border-accent shadow-lg card-fade-up">
+                    <div class="flex items-start gap-8">
+                        <div class="text-5xl mono-data text-accent font-bold">02</div>
+                        <div class="flex-1">
+                            <h3 class="text-3xl font-bold text-primary mb-4">Personalized Follow-Up Sequences</h3>
+                            <ul class="space-y-3 text-text-slate">
+                                <li class="flex gap-3">
+                                    <span class="text-accent">→</span>
+                                    <span>Automated email and SMS sequences that feel personal, not robotic</span>
+                                </li>
+                                <li class="flex gap-3">
+                                    <span class="text-accent">→</span>
+                                    <span>First message within 2 hours (highest-converting window)</span>
+                                </li>
+                                <li class="flex gap-3">
+                                    <span class="text-accent">→</span>
+                                    <span>Each message uses their name, property info, local market insights</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Component 3 -->
+                <div class="bg-white rounded-luxury p-12 border-2 border-accent shadow-lg card-fade-up">
+                    <div class="flex items-start gap-8">
+                        <div class="text-5xl mono-data text-accent font-bold">03</div>
+                        <div class="flex-1">
+                            <h3 class="text-3xl font-bold text-primary mb-4">Multi-Channel Nurture Engine</h3>
+                            <ul class="space-y-3 text-text-slate">
+                                <li class="flex gap-3">
+                                    <span class="text-accent">→</span>
+                                    <span>Leads automatically routed through email, SMS, calendar reminders</span>
+                                </li>
+                                <li class="flex gap-3">
+                                    <span class="text-accent">→</span>
+                                    <span>Smart fallback: if email unopened, SMS takes over</span>
+                                </li>
+                                <li class="flex gap-3">
+                                    <span class="text-accent">→</span>
+                                    <span>Silent for 5 days? Personal text reminder pulls them back in</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Component 4 -->
+                <div class="bg-white rounded-luxury p-12 border-2 border-accent shadow-lg card-fade-up">
+                    <div class="flex items-start gap-8">
+                        <div class="text-5xl mono-data text-accent font-bold">04</div>
+                        <div class="flex-1">
+                            <h3 class="text-3xl font-bold text-primary mb-4">Conversion Tracking & Insights</h3>
+                            <ul class="space-y-3 text-text-slate">
+                                <li class="flex gap-3">
+                                    <span class="text-accent">→</span>
+                                    <span>Real-time dashboard: lead source, conversion by channel, ROI per dollar</span>
+                                </li>
+                                <li class="flex gap-3">
+                                    <span class="text-accent">→</span>
+                                    <span>Which Google Ads keywords and Facebook audiences actually convert</span>
+                                </li>
+                                <li class="flex gap-3">
+                                    <span class="text-accent">→</span>
+                                    <span>Monthly report with actionable optimization recommendations</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Study Section -->
+    <section class="py-24 px-8 md:px-16 bg-white">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-4xl font-bold text-primary mb-4">How This Works in Practice</h2>
+            <p class="text-lg text-text-slate mb-12">
+                Here's what happened when we implemented this system for another real estate professional:
+            </p>
+
+            <div class="bg-gradient-to-br from-primary/5 to-accent/5 rounded-luxury p-12 border border-gray-200">
+                <h3 class="text-2xl font-bold text-primary mb-6">Real Estate Lead Automation Example</h3>
+
+                <div class="space-y-8">
+                    <div>
+                        <h4 class="font-semibold text-primary mb-2">Situation</h4>
+                        <p class="text-text-slate">
+                            An Austin-based agent getting 45 leads/month, converting at 8%, losing 18 hours/week to manual follow-up. $2K/month ad spend with unclear ROI.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h4 class="font-semibold text-primary mb-2">What We Built</h4>
+                        <p class="text-text-slate">
+                            AI lead scorer (Claude API), 5-email + 3-SMS automation sequences (Make.com), conversion tracking dashboard, Google Ads integration for ROI measurement.
+                        </p>
+                    </div>
+
+                    <div class="border-t border-accent/30 pt-8">
+                        <h4 class="font-semibold text-primary mb-6">Results</h4>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                            <div class="text-center">
+                                <div class="text-3xl font-bold text-accent mb-2">22%</div>
+                                <p class="text-sm text-text-slate">Conversion Rate<br>(from 8%)</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-3xl font-bold text-accent mb-2">+10</div>
+                                <p class="text-sm text-text-slate">Additional Closes<br>per month</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-3xl font-bold text-accent mb-2">2 hrs</div>
+                                <p class="text-sm text-text-slate">Weekly Follow-up<br>(from 18)</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-3xl font-bold text-accent mb-2">+$70K</div>
+                                <p class="text-sm text-text-slate">Monthly Revenue<br>Increase</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section class="py-24 px-8 md:px-16 bg-primary text-white">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-4xl font-bold mb-16">Your Implementation Timeline</h2>
+
+            <div class="space-y-6">
+                <!-- Phase 1 -->
+                <div class="flex gap-6">
+                    <div class="flex-shrink-0">
+                        <div class="w-12 h-12 rounded-full bg-accent text-primary flex items-center justify-center font-bold text-lg mono-data">1</div>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold mb-2">Week 1-2: Setup & Configuration</h3>
+                        <ul class="space-y-2 text-gray-300">
+                            <li class="flex gap-2">
+                                <span class="text-accent">✓</span>
+                                <span>Kickoff call: lead scoring rules, Gmail/SMS connection</span>
+                            </li>
+                            <li class="flex gap-2">
+                                <span class="text-accent">✓</span>
+                                <span>5 personalized email templates drafted</span>
+                            </li>
+                            <li class="flex gap-2">
+                                <span class="text-accent">✓</span>
+                                <span>SMS sequences configured, Make.com automation built & tested</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Phase 2 -->
+                <div class="flex gap-6">
+                    <div class="flex-shrink-0">
+                        <div class="w-12 h-12 rounded-full bg-accent text-primary flex items-center justify-center font-bold text-lg mono-data">2</div>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold mb-2">Week 3: Launch</h3>
+                        <ul class="space-y-2 text-gray-300">
+                            <li class="flex gap-2">
+                                <span class="text-accent">✓</span>
+                                <span>System goes live with your next incoming leads</span>
+                            </li>
+                            <li class="flex gap-2">
+                                <span class="text-accent">✓</span>
+                                <span>Live monitoring first 30 days, refinements based on real behavior</span>
+                            </li>
+                            <li class="flex gap-2">
+                                <span class="text-accent">✓</span>
+                                <span>Week 4: Performance report + optimization recommendations</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-24 px-8 md:px-16 bg-ivory">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-4xl font-bold text-primary mb-16 text-center">Investment</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Setup -->
+                <div class="bg-white rounded-luxury p-10 border-2 border-gray-200">
+                    <h3 class="text-2xl font-bold text-primary mb-6">One-Time Setup</h3>
+                    <div class="text-4xl font-bold text-accent mb-8">$3,000</div>
+                    <ul class="space-y-3 text-text-slate">
+                        <li class="flex gap-2">
+                            <span class="text-accent">•</span>
+                            <span>Lead scoring system config & testing</span>
+                        </li>
+                        <li class="flex gap-2">
+                            <span class="text-accent">•</span>
+                            <span>5 email + 3 SMS templates</span>
+                        </li>
+                        <li class="flex gap-2">
+                            <span class="text-accent">•</span>
+                            <span>Make.com automation build</span>
+                        </li>
+                        <li class="flex gap-2">
+                            <span class="text-accent">•</span>
+                            <span>Dashboard setup & training</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Recurring (Highlighted) -->
+                <div class="bg-primary text-white rounded-luxury p-10 border-2 border-accent relative md:scale-105">
+                    <h3 class="text-2xl font-bold mb-6">Monthly Recurring</h3>
+                    <div class="text-4xl font-bold text-accent mb-8">$1,500</div>
+                    <ul class="space-y-3">
+                        <li class="flex gap-2">
+                            <span class="text-accent">•</span>
+                            <span>System monitoring & optimization</span>
+                        </li>
+                        <li class="flex gap-2">
+                            <span class="text-accent">•</span>
+                            <span>Template updates (seasonal, A/B tests)</span>
+                        </li>
+                        <li class="flex gap-2">
+                            <span class="text-accent">•</span>
+                            <span>New integrations as needed</span>
+                        </li>
+                        <li class="flex gap-2">
+                            <span class="text-accent">•</span>
+                            <span>Monthly performance report</span>
+                        </li>
+                        <li class="flex gap-2">
+                            <span class="text-accent">•</span>
+                            <span>Priority support</span>
+                        </li>
+                    </ul>
+                    <p class="text-sm text-gray-300 mt-8">
+                        No long-term contract. Cancel anytime.
+                    </p>
+                </div>
+            </div>
+
+            <div class="mt-12 p-8 bg-white rounded-luxury border border-gray-200">
+                <p class="text-text-slate text-center">
+                    <span class="font-semibold">First payment:</span> $3,000 setup + $1,500 first month due before build starts. Billed monthly thereafter.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="py-24 px-8 md:px-16 bg-white border-t-2 border-gray-200">
+        <div class="max-w-4xl mx-auto">
+            <h3 class="text-2xl font-bold text-primary mb-6">About mismoi</h3>
+            <p class="text-lg text-text-slate mb-6">
+                We build AI automation systems for real estate agents, sales consultants, and marketing agencies. We specialize in lead automation and conversion systems that replace 10+ hours of manual work per week.
+            </p>
+            <p class="text-lg text-text-slate">
+                Our systems use Make.com, Claude AI, and Google Workspace to handle lead scoring, multi-channel follow-up, and ROI tracking. We've designed systems that automatically nurture 50-200 leads per month for agents focused on growth.
+            </p>
+        </div>
+    </section>
+
+    <!-- CTA Footer -->
+    <footer class="py-16 px-8 md:px-16 bg-primary text-white rounded-t-[3rem]">
+        <div class="max-w-4xl mx-auto text-center">
+            <h3 class="text-3xl font-bold mb-4">Ready to Automate Your Lead Follow-Up?</h3>
+            <p class="text-lg text-gray-300 mb-8">
+                Let's build a system that closes more deals while you sleep.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button class="btn-magnetic px-8 py-3 bg-accent text-primary font-semibold rounded-full hover:bg-opacity-90 text-lg">
+                    <span>Book Kickoff Call</span>
+                </button>
+                <button class="btn-magnetic px-8 py-3 border-2 border-accent text-accent font-semibold rounded-full hover:bg-accent/10">
+                    <span>Reply with Questions</span>
+                </button>
+            </div>
+
+            <p class="text-sm text-gray-400 mt-12 mono-data flex items-center justify-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+                System Operational
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Initialize animations
+        window.addEventListener('load', function() {
+            // Fade-up animations for cards
+            gsap.utils.toArray('.card-fade-up').forEach((el) => {
+                gsap.to(el, {
+                    scrollTrigger: {
+                        trigger: el,
+                        start: 'top bottom',
+                        toggleActions: 'play none none none'
+                    },
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    ease: 'power3.out'
+                });
+            });
+
+            // Stagger text animations
+            gsap.utils.toArray('h1, h2, h3, p').forEach((el) => {
+                if (el.offsetParent) { // visible
+                    gsap.from(el, {
+                        opacity: 0,
+                        y: 20,
+                        duration: 0.6,
+                        ease: 'power3.out',
+                        stagger: 0.08
+                    });
+                }
+            });
+        });
+
+        // Navbar morph on scroll
+        const navbar = document.querySelector('nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('bg-white/10', 'border-white/20');
+            } else {
+                navbar.classList.remove('bg-white/10', 'border-white/20');
+            }
+        });
+    </script>
+</body>
+</html>
