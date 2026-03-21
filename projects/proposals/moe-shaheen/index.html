@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lead Qualification System — Proposal for Mohammad Saif</title>
+  <meta name="description" content="AI-powered lead qualification system for Mohammad Saif's wrestling academy. Built by Mismoi." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Serif+JP:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cream: '#FDFBF7',
+            sand: '#F5F0E8',
+            stone: '#D4CBC0',
+            moss: '#4A5D4F',
+            'moss-deep': '#3A4A3E',
+            charcoal: '#2C2C2C',
+            'warm-gray': '#8B8279',
+          },
+          fontFamily: {
+            display: ['Outfit', 'sans-serif'],
+            serif: ['"Noto Serif JP"', 'serif'],
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; font-size: 1.6rem; }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background-color: #FDFBF7;
+      color: #2C2C2C;
+      overflow-x: hidden;
+      line-height: 51px;
+    }
+
+    .sand-lines h1,
+    .sand-lines h2,
+    .sand-lines h3,
+    .sand-lines p,
+    .sand-lines span,
+    .sand-lines a {
+      line-height: 51px;
+    }
+
+    .sand-lines h1,
+    .sand-lines .text-6xl {
+      line-height: 102px;
+    }
+
+    .sand-lines h2,
+    .sand-lines .text-5xl {
+      line-height: 102px;
+    }
+
+    .zen-transition {
+      transition: all 0.7s cubic-bezier(0.32, 0.72, 0, 1);
+    }
+
+    .fade-up {
+      opacity: 0;
+      transform: translateY(2.5rem);
+      transition: opacity 0.9s cubic-bezier(0.32, 0.72, 0, 1),
+                  transform 0.9s cubic-bezier(0.32, 0.72, 0, 1);
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .stagger-1 { transition-delay: 0.05s; }
+    .stagger-2 { transition-delay: 0.12s; }
+    .stagger-3 { transition-delay: 0.2s; }
+    .stagger-4 { transition-delay: 0.28s; }
+    .stagger-5 { transition-delay: 0.36s; }
+    .stagger-6 { transition-delay: 0.44s; }
+
+    #dotGrid { display: block; }
+
+    .sand-lines {
+      background-image: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 50px,
+        rgba(74, 93, 79, 0.12) 50px,
+        rgba(74, 93, 79, 0.12) 51px
+      );
+      background-size: 100% 51px;
+    }
+
+    .grain-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    }
+
+    .nav-pill {
+      backdrop-filter: blur(0px);
+      -webkit-backdrop-filter: blur(0px);
+      background: #FDFBF7;
+      border: 2px solid rgba(74, 93, 79, 0.25);
+      box-shadow: 0 8px 32px -8px rgba(0, 0, 0, 0.12);
+      transition: all 0.7s cubic-bezier(0.32, 0.72, 0, 1);
+      animation: none;
+    }
+
+    .nav-pill.nav-scrolled {
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      background: rgba(253, 251, 247, 0.4);
+      border: 1px solid rgba(74, 93, 79, 0.06);
+      box-shadow: 0 4px 20px -6px rgba(0, 0, 0, 0.04);
+      overflow: hidden;
+    }
+
+    .nav-pill.nav-scrolled > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .nav-pill.nav-scrolled a {
+      color: #2C2C2C;
+    }
+
+    .nav-pill.nav-scrolled::after {
+      content: '';
+      position: absolute;
+      width: 40%;
+      top: -50%;
+      bottom: -50%;
+      z-index: 0;
+      background: radial-gradient(
+        ellipse 50% 100% at center,
+        rgba(253, 251, 247, 0.5) 0%,
+        rgba(253, 251, 247, 0.25) 40%,
+        transparent 70%
+      );
+      pointer-events: none;
+      animation: ripple-x 15s ease-in-out infinite alternate;
+    }
+
+    @keyframes ripple-x {
+      0% { left: -10%; }
+      100% { left: 70%; }
+    }
+
+    .cta-btn {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: #3A4A3E;
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.6s cubic-bezier(0.32, 0.72, 0, 1);
+    }
+
+    .cta-btn:hover::before {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
+    .cta-btn span, .cta-btn .arrow-wrap {
+      position: relative;
+      z-index: 1;
+    }
+
+    .card-shell {
+      background: rgba(0, 0, 0, 0.04);
+      border: 2px solid rgba(74, 93, 79, 0.18);
+      padding: 6px;
+      border-radius: 2rem;
+    }
+
+    .card-core {
+      background: #FFFFFF;
+      border-radius: calc(2rem - 6px);
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.8),
+                  0 20px 40px -10px rgba(0, 0, 0, 0.1);
+    }
+
+    .service-card:hover .card-core {
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.8),
+                  0 24px 48px -12px rgba(74, 93, 79, 0.1);
+    }
+
+    .mobile-menu {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s cubic-bezier(0.32, 0.72, 0, 1);
+    }
+
+    .mobile-menu.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .mobile-menu .menu-link {
+      transform: translateY(3rem);
+      opacity: 0;
+      transition: all 0.6s cubic-bezier(0.32, 0.72, 0, 1);
+    }
+
+    .mobile-menu.open .menu-link {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .mobile-menu.open .menu-link:nth-child(1) { transition-delay: 0.1s; }
+    .mobile-menu.open .menu-link:nth-child(2) { transition-delay: 0.15s; }
+    .mobile-menu.open .menu-link:nth-child(3) { transition-delay: 0.2s; }
+    .mobile-menu.open .menu-link:nth-child(4) { transition-delay: 0.25s; }
+    .mobile-menu.open .menu-link:nth-child(5) { transition-delay: 0.3s; }
+
+    .hamburger-line {
+      transition: all 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+    }
+
+    .hamburger.active .hamburger-line:first-child {
+      transform: translateY(6px) rotate(45deg);
+    }
+
+    .hamburger.active .hamburger-line:last-child {
+      transform: translateY(-6px) rotate(-45deg);
+    }
+
+    @media (max-width: 768px) {
+      .max-w-\[80vw\] { max-width: 90vw; padding-left: 1rem; padding-right: 1rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+      .fade-up { opacity: 1; transform: none; filter: none; }
+    }
+  </style>
+</head>
+<body class="sand-lines">
+  <div class="grain-overlay" aria-hidden="true"></div>
+
+  <!-- Navigation -->
+  <nav class="fixed top-0 left-0 right-0 z-40 px-4 pt-6">
+    <div class="nav-pill max-w-[80vw] mx-auto rounded-full px-6 py-3.5 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-2.5">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="14" cy="14" r="13" stroke="#4A5D4F" stroke-width="1.2"/>
+          <circle cx="14" cy="14" r="4" fill="#4A5D4F" opacity="0.7"/>
+          <circle cx="14" cy="7" r="1.5" fill="#4A5D4F" opacity="0.4"/>
+        </svg>
+        <span class="font-display font-semibold text-charcoal tracking-tight text-lg">Mismoi</span>
+      </a>
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#problem" class="text-sm text-warm-gray hover:text-charcoal zen-transition font-medium">Problem</a>
+        <a href="#approach" class="text-sm text-warm-gray hover:text-charcoal zen-transition font-medium">Approach</a>
+        <a href="#investment" class="text-sm text-warm-gray hover:text-charcoal zen-transition font-medium">Investment</a>
+        <a href="#faq" class="text-sm text-warm-gray hover:text-charcoal zen-transition font-medium">FAQ</a>
+        <a href="https://stripe.com/PLACEHOLDER" class="cta-btn bg-moss text-cream rounded-full px-5 py-2.5 text-sm font-medium flex items-center gap-2.5 hover:bg-moss-deep zen-transition active:scale-[0.98]">
+          <span>Approve Proposal</span>
+          <span class="arrow-wrap w-6 h-6 rounded-full bg-white/15 flex items-center justify-center zen-transition">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 9.5L9.5 2.5M9.5 2.5H4M9.5 2.5V8"/></svg>
+          </span>
+        </a>
+      </div>
+      <button class="hamburger md:hidden flex flex-col gap-1.5 p-2" onclick="toggleMenu()" aria-label="Toggle navigation menu">
+        <span class="hamburger-line w-5 h-[1.5px] bg-charcoal block"></span>
+        <span class="hamburger-line w-5 h-[1.5px] bg-charcoal block"></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu fixed inset-0 z-30 bg-cream/95 backdrop-blur-xl flex flex-col items-center justify-center gap-8" id="mobileMenu">
+    <a href="#problem" class="menu-link font-display text-3xl text-charcoal font-medium" onclick="toggleMenu()">Problem</a>
+    <a href="#approach" class="menu-link font-display text-3xl text-charcoal font-medium" onclick="toggleMenu()">Approach</a>
+    <a href="#investment" class="menu-link font-display text-3xl text-charcoal font-medium" onclick="toggleMenu()">Investment</a>
+    <a href="#faq" class="menu-link font-display text-3xl text-charcoal font-medium" onclick="toggleMenu()">FAQ</a>
+    <a href="https://stripe.com/PLACEHOLDER" class="menu-link cta-btn bg-moss text-cream rounded-full px-8 py-4 text-lg font-medium flex items-center gap-3 zen-transition active:scale-[0.98]" onclick="toggleMenu()">
+      <span>Approve Proposal</span>
+      <span class="arrow-wrap w-8 h-8 rounded-full bg-white/15 flex items-center justify-center">
+        <svg width="14" height="14" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 9.5L9.5 2.5M9.5 2.5H4M9.5 2.5V8"/></svg>
+      </span>
+    </a>
+  </div>
+
+  <main>
+  <!-- Hero Section -->
+  <section id="hero" class="min-h-[100dvh] relative flex items-center">
+    <div class="max-w-[80vw] mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-8 items-center pt-36 pb-24 md:pt-32 md:pb-0">
+      <div class="max-w-xl">
+        <p class="fade-up stagger-1 text-sm uppercase tracking-[0.2em] text-moss font-medium mb-6">Proposal for Mohammad Saif &middot; March 2026</p>
+        <h1 class="fade-up stagger-2 font-display text-4xl md:text-6xl tracking-tighter leading-none text-charcoal font-bold mb-8">
+          Your Leads,<br />
+          <span class="font-serif font-light italic text-moss">Never Missed.</span>
+        </h1>
+        <p class="fade-up stagger-3 text-base md:text-lg text-warm-gray leading-relaxed max-w-[50ch] mb-10">
+          You're getting 200 leads a month from Meta and losing members to slow follow-up. This system captures every lead automatically, scores them with AI, and routes hot prospects to ManyChat and Mailchimp so your existing tools do the outreach. Your coach stops sorting leads. You stop losing revenue.
+        </p>
+        <div class="fade-up stagger-4 flex flex-col sm:flex-row gap-4">
+          <a href="#approach" class="cta-btn bg-moss text-cream rounded-full px-7 py-4 text-base font-medium flex items-center gap-3 hover:bg-moss-deep zen-transition active:scale-[0.98] w-fit">
+            <span>See the System</span>
+            <span class="arrow-wrap w-8 h-8 rounded-full bg-white/15 flex items-center justify-center zen-transition">
+              <svg width="14" height="14" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6h8m0 0L7 3m3 3L7 9"/></svg>
+            </span>
+          </a>
+          <a href="#investment" class="rounded-full px-7 py-4 text-base font-medium text-charcoal border-2 border-charcoal/40 hover:border-charcoal/60 bg-[#EEEBe4] zen-transition active:scale-[0.98] w-fit text-center">
+            View pricing
+          </a>
+        </div>
+      </div>
+
+      <div class="relative flex items-center justify-center min-h-[400px] md:min-h-[500px] hidden md:flex">
+        <canvas id="dotGrid" class="absolute inset-0 w-full h-full"></canvas>
+      </div>
+    </div>
+
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 fade-up stagger-5">
+      <span class="text-[10px] uppercase tracking-[0.2em] text-warm-gray/50 font-medium">Scroll</span>
+      <div class="w-[1px] h-8 bg-gradient-to-b from-warm-gray/30 to-transparent"></div>
+    </div>
+  </section>
+
+  <!-- Summary Section -->
+  <section class="py-[128px] md:py-[224px]">
+    <div class="max-w-[80vw] mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8 items-center">
+        <div class="md:col-span-6">
+          <span class="fade-up inline-block rounded-full px-5 py-2 text-[15px] uppercase tracking-[0.2em] font-medium text-moss border border-moss/20 bg-[#EEEBe4] mb-8">The Situation</span>
+          <h2 class="fade-up stagger-1 font-display text-3xl md:text-5xl tracking-tighter leading-none text-charcoal font-bold mb-8">
+            200 leads a month.<br />Two people. Zero systems.
+          </h2>
+          <p class="fade-up stagger-2 text-base text-warm-gray leading-relaxed max-w-[50ch] mb-4">
+            Hey Mohammad, great call. Here's the situation: you're running Meta campaigns pulling 200 leads a month for the wrestling academy, but your team is drowning in manual follow-up. WhatsApp messages, phone calls, Mailchimp uploads, Google Sheets that only sync 16 out of 120 leads.
+          </p>
+          <p class="fade-up stagger-3 text-base text-warm-gray leading-relaxed max-w-[50ch] mb-4">
+            Meanwhile, you're touring in Japan and your head coach is spending his days qualifying leads instead of running private trainings. That's $2-3K in missed memberships every month, and it's costing your coach the time he needs to do what actually makes you money.
+          </p>
+          <p class="fade-up stagger-3 text-base text-warm-gray leading-relaxed max-w-[50ch]">
+            This proposal fixes all of it. One Make.com pipeline that captures every lead, scores them with AI, and routes hot prospects to ManyChat and Mailchimp automatically. No more manual chaos.
+          </p>
+        </div>
+        <div class="md:col-span-5 md:col-start-8 relative">
+          <div class="fade-up stagger-2 card-shell relative z-10">
+            <div class="card-core p-8 md:p-10">
+              <div class="grid grid-cols-2 gap-8">
+                <div>
+                  <span class="font-display text-3xl md:text-4xl font-bold text-charcoal tracking-tighter">200</span>
+                  <p class="text-warm-gray text-sm mt-1">Leads per month captured</p>
+                </div>
+                <div>
+                  <span class="font-display text-3xl md:text-4xl font-bold text-charcoal tracking-tighter">&lt;2m</span>
+                  <p class="text-warm-gray text-sm mt-1">AI response time</p>
+                </div>
+                <div>
+                  <span class="font-display text-3xl md:text-4xl font-bold text-charcoal tracking-tighter">90%+</span>
+                  <p class="text-warm-gray text-sm mt-1">Leads qualified automatically</p>
+                </div>
+                <div>
+                  <span class="font-display text-3xl md:text-4xl font-bold text-moss tracking-tighter">$2-3K</span>
+                  <p class="text-warm-gray text-sm mt-1">Monthly revenue recovered</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Problem Section -->
+  <section id="problem" class="py-[128px] md:py-[224px] bg-charcoal relative overflow-hidden">
+    <div class="absolute inset-0 opacity-[0.03]" style="background-image: repeating-linear-gradient(0deg, transparent, transparent 24px, rgba(255,255,255,0.3) 24px, rgba(255,255,255,0.3) 25px)" aria-hidden="true"></div>
+    <div class="max-w-[80vw] mx-auto relative z-10">
+      <div class="mb-16">
+        <span class="fade-up inline-block rounded-full px-5 py-2 text-[15px] uppercase tracking-[0.2em] font-medium text-moss border border-moss/30 bg-moss/10 mb-8">The Problem</span>
+        <h2 class="fade-up stagger-1 font-display text-3xl md:text-5xl tracking-tighter leading-none text-cream font-bold">
+          Three things costing you<br />members right now.
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Problem 1 -->
+        <div class="fade-up stagger-1 card-shell service-card h-full" style="border-color: rgba(255,255,255,0.08); background: rgba(255,255,255,0.03);">
+          <div class="card-core p-8 h-full" style="background: #333333;">
+            <div class="flex items-center justify-between mb-6">
+              <span class="font-display text-4xl font-bold text-moss/40 leading-none">01</span>
+              <span class="text-xs font-medium text-red-400 uppercase tracking-wider">~$2-3K/mo lost</span>
+            </div>
+            <h3 class="font-display text-lg font-semibold text-cream tracking-tight mb-3">Manual Lead Chaos</h3>
+            <p class="text-stone/50 text-sm leading-relaxed">
+              200 leads a month. Two people manually calling, WhatsApping, emailing, and uploading to Mailchimp. Leads go unanswered. Calls get missed. Your team is overwhelmed and your best prospects walk.
+            </p>
+          </div>
+        </div>
+        <!-- Problem 2 -->
+        <div class="fade-up stagger-2 card-shell service-card h-full" style="border-color: rgba(255,255,255,0.08); background: rgba(255,255,255,0.03);">
+          <div class="card-core p-8 h-full" style="background: #333333;">
+            <div class="flex items-center justify-between mb-6">
+              <span class="font-display text-4xl font-bold text-moss/40 leading-none">02</span>
+              <span class="text-xs font-medium text-red-400 uppercase tracking-wider">87% data loss</span>
+            </div>
+            <h3 class="font-display text-lg font-semibold text-cream tracking-tight mb-3">Broken Data Pipeline</h3>
+            <p class="text-stone/50 text-sm leading-relaxed">
+              120 leads came in this month. Only 16 showed up in Google Sheets. That's 87% of your leads vanishing from the system. You can't follow up on leads you can't see. The integration is broken and every day it stays broken costs you sign-ups.
+            </p>
+          </div>
+        </div>
+        <!-- Problem 3 -->
+        <div class="fade-up stagger-3 card-shell service-card h-full" style="border-color: rgba(255,255,255,0.08); background: rgba(255,255,255,0.03);">
+          <div class="card-core p-8 h-full" style="background: #333333;">
+            <div class="flex items-center justify-between mb-6">
+              <span class="font-display text-4xl font-bold text-moss/40 leading-none">03</span>
+              <span class="text-xs font-medium text-red-400 uppercase tracking-wider">Hours lost daily</span>
+            </div>
+            <h3 class="font-display text-lg font-semibold text-cream tracking-tight mb-3">Coach Stuck on Admin</h3>
+            <p class="text-stone/50 text-sm leading-relaxed">
+              Your head coach should be running private trainings, your bread and butter. Instead, he's sorting leads, making calls, and uploading emails. Every hour on admin is an hour not spent on the work that actually grows the academy.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Approach Section -->
+  <section id="approach" class="py-[128px] md:py-[224px]">
+    <div class="max-w-[80vw] mx-auto">
+      <div class="mb-16 max-w-2xl">
+        <span class="fade-up inline-block rounded-full px-5 py-2 text-[15px] uppercase tracking-[0.2em] font-medium text-moss border border-moss/20 bg-[#EEEBe4] mb-8">The System</span>
+        <h2 class="fade-up stagger-1 font-display text-3xl md:text-5xl tracking-tighter leading-none text-charcoal font-bold mb-8">
+          Three layers. Fully automated.
+        </h2>
+        <p class="fade-up stagger-2 text-base text-warm-gray leading-relaxed max-w-[50ch]">
+          Built on Make.com with Claude AI. Captures leads, scores them, and feeds your existing tools. Runs 24/7 in the background. Your coach focuses on coaching.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Layer 1 -->
+        <div class="fade-up stagger-1 card-shell service-card h-full">
+          <div class="card-core h-full p-8 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-5">
+                <span class="font-display text-4xl font-bold text-moss/25 leading-none">01</span>
+                <span class="text-xs font-medium text-moss uppercase tracking-wider">+100% lead capture</span>
+              </div>
+              <h3 class="font-display text-lg font-semibold text-charcoal tracking-tight mb-2">Lead Capture Pipeline</h3>
+              <p class="text-sm text-warm-gray mb-4">Meta Ads &rarr; Make.com &rarr; Auto-Sync</p>
+              <ul class="space-y-3">
+                <li class="text-sm text-warm-gray leading-relaxed flex gap-2">
+                  <span class="text-moss shrink-0 leading-relaxed">&bull;</span>
+                  Meta Lead Ads automatically pulled into Make.com via JSON, no manual export
+                </li>
+                <li class="text-sm text-warm-gray leading-relaxed flex gap-2">
+                  <span class="text-moss shrink-0 leading-relaxed">&bull;</span>
+                  Fixes the Google Sheets problem: all 200 leads sync, not just 16
+                </li>
+                <li class="text-sm text-warm-gray leading-relaxed flex gap-2">
+                  <span class="text-moss shrink-0 leading-relaxed">&bull;</span>
+                  Every lead tagged with source, contact info, and timestamp
+                </li>
+                <li class="text-sm text-warm-gray leading-relaxed flex gap-2">
+                  <span class="text-moss shrink-0 leading-relaxed">&bull;</span>
+                  Runs 24/7, ~$10-16/mo for Make.com at your volume
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- Layer 2 -->
+        <div class="fade-up stagger-2 card-shell service-card h-full">
+          <div class="card-core h-full p-8 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-5">
+                <span class="font-display text-4xl font-bold text-moss/25 leading-none">02</span>
+                <span class="text-xs font-medium text-moss uppercase tracking-wider">AI-powered scoring</span>
+              </div>
+              <h3 class="font-display text-lg font-semibold text-charcoal tracking-tight mb-2">AI Lead Scoring</h3>
+              <p class="text-sm text-warm-gray mb-4">Meta Form Data &rarr; Claude AI &rarr; Hot / Warm / Cold</p>
+              <ul class="space-y-3">
+                <li class="text-sm text-warm-gray leading-relaxed flex gap-2">
+                  <span class="text-moss shrink-0 leading-relaxed">&bull;</span>
+                  Claude AI scores every lead based on their Meta form responses automatically
+                </li>
+                <li class="text-sm text-warm-gray leading-relaxed flex gap-2">
+                  <span class="text-moss shrink-0 leading-relaxed">&bull;</span>
+                  Grades leads as hot, warm, or cold based on experience level, budget, readiness
+                </li>
+                <li class="text-sm text-warm-gray leading-relaxed flex gap-2">
+                  <span class="text-moss shrink-0 leading-relaxed">&bull;</span>
+                  No manual sorting -- your coach never touches a spreadsheet again
+                </li>
+                <li class="text-sm text-warm-gray leading-relaxed flex gap-2">
+                  <span class="text-moss shrink-0 leading-relaxed">&bull;</span>
+                  Scoring logic tunable as you learn what makes a great member
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- Layer 3 -->
+        <div class="fade-up stagger-3 card-shell service-card h-full">
+          <div class="card-core h-full p-8 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-5">
+                <span class="font-display text-4xl font-bold text-moss/25 leading-none">03</span>
+                <span class="text-xs font-medium text-moss uppercase tracking-wider">No lead forgotten</span>
+              </div>
+              <h3 class="font-display text-lg font-semibold text-charcoal tracking-tight mb-2">Smart Routing</h3>
+              <p class="text-sm text-warm-gray mb-4">Scored Leads &rarr; ManyChat + Mailchimp</p>
+              <ul class="space-y-3">
+                <li class="text-sm text-warm-gray leading-relaxed flex gap-2">
+                  <span class="text-moss shrink-0 leading-relaxed">&bull;</span>
+                  Hot leads auto-pushed to ManyChat for WhatsApp/IG DM outreach
+                </li>
+                <li class="text-sm text-warm-gray leading-relaxed flex gap-2">
+                  <span class="text-moss shrink-0 leading-relaxed">&bull;</span>
+                  All leads synced to Mailchimp for email nurture sequences and event invites
+                </li>
+                <li class="text-sm text-warm-gray leading-relaxed flex gap-2">
+                  <span class="text-moss shrink-0 leading-relaxed">&bull;</span>
+                  Daily reports: how many scored, how many routed, conversion rate
+                </li>
+                <li class="text-sm text-warm-gray leading-relaxed flex gap-2">
+                  <span class="text-moss shrink-0 leading-relaxed">&bull;</span>
+                  Your existing tools do the outreach -- this system feeds them automatically
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section class="py-[128px] md:py-[224px] border-t border-charcoal/8">
+    <div class="max-w-[80vw] mx-auto">
+      <div class="mb-20 max-w-2xl">
+        <span class="fade-up inline-block rounded-full px-5 py-2 text-[15px] uppercase tracking-[0.2em] font-medium text-moss border border-moss/20 bg-[#EEEBe4] mb-8">Timeline</span>
+        <h2 class="fade-up stagger-1 font-display text-3xl md:text-5xl tracking-tighter leading-none text-charcoal font-bold">
+          From credentials to live system.
+        </h2>
+      </div>
+
+      <div class="relative">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
+          <!-- Step 1 -->
+          <div class="fade-up stagger-1 card-shell service-card h-full">
+            <div class="card-core h-full p-8 flex flex-col justify-between">
+              <div>
+                <span class="font-display text-4xl font-bold text-moss/25 leading-none mb-5 block">01</span>
+                <h3 class="font-display text-lg font-semibold text-charcoal tracking-tight mb-2">Connect</h3>
+                <p class="text-warm-gray text-sm leading-relaxed">
+                  You send Meta admin access, Mailchimp credentials, and ManyChat login. Takes 5 minutes on your end.
+                </p>
+              </div>
+            </div>
+          </div>
+          <!-- Step 2 -->
+          <div class="fade-up stagger-2 card-shell service-card h-full">
+            <div class="card-core h-full p-8 flex flex-col justify-between">
+              <div>
+                <span class="font-display text-4xl font-bold text-moss/25 leading-none mb-5 block">02</span>
+                <h3 class="font-display text-lg font-semibold text-charcoal tracking-tight mb-2">Build</h3>
+                <p class="text-warm-gray text-sm leading-relaxed">
+                  I build the full system on Make.com within 48 hours. All three layers connected, AI scripts written, Mailchimp sequences set.
+                </p>
+              </div>
+            </div>
+          </div>
+          <!-- Step 3 -->
+          <div class="fade-up stagger-3 card-shell service-card h-full">
+            <div class="card-core h-full p-8 flex flex-col justify-between">
+              <div>
+                <span class="font-display text-4xl font-bold text-moss/25 leading-none mb-5 block">03</span>
+                <h3 class="font-display text-lg font-semibold text-charcoal tracking-tight mb-2">Test</h3>
+                <p class="text-warm-gray text-sm leading-relaxed">
+                  30-day beta run with your current campaign leads. A/B test WhatsApp vs Instagram DMs. Real data, real results.
+                </p>
+              </div>
+            </div>
+          </div>
+          <!-- Step 4 -->
+          <div class="fade-up stagger-4 card-shell service-card h-full">
+            <div class="card-core h-full p-8 flex flex-col justify-between">
+              <div>
+                <span class="font-display text-4xl font-bold text-moss/25 leading-none mb-5 block">04</span>
+                <h3 class="font-display text-lg font-semibold text-charcoal tracking-tight mb-2">Optimize & Handoff</h3>
+                <p class="text-warm-gray text-sm leading-relaxed">
+                  Tune AI qualification scripts based on results. Deliver conversion report. Full system handoff with training.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Investment Section -->
+  <section id="investment" class="py-[128px] md:py-[224px] border-t border-charcoal/8">
+    <div class="max-w-[80vw] mx-auto">
+      <div class="mb-16 max-w-2xl">
+        <span class="fade-up inline-block rounded-full px-5 py-2 text-[15px] uppercase tracking-[0.2em] font-medium text-moss border border-moss/20 bg-[#EEEBe4] mb-8">Investment</span>
+        <h2 class="fade-up stagger-1 font-display text-3xl md:text-5xl tracking-tighter leading-none text-charcoal font-bold">
+          Simple pricing. Clear scope.
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        <!-- Setup -->
+        <div class="fade-up stagger-1 card-shell service-card h-full">
+          <div class="card-core p-8 md:p-10 h-full">
+            <div class="flex items-center justify-between mb-8">
+              <span class="text-xs uppercase tracking-[0.15em] text-warm-gray font-semibold">One-Time Setup</span>
+              <span class="font-display text-3xl md:text-4xl font-bold text-charcoal tracking-tighter">$750</span>
+            </div>
+            <ul class="space-y-4">
+              <li class="text-sm text-warm-gray leading-relaxed flex gap-3">
+                <span class="text-moss shrink-0 mt-0.5">&#10003;</span>
+                Full Make.com automation build (all 3 layers)
+              </li>
+              <li class="text-sm text-warm-gray leading-relaxed flex gap-3">
+                <span class="text-moss shrink-0 mt-0.5">&#10003;</span>
+                Meta Lead Ads integration with 100% sync
+              </li>
+              <li class="text-sm text-warm-gray leading-relaxed flex gap-3">
+                <span class="text-moss shrink-0 mt-0.5">&#10003;</span>
+                Claude AI lead scoring logic (hot / warm / cold)
+              </li>
+              <li class="text-sm text-warm-gray leading-relaxed flex gap-3">
+                <span class="text-moss shrink-0 mt-0.5">&#10003;</span>
+                ManyChat + Mailchimp routing connections
+              </li>
+              <li class="text-sm text-warm-gray leading-relaxed flex gap-3">
+                <span class="text-moss shrink-0 mt-0.5">&#10003;</span>
+                Automated lead routing to your existing tools
+              </li>
+              <li class="text-sm text-warm-gray leading-relaxed flex gap-3">
+                <span class="text-moss shrink-0 mt-0.5">&#10003;</span>
+                Daily reporting dashboard
+              </li>
+              <li class="text-sm text-warm-gray leading-relaxed flex gap-3">
+                <span class="text-moss shrink-0 mt-0.5">&#10003;</span>
+                30-day A/B test (WhatsApp vs Instagram)
+              </li>
+              <li class="text-sm text-warm-gray leading-relaxed flex gap-3">
+                <span class="text-moss shrink-0 mt-0.5">&#10003;</span>
+                System training + handoff documentation
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!-- Monthly -->
+        <div class="fade-up stagger-2 card-shell service-card h-full">
+          <div class="card-core p-8 md:p-10 h-full">
+            <div class="flex items-center justify-between mb-8">
+              <span class="text-xs uppercase tracking-[0.15em] text-warm-gray font-semibold">Monthly Retainer</span>
+              <span class="font-display text-3xl md:text-4xl font-bold text-charcoal tracking-tighter">$197<span class="text-lg text-warm-gray font-normal">/mo</span></span>
+            </div>
+            <ul class="space-y-4">
+              <li class="text-sm text-warm-gray leading-relaxed flex gap-3">
+                <span class="text-moss shrink-0 mt-0.5">&#10003;</span>
+                Make.com monitoring and error handling
+              </li>
+              <li class="text-sm text-warm-gray leading-relaxed flex gap-3">
+                <span class="text-moss shrink-0 mt-0.5">&#10003;</span>
+                AI scoring logic tuning based on lead quality
+              </li>
+              <li class="text-sm text-warm-gray leading-relaxed flex gap-3">
+                <span class="text-moss shrink-0 mt-0.5">&#10003;</span>
+                Bug fixes within 24 hours
+              </li>
+              <li class="text-sm text-warm-gray leading-relaxed flex gap-3">
+                <span class="text-moss shrink-0 mt-0.5">&#10003;</span>
+                Weekly conversion data review
+              </li>
+              <li class="text-sm text-warm-gray leading-relaxed flex gap-3">
+                <span class="text-moss shrink-0 mt-0.5">&#10003;</span>
+                Monthly strategy call with performance report
+              </li>
+              <li class="text-sm text-warm-gray leading-relaxed flex gap-3">
+                <span class="text-moss shrink-0 mt-0.5">&#10003;</span>
+                Cancel anytime, no lock-in
+              </li>
+            </ul>
+            <div class="mt-8 pt-6 border-t border-charcoal/8">
+              <p class="text-xs text-warm-gray leading-relaxed">
+                API costs are client-side: ~$10-16/month for Make.com subscription at your lead volume.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Guarantee -->
+      <div class="fade-up stagger-3 card-shell">
+        <div class="card-core p-8 md:p-10" style="background: linear-gradient(135deg, #4A5D4F 0%, #3A4A3E 100%);">
+          <div class="flex flex-col md:flex-row items-start md:items-center gap-6">
+            <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center shrink-0">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FDFBF7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div>
+              <h3 class="font-display text-lg font-semibold text-cream tracking-tight mb-2">Money-Back Guarantee</h3>
+              <p class="text-cream/70 text-sm leading-relaxed">
+                If the system doesn't capture and qualify 90%+ of your Meta leads within 30 days of go-live, the full setup fee gets refunded. I build it right or you don't pay.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section id="faq" class="py-[128px] md:py-[224px] border-t border-charcoal/8">
+    <div class="max-w-[80vw] mx-auto">
+      <div class="mb-16">
+        <span class="fade-up inline-block rounded-full px-5 py-2 text-[15px] uppercase tracking-[0.2em] font-medium text-moss border border-moss/20 bg-[#EEEBe4] mb-8">FAQ</span>
+        <h2 class="fade-up stagger-1 font-display text-3xl md:text-5xl tracking-tighter leading-none text-charcoal font-bold">
+          Common questions.
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="fade-up stagger-1 card-shell service-card h-full">
+          <div class="card-core p-8 h-full">
+            <h3 class="font-display text-base font-semibold text-charcoal tracking-tight mb-3">How does the WhatsApp integration work?</h3>
+            <p class="text-sm text-warm-gray leading-relaxed">
+              Make.com connects directly to WhatsApp Business API through your Google account. No extra cost beyond the Make.com subscription. Messages go out automatically from your business number, so leads see a familiar Dubai contact, not a random bot.
+            </p>
+          </div>
+        </div>
+        <div class="fade-up stagger-2 card-shell service-card h-full">
+          <div class="card-core p-8 h-full">
+            <h3 class="font-display text-base font-semibold text-charcoal tracking-tight mb-3">What about leads who don't respond?</h3>
+            <p class="text-sm text-warm-gray leading-relaxed">
+              Non-responders get added to Mailchimp with event invites. Your business model already handles this: they attend a wrestling event, get inspired, and sign up later. The system keeps the connection alive instead of letting them disappear.
+            </p>
+          </div>
+        </div>
+        <div class="fade-up stagger-3 card-shell service-card h-full">
+          <div class="card-core p-8 h-full">
+            <h3 class="font-display text-base font-semibold text-charcoal tracking-tight mb-3">Can the AI handle Arabic and English?</h3>
+            <p class="text-sm text-warm-gray leading-relaxed">
+              Yes. Claude AI supports both Arabic and English natively. We'll set up the qualification scripts in both languages so leads in Dubai get messaged in their preferred language automatically.
+            </p>
+          </div>
+        </div>
+        <div class="fade-up stagger-4 card-shell service-card h-full">
+          <div class="card-core p-8 h-full">
+            <h3 class="font-display text-base font-semibold text-charcoal tracking-tight mb-3">What happens after the 30-day test?</h3>
+            <p class="text-sm text-warm-gray leading-relaxed">
+              You get a full conversion report: qualified vs booked, WhatsApp vs IG performance, and recommendations. If you're happy, the system keeps running on the monthly retainer. If not, the guarantee covers you.
+            </p>
+          </div>
+        </div>
+        <div class="fade-up stagger-5 card-shell service-card h-full">
+          <div class="card-core p-8 h-full">
+            <h3 class="font-display text-base font-semibold text-charcoal tracking-tight mb-3">What about my 1,500 existing event leads?</h3>
+            <p class="text-sm text-warm-gray leading-relaxed">
+              That's Phase 2. Once the qualification system is running, we can enrich your existing 1,500+ event attendees with web data, run them through personalized Mailchimp campaigns, and convert past attendees into academy members. We talked about this on the call and I'd love to tackle it after Phase 1 proves out.
+            </p>
+          </div>
+        </div>
+        <div class="fade-up stagger-6 card-shell service-card h-full">
+          <div class="card-core p-8 h-full">
+            <h3 class="font-display text-base font-semibold text-charcoal tracking-tight mb-3">Do I own everything?</h3>
+            <p class="text-sm text-warm-gray leading-relaxed">
+              Yes. The Make.com scenarios, AI scripts, Mailchimp sequences, and all data live in your accounts. Everything is fully yours. If you cancel the retainer, the system keeps running.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-[128px] md:py-[224px]">
+    <div class="max-w-[80vw] mx-auto">
+      <div class="card-shell">
+        <div class="card-core bg-charcoal relative overflow-hidden">
+          <div class="absolute inset-0 opacity-[0.03]" style="background-image: repeating-linear-gradient(0deg, transparent, transparent 20px, rgba(255,255,255,0.3) 20px, rgba(255,255,255,0.3) 21px)" aria-hidden="true"></div>
+          <div class="relative z-10 p-10 md:p-16 lg:p-24">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+              <div class="md:col-span-7">
+                <span class="fade-up inline-block rounded-full px-5 py-2 text-[15px] uppercase tracking-[0.2em] font-medium text-moss border border-moss/30 bg-moss/10 mb-8">Next Steps</span>
+                <h2 class="fade-up stagger-1 font-display text-3xl md:text-5xl tracking-tighter leading-none text-cream font-bold mb-8">
+                  Ready to stop<br />losing leads?
+                </h2>
+                <ol class="fade-up stagger-2 space-y-4 mb-10">
+                  <li class="text-stone/60 text-sm leading-relaxed flex gap-3">
+                    <span class="text-moss font-display font-bold shrink-0">1.</span>
+                    Approve this proposal and complete payment
+                  </li>
+                  <li class="text-stone/60 text-sm leading-relaxed flex gap-3">
+                    <span class="text-moss font-display font-bold shrink-0">2.</span>
+                    Send Meta admin access, Mailchimp, and ManyChat credentials
+                  </li>
+                  <li class="text-stone/60 text-sm leading-relaxed flex gap-3">
+                    <span class="text-moss font-display font-bold shrink-0">3.</span>
+                    I build the full system within 48 hours
+                  </li>
+                  <li class="text-stone/60 text-sm leading-relaxed flex gap-3">
+                    <span class="text-moss font-display font-bold shrink-0">4.</span>
+                    We run your current campaign leads through it
+                  </li>
+                  <li class="text-stone/60 text-sm leading-relaxed flex gap-3">
+                    <span class="text-moss font-display font-bold shrink-0">5.</span>
+                    30-day test with full conversion report
+                  </li>
+                  <li class="text-stone/60 text-sm leading-relaxed flex gap-3">
+                    <span class="text-moss font-display font-bold shrink-0">6.</span>
+                    Optimize, handoff, and move to Phase 2
+                  </li>
+                </ol>
+                <p class="fade-up stagger-3 text-stone/40 text-xs leading-relaxed max-w-[45ch]">
+                  Every week without this system is $500-750 in missed memberships. At $150-200/mo per member and a $3-4K lifetime value, one extra sign-up per month pays for the entire system.
+                </p>
+              </div>
+              <div class="md:col-span-5 flex flex-col items-center md:items-end gap-6">
+                <div class="fade-up stagger-3">
+                  <a href="https://stripe.com/PLACEHOLDER" class="cta-btn inline-flex items-center gap-3 bg-moss text-cream rounded-full px-8 py-4 md:px-10 md:py-5 text-base md:text-lg font-medium hover:bg-moss-deep zen-transition active:scale-[0.98]">
+                    <span>Approve &amp; Get Started</span>
+                    <span class="arrow-wrap w-8 h-8 md:w-9 md:h-9 rounded-full bg-white/15 flex items-center justify-center zen-transition">
+                      <svg width="14" height="14" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 9.5L9.5 2.5M9.5 2.5H4M9.5 2.5V8"/></svg>
+                    </span>
+                  </a>
+                </div>
+                <p class="text-stone/40 text-xs">Questions? Email <a href="mailto:vu@mismoi.com" class="text-moss hover:text-cream zen-transition">vu@mismoi.com</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="py-16 border-t border-charcoal/8">
+    <div class="max-w-[80vw] mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8">
+        <div class="md:col-span-4">
+          <div class="flex items-center gap-2.5 mb-4">
+            <svg width="24" height="24" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="14" cy="14" r="13" stroke="#4A5D4F" stroke-width="1.2"/>
+              <circle cx="14" cy="14" r="4" fill="#4A5D4F" opacity="0.7"/>
+              <circle cx="14" cy="7" r="1.5" fill="#4A5D4F" opacity="0.4"/>
+            </svg>
+            <span class="font-display font-semibold text-charcoal tracking-tight">Mismoi</span>
+          </div>
+          <p class="text-warm-gray text-sm leading-relaxed max-w-[35ch]">
+            AI automation systems that grow your business. Built to run. Built to last.
+          </p>
+        </div>
+        <div class="md:col-span-2 md:col-start-7">
+          <h4 class="text-xs uppercase tracking-[0.15em] text-charcoal font-semibold mb-4">Proposal</h4>
+          <div class="flex flex-col gap-3">
+            <a href="#problem" class="text-sm text-warm-gray hover:text-charcoal zen-transition">Problem</a>
+            <a href="#approach" class="text-sm text-warm-gray hover:text-charcoal zen-transition">Approach</a>
+            <a href="#investment" class="text-sm text-warm-gray hover:text-charcoal zen-transition">Investment</a>
+            <a href="#faq" class="text-sm text-warm-gray hover:text-charcoal zen-transition">FAQ</a>
+          </div>
+        </div>
+        <div class="md:col-span-2">
+          <h4 class="text-xs uppercase tracking-[0.15em] text-charcoal font-semibold mb-4">Connect</h4>
+          <div class="flex flex-col gap-3">
+            <a href="mailto:vu@mismoi.com" class="text-sm text-warm-gray hover:text-charcoal zen-transition">vu@mismoi.com</a>
+            <a href="https://calendly.com/vu-mismoi/30min" class="text-sm text-warm-gray hover:text-charcoal zen-transition">Book a Call</a>
+          </div>
+        </div>
+        <div class="md:col-span-2">
+          <h4 class="text-xs uppercase tracking-[0.15em] text-charcoal font-semibold mb-4">Terms</h4>
+          <div class="flex flex-col gap-3">
+            <span class="text-sm text-warm-gray">One-time setup + monthly retainer</span>
+            <span class="text-sm text-warm-gray">Cancel monthly anytime</span>
+            <span class="text-sm text-warm-gray">You own everything</span>
+          </div>
+        </div>
+      </div>
+      <div class="mt-16 pt-8 border-t border-charcoal/8 flex flex-col md:flex-row items-center justify-between gap-4">
+        <p class="text-xs text-warm-gray/50">&copy; 2026 Mismoi. All rights reserved.</p>
+        <p class="text-xs text-warm-gray/50">Prepared for Mohammad Saif &middot; March 2026</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      var menu = document.getElementById('mobileMenu');
+      var btn = document.querySelector('.hamburger');
+      if (menu) menu.classList.toggle('open');
+      if (btn) btn.classList.toggle('active');
+      document.body.style.overflow = (menu && menu.classList.contains('open')) ? 'hidden' : '';
+    }
+
+    if ('IntersectionObserver' in window) {
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -60px 0px'
+      });
+
+      document.querySelectorAll('.fade-up').forEach(function(el) {
+        observer.observe(el);
+      });
+
+      var navPill = document.querySelector('.nav-pill');
+      var heroSection = document.getElementById('hero');
+      if (navPill && heroSection) {
+        var navObserver = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              navPill.classList.remove('nav-scrolled');
+            } else {
+              navPill.classList.add('nav-scrolled');
+            }
+          });
+        }, {
+          threshold: 0,
+          rootMargin: '-80px 0px 0px 0px'
+        });
+        navObserver.observe(heroSection);
+      }
+    } else {
+      document.querySelectorAll('.fade-up').forEach(function(el) {
+        el.classList.add('visible');
+      });
+    }
+  </script>
+
+  <script>
+    (function() {
+      var canvas = document.getElementById('dotGrid');
+      if (!canvas) return;
+      var ctx = canvas.getContext('2d');
+      var dpr = window.devicePixelRatio || 1;
+      var mouseX = -9999;
+      var mouseY = -9999;
+      var dots = [];
+      var SPACING = 22;
+      var BASE_RADIUS = 3.5;
+      var MAX_RADIUS = 9;
+      var EFFECT_RANGE = 120;
+      var EASE_SPEED = 0.08;
+
+      function resize() {
+        var rect = canvas.getBoundingClientRect();
+        canvas.width = rect.width * dpr;
+        canvas.height = rect.height * dpr;
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+        ctx.scale(dpr, dpr);
+        buildDots(rect.width, rect.height);
+      }
+
+      function blobRadius(angle, base) {
+        return base
+          + base * 0.15 * Math.sin(angle * 3 + 0.5)
+          + base * 0.1 * Math.sin(angle * 5 + 1.2)
+          + base * 0.08 * Math.cos(angle * 2 + 2.8)
+          + base * 0.05 * Math.sin(angle * 7 + 0.3);
+      }
+
+      function buildDots(w, h) {
+        dots = [];
+        var cx = w / 2;
+        var cy = h / 2;
+        var blobBase = Math.min(w, h) * 0.4;
+
+        for (var x = SPACING; x < w - SPACING; x += SPACING) {
+          for (var y = SPACING; y < h - SPACING; y += SPACING) {
+            var dx = x - cx;
+            var dy = y - cy;
+            var dist = Math.sqrt(dx * dx + dy * dy);
+            var angle = Math.atan2(dy, dx);
+            var maxR = blobRadius(angle, blobBase);
+            if (dist < maxR) {
+              dots.push({ x: x, y: y, r: BASE_RADIUS, tr: BASE_RADIUS });
+            }
+          }
+        }
+      }
+
+      function draw() {
+        var rect = canvas.getBoundingClientRect();
+        ctx.clearRect(0, 0, rect.width, rect.height);
+        for (var i = 0; i < dots.length; i++) {
+          var d = dots[i];
+          var dx = d.x - mouseX;
+          var dy = d.y - mouseY;
+          var dist = Math.sqrt(dx * dx + dy * dy);
+          d.tr = dist < EFFECT_RANGE
+            ? BASE_RADIUS + (MAX_RADIUS - BASE_RADIUS) * (1 - dist / EFFECT_RANGE)
+            : BASE_RADIUS;
+          d.r += (d.tr - d.r) * EASE_SPEED;
+          ctx.beginPath();
+          ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(74, 93, 79, 0.18)';
+          ctx.fill();
+        }
+        requestAnimationFrame(draw);
+      }
+
+      canvas.addEventListener('mousemove', function(e) {
+        var rect = canvas.getBoundingClientRect();
+        mouseX = e.clientX - rect.left;
+        mouseY = e.clientY - rect.top;
+      });
+
+      canvas.addEventListener('mouseleave', function() {
+        mouseX = -9999;
+        mouseY = -9999;
+      });
+
+      window.addEventListener('resize', resize);
+      resize();
+      draw();
+    })();
+  </script>
+</body>
+</html>
