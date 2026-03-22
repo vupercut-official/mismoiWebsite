@@ -1,0 +1,13 @@
+[user-advocate]: The single biggest UX failure here is when the offer sounds good but requires the prospect to do something. A real estate agent reads an email for 8 seconds. If they have to click, fill, schedule, or reply with information -- they're gone. So I'm ranking offers by friction first, everything else second.
+
+**The two offers I'd bet on hardest:**
+
+**1. Speed test observation (in-email, zero friction)**
+Vu submits a lead inquiry on their site, clocks the response time, puts the exact timestamp in the email. "I submitted a lead on your site at 9:03am. You responded at 2:47pm." One sentence. That's it. No link, no form, no ask. The specificity IS the credibility. Vu time: 15 min. CTA: "Worth knowing your number?"
+
+**2. Zillow/Google profile observation (in-email, zero friction)**
+Vu spends 5 minutes on their profile, spots one specific broken thing (no auto-reply, 3 unanswered reviews, outdated headshot), names it in the email. Prospect thinks: this person already looked at my business. Vu time: 10 min templated. CTA: "Noticed one other thing too -- worth a quick look?"
+
+**What I'd push back on:** The ROI calculator and deal scoring template are too abstract without a real number attached to their specific situation. They feel like lead magnets for SaaS, not for someone selling $500K houses. Specificity beats cleverness every time here.
+
+The competitor comparison is strong but could take 45 min -- needs a tight template to work at scale.

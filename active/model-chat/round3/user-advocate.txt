@@ -1,0 +1,22 @@
+[user-advocate]: The contrarian finally named it clearly and I'm taking the concession. Pick a lane.
+
+Here's my UX read on both options after two rounds:
+
+**Option A (peer insight, no deliverable)** fails on one practical dimension: it requires Vu to have something genuine to observe about each prospect. That means actual research per email. At cold outreach scale with zero team, that's not templatable. It's a high-quality play that requires high-quality inputs Vu can't reliably produce right now.
+
+**Option B (value delivery)** is the right lane -- but the execution everyone's been designing is too vendor-coded. The fix is simpler than the debate suggests: change the frame around the deliverable, not the deliverable itself.
+
+Don't say "I built this." Say "Here's what handles this." The tool is the story, not Vu.
+
+**My concrete recommendation: 6 offers, Option B lane, peer-coded delivery.**
+
+The structural pattern for all 6:
+- Line 1: One observation about THEIR operation (requires 90 seconds of LinkedIn/website research per send)
+- Lines 2-3: The deliverable, framed as "here's what addresses this"
+- Final line: Genuine question, not a CTA
+
+The 90-second research buys the peer signal without requiring deep ops expertise. Vu looks at their client count, their content niche, their posting frequency -- one visible fact becomes the hook.
+
+**That's the lane. Now the 6 offers should follow that template, not the PAS container.**
+
+The contrarian's Offer 5 instinct (audit list + genuine question) is still the highest-probability play because the question IS the hook. At least 2 of the 6 should end with a question that's genuinely curious, not sales-coded.

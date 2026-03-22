@@ -1,0 +1,41 @@
+{
+  "topic": "Best course structure for the Max Inhouse info business scaling transcript",
+  "agent_count": 5,
+  "round_count": 5,
+  "timestamp": "2026-03-21T21:10:18Z",
+  "agents": [
+    {"id": "systems-thinker", "idx": 0},
+    {"id": "pragmatist", "idx": 1},
+    {"id": "edge-case-finder", "idx": 2},
+    {"id": "user-advocate", "idx": 3},
+    {"id": "contrarian", "idx": 4}
+  ],
+  "conversation": [
+    {"round": 1, "agent_id": "systems-thinker", "content": "6 modules following pipeline dependency graph. KPIs at position 5. One constraint exercise per module. Compounding = action velocity."},
+    {"round": 1, "agent_id": "pragmatist", "content": "4 self-contained modules. Lead with outreach not identity. Profile moved to end. KPI benchmarks inline. Content strategy separate track."},
+    {"round": 1, "agent_id": "edge-case-finder", "content": "Warns: sequence trap (loop not pipeline), KPIs without baselines, Loom requires working offer. Design backwards from KPI dashboard."},
+    {"round": 1, "agent_id": "user-advocate", "content": "Build/Fill/Convert/Run the Machine. Output-based exercises. Content strategy placement question."},
+    {"round": 1, "agent_id": "contrarian", "content": "Open with live reps (10 DMs first). Profile last as refinement. KPIs second. Cut fulfillment/team. Backwards from close."},
+    {"round": 2, "agent_id": "systems-thinker", "content": "Live rep opening is diagnostic tool. Accept loop vs pipeline critique. Minimum viable offer as prerequisite. Content last. Parallel theory + dashboard tracks."},
+    {"round": 2, "agent_id": "pragmatist", "content": "Live rep best idea but need functional profile first (30 min). Offer = 1 paragraph gate. Loop is phase 2 problem. Content + team = separate."},
+    {"round": 2, "agent_id": "edge-case-finder", "content": "Live rep breaks without defined offer. Profile = recurring checkpoint not module. Show benchmarks after real data. Design against completes-course-never-closes."},
+    {"round": 2, "agent_id": "user-advocate", "content": "Live rep needs training wheels. Minimum viable offer as module 1 deliverable. Emotional checkpoints. Content last."},
+    {"round": 2, "agent_id": "contrarian", "content": "Pressure test: send DMs, log what breaks, course teaches why. Instruction follows failure. Content always last."},
+    {"round": 3, "agent_id": "systems-thinker", "content": "State 0 gate (profile + offer + target persona). Failure-mode modules: nobody replies / replies no calls / calls no closes / closes delivery breaks. Dashboard blank template filled with student data."},
+    {"round": 3, "agent_id": "pragmatist", "content": "3 phases: Day 1 setup, Week 1 DMs, fix what broke. Content + team separate. Emotional checkpoints = one line, not section."},
+    {"round": 3, "agent_id": "edge-case-finder", "content": "Unclear offer contaminates rep data. 2-hour offer+ICP gate. Gate needs a gate. Students can't self-diagnose."},
+    {"round": 3, "agent_id": "user-advocate", "content": "Gated deliverables per module. Two tracks (builders + testers) converging at KPI dashboard."},
+    {"round": 3, "agent_id": "contrarian", "content": "Students already have failure data. Course should be audit + diagnostic. KPI dashboard as spine. Then self-corrected: audit only works after students learn to read data. Gate > Reps > Audit."},
+    {"round": 4, "agent_id": "systems-thinker", "content": "After State 0, course stops being sequential. Dashboard becomes nav system. Diagnostic tree with four failure-mode nodes. Question: independent modules or intake diagnostic?"},
+    {"round": 4, "agent_id": "pragmatist", "content": "Two-track entry (Track A: never sent DMs, Track B: has history). Both converge at failure modules. Dashboard = first thing students see."},
+    {"round": 4, "agent_id": "edge-case-finder", "content": "Students can't self-report what broke. Gate needs enforcing mechanism. Delivery context (live vs async) matters. Two unanswered questions block final structure."},
+    {"round": 4, "agent_id": "user-advocate", "content": "State 0 outputs three locked assets. Track A = gated deliverables. Track B = diagnostic first. Converge at KPI dashboard at end."},
+    {"round": 4, "agent_id": "contrarian", "content": "Self-corrected: audit only works after reps. KPI dashboard = last thing unlocked. Three stages: Gate > Reps with structured logging > Audit with legible data."},
+    {"round": 5, "agent_id": "systems-thinker", "content": "Gate (Week 0) > Reps with Structured Logging (Weeks 1-2) > Diagnostic Tree (Week 3+). Content + team separate. Emotional checkpoints embedded. Dashboard diagnoses, not students."},
+    {"round": 5, "agent_id": "pragmatist", "content": "Phase 0: Gate. Phase 1: Reps (Weeks 1-2). Phase 2: Audit (Week 3). Phase 3: Delivery (Week 4). 4 phases, 4 weeks. Ships fast."},
+    {"round": 5, "agent_id": "edge-case-finder", "content": "Gate (Module 0). Track split (Track A: first reps, Track B: audit existing). Converge at logging. Reps (Modules 2-3). Audit (Module 4). Content + team out."},
+    {"round": 5, "agent_id": "user-advocate", "content": "Gate > Track A/B > Logged Data Sprint > Optimization Layer. Content + team = different course. Action precedes theory, data precedes diagnosis."},
+    {"round": 5, "agent_id": "contrarian", "content": "Module 0: Gate (pass/fail). Module 1: Reps with logging. Module 2: Diagnostic tree (four branches). Module 3: Content (only after 1 close). Log is the spine. History skips scripts, not logging."}
+  ],
+  "synthesis": "See synthesis.md"
+}

@@ -1,0 +1,9 @@
+[edge-case-finder]: Good convergence on the $197 sprint. Now stress-test it before anyone commits.
+
+**The sprint delivery risk.** Vu promises a working automation in 48 hours to someone he just cold-emailed. If it breaks, if the prospect's setup is non-standard, if Make.com hits a rate limit mid-demo -- that failed $197 delivery is worse than no delivery. It's an active trust destroyer. The sprint only works if the scope is narrow enough to be bulletproof: one trigger, one action, Gmail auto-responder only. No CRM integrations, no conditional logic, nothing that depends on the agent's existing stack. Vu needs a fixed deliverable he can build with his eyes closed before selling it.
+
+**The fast-responder B-path -- here's the actual answer.** Since nobody gave one: the speed test research session already gives Vu their Zillow profile data. If the agent grades out fast, the email pivots mid-sentence. "I submitted a test inquiry and was impressed -- 6-minute response. But I noticed something else while I was there." Route to profile observation. One research session, two possible emails. Decision point: response time under 10 minutes = pivot to Offer 2. This is systems-thinker's routing logic applied to the specific problem.
+
+**On the disclosure frame.** I flagged the fake inquiry deception risk in round 2. Nobody responded. The fix is simpler than I initially framed it: lead with disclosure. "I wanted to see what your leads experience, so I submitted a test inquiry." That reframes the "deception" as research methodology. It actually strengthens credibility rather than undermining it. Rewrite Offer 1 with that framing and the ethical problem dissolves.
+
+The campaign architecture is solid now. The execution risks are what kills it.

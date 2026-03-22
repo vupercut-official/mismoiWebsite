@@ -1,0 +1,502 @@
+You are a senior frontend engineer. Generate a single standalone HTML file exactly matching the design specification below. Output ONLY HTML. No explanations. No markdown code fences. Start with <!DOCTYPE html>.
+
+---
+
+DESIGN SYSTEM:
+
+Preset A -- "Organic Tech" (Clinical Boutique)
+Identity: Bridge between a biological research lab and an avant-garde luxury magazine.
+
+Color Roles:
+| Role | Value | Usage |
+|---|---|---|
+| bg-page | Cream #F2F0E9 | Page background |
+| bg-card | White #FFFFFF | Card/container background |
+| bg-dark | Charcoal #1A1A1A | Dark sections (philosophy, footer) |
+| text-primary | Charcoal #1A1A1A | Primary readable text (13.5:1 on bg-page) |
+| text-on-dark | Cream #F2F0E9 | Text on dark sections (13.5:1 on bg-dark) |
+| text-accent | Clay #CC5833 | Accent/drama color |
+| text-muted | #4A4A4A | Secondary text (7:1 on bg-page) |
+| border-subtle | #1A1A1A at 12% opacity | Card borders |
+| cta-bg | Clay #CC5833 | Button background |
+| cta-text | White #FFFFFF | Button text (4.5:1 on cta-bg) |
+
+Typography:
+- Headings: "Plus Jakarta Sans" (700 weight, letter-spacing: -0.02em)
+- Drama/Serif: "Cormorant Garamond" Italic (large statements, accent color)
+- Data/Mono: "IBM Plex Mono" (pricing, lists, step numbers)
+- Body: "Plus Jakarta Sans" (400 weight, line-height: 1.7)
+
+Spacing Token Scale (use as CSS custom properties):
+:root {
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+  --space-2xl: 4rem;
+  --space-3xl: 6rem;
+  --space-4xl: 8rem;
+}
+
+Spacing Rules:
+- Section vertical padding: --space-3xl (96px) desktop, --space-2xl (64px) mobile
+- Card internal padding: --space-lg (32px) desktop, --space-md (24px) mobile
+- Between section heading and content: --space-xl (48px)
+- Between cards in grid: --space-lg (32px)
+- Between text paragraphs: --space-sm (16px)
+- Container max-width: 72rem (1152px) with padding-inline: --space-md
+- Card border-radius: 1.5rem
+- Button border-radius: 9999px (pill)
+- Footer top border-radius: 3rem
+- Navbar border-radius: 9999px (pill)
+
+---
+
+COMPONENT ARCHITECTURE:
+
+A. NAVBAR
+Fixed pill-shaped container, horizontally centered, top of viewport. z-index: 50.
+- At top: transparent background, text-on-dark colored text/links (over hero image)
+- After scrolling past hero: bg-page background at 95% opacity + backdrop-blur(8px), text-primary colored text, border-subtle bottom border
+- Single GSAP ScrollTrigger watching hero section end. NO pinning. NO backdrop-blur on initial state.
+- Contains: "Patent Protector" (text logo), nav links (Challenges, Solution, Investment, Next Steps), CTA button "Pay & Get Started" (cta-bg/cta-text, links to Stripe payment URL)
+
+B. HERO
+- min-h-[100dvh] (NEVER h-screen or h-[100vh])
+- Full-bleed background image from Unsplash: use keywords "dark forest, organic textures, moss, ferns, laboratory glassware" to find a REAL Unsplash image URL
+- Heavy gradient overlay: bg-gradient-to-t from-[#1A1A1A] via-[#1A1A1A]/70 to-transparent
+- Content pushed to bottom-left third using flex + generous padding
+- Typography following hero line pattern:
+  - First line: "Automate the" in Plus Jakarta Sans bold, large
+  - Second line: "Content Engine." in Cormorant Garamond italic, massive (3-5x bigger), Clay #CC5833 color
+- Below headline: Short subtitle from exec summary opening (1-2 lines, text-on-dark)
+- CTA button below subtitle: "Pay & Get Started" (cta-bg/cta-text)
+- Animation: GSAP staggered fade-up (y: 40 -> 0, opacity: 0 -> 1). Stagger 0.15, duration 1s, power3.out. Triggers on PAGE LOAD.
+
+C. SUMMARY (Executive Brief)
+- bg-page background
+- Centered layout, max-width 48rem for readability
+- Greeting line "Hi Aro," (heading font, smaller)
+- Body text (16-18px, line-height 1.7, text-primary)
+- 3 stat cards in a row below body text:
+  - Card 1: "500" / "Current Users"
+  - Card 2: "85%" / "Free Tier"
+  - Card 3: "3-6 mo" / "Target ROI"
+- Each stat card: bg-card, border-subtle, rounded-[1.5rem]. Value in heading font large, label in mono small.
+- Animation: Fade-up reveal on scroll
+
+D. PROBLEMS (3-column card grid)
+- bg-page background
+- Section heading: "The Challenge" (heading font)
+- 3-column grid (stacks on mobile)
+
+Card 1 = Diagnostic Shuffler:
+- Container holds 3 overlapping sub-cards that cycle vertically every 3 seconds
+- Spring-bounce transition: cubic-bezier(0.34, 1.56, 0.64, 1)
+- Each sub-card shows one aspect of the first problem "Content Takes Too Much Time":
+  - Sub-card A: "Manual creation drains hours daily"
+  - Sub-card B: "Team spread thin across operations"
+  - Sub-card C: "No bandwidth for daily posting"
+- Uses gsap.to() with y-transform to reorder. No layout shifts.
+- Title above shuffler: "Content Takes Too Much Time"
+- The shuffler container: bg-card surface, border-subtle border, rounded-[1.5rem]
+
+Card 2 = Static card:
+- Title: "Views Without Conversions"
+- Description: "Your YouTube gets 10K-17K views per video, but single-digit likes. Viewers see the content and scroll right past. High impressions, near-zero engagement means the content isn't connecting with the audience that's already finding you."
+- Cost impact: "85% free users not converting to paid" (mono font, text-accent)
+- bg-card, border-subtle, rounded-[1.5rem]
+
+Card 3 = Static card:
+- Title: "No Feedback Loop"
+- Description: "You're not collecting feedback from users about why they chose Patent Protector. Without that data, your content strategy is guessing instead of targeting. Your 8,000+ YouTube subscribers are an untapped goldmine of insights you're not using."
+- Cost impact: "Zero data-driven content decisions" (mono font, text-accent)
+- bg-card, border-subtle, rounded-[1.5rem]
+
+All cards: consistent min-h, same padding (--space-lg). Cards 2-3 fade-up on scroll with 0.12 stagger.
+
+E. PHILOSOPHY (The Manifesto)
+- Full-width section, bg-dark (#1A1A1A) background
+- No parallax. No background image. Solid dark color only.
+- Two contrasting statements:
+  - "Most SaaS companies rely on: manual content creation, hoping a video goes viral, and posting when someone has time." -- text-on-dark, smaller size, neutral
+  - "We build systems that learn. Every video feeds the next. Every data point sharpens the message. Content that compounds." -- massive Cormorant Garamond italic, text-on-dark, with "systems that learn" styled in text-accent (#CC5833)
+- Animation: Fade-up reveal on scroll. Two statements stagger in (0.2s gap).
+
+F. SOLUTION/PROTOCOL (Sticky Stacking Archive)
+3 full-viewport cards that stack on scroll. Each card = one solution component.
+
+Container Setup:
+- Single wrapper div with position: relative
+- Wrapper height = 300vh (3 cards x 100vh each)
+- ONE pin: true on the wrapper (NOT on individual cards)
+- scrub: 1 for smooth scroll-linked animation
+
+Card Stacking (CRITICAL - follow exactly):
+- Card 1: z-index: 10. Starts visible. On scroll, scales to 0.95 and fades to opacity 0.7. NO BLUR EVER.
+- Card 2: z-index: 20. Enters from below (y: 100% -> 0). When Card 3 enters, scales to 0.95 and fades to 0.7. NO BLUR EVER.
+- Card 3: z-index: 30. Enters from below (y: 100% -> 0). Stays at full scale.
+
+Card 1 content:
+- Step number "01" (IBM Plex Mono, small)
+- Title: "Market Research & Intelligence" (heading font bold)
+- Description + bullets:
+  "Automated competitive intelligence that never sleeps."
+  - Apify scrapes Instagram, Twitter, and Reddit for patent industry trends
+  - Identifies common pain points and messaging angles from real conversations
+  - Builds a living database of what your ideal customers actually talk about
+  - Updates weekly with fresh signals from across the web
+- bg-card, border-subtle, rounded-[1.5rem]
+
+Card 2 content:
+- Step number "02" (IBM Plex Mono, small)
+- Title: "AI Video Generation Pipeline" (heading font bold)
+- Description + bullets:
+  "From market insight to published video, fully automated."
+  - Claude AI writes scripts based on intelligence hub data and top-performing content
+  - Google VO generates 30-60 second videos from scripts (no filming required)
+  - Signal aggregator tracks performance: views, engagement, conversions
+  - System doubles down on what works, filters out what doesn't
+- bg-card, border-subtle, rounded-[1.5rem]
+
+Card 3 content:
+- Step number "03" (IBM Plex Mono, small)
+- Title: "Multi-Platform Auto-Poster" (heading font bold)
+- Description + bullets:
+  "One video, every platform, every day. Hands-free."
+  - Automated posting to YouTube Shorts, Instagram Reels, and TikTok
+  - Platform-optimized formatting (aspect ratios, captions, hashtags)
+  - Performance data feeds back into the intelligence hub for next cycle
+  - Best performers flagged for paid ad promotion
+- bg-card, border-subtle, rounded-[1.5rem]
+- SVG waveform animation: pulsing EKG-style path, stroke: #CC5833, stroke-dasharray + animated stroke-dashoffset, 2s repeating, starts when card enters viewport
+
+Cards 1 and 2: NO SVG animations. Clean content only.
+
+G. PRICING (The Investment)
+- bg-page background
+- Section heading: "Investment" (heading font)
+- 2-column grid: Setup card + Recurring card (stack on mobile)
+
+Setup card:
+- Amount: "$627" (large heading font)
+- Label: "One-Time Setup" (mono font)
+- Items:
+  - Market research system configuration (Apify + intelligence hub)
+  - Signal aggregator setup and platform connections
+  - AI video pipeline build (Claude scripting + Google VO)
+  - Multi-platform poster setup (YouTube, Instagram, TikTok)
+  - Initial content strategy and first batch of videos
+  - Training session on system monitoring and manual tweaks
+- bg-card, border-subtle, rounded-[1.5rem]
+
+Recurring card:
+- Amount: "$250" (large heading font)
+- Label: "/month" (mono font)
+- Items:
+  - Weekly performance check-ins and optimization
+  - Continuous intelligence hub updates
+  - Video pipeline monitoring and quality assurance
+  - Bug fixes within 24 hours
+  - Monthly strategy call to review results and adjust
+- bg-card, border-subtle, rounded-[1.5rem]
+
+CTA button below pricing cards: "Pay & Get Started" -> Stripe link (cta-bg/cta-text, full-width on mobile, pill shape)
+
+GUARANTEE section below CTA (Clay #CC5833 background, text white, rounded-[1.5rem], padding --space-lg):
+- Bold heading: "Our Guarantee"
+- Text: "250 extra paid users in 3 months -- or every monthly retainer gets refunded. We put our revenue on the line because we believe in the system."
+
+Case Study block below guarantee:
+- Title: "SaaS Content System Example" (heading font)
+- Situation: "A B2B SaaS tool with strong organic search traffic but zero content strategy. 500+ users, mostly free tier, with no systematic way to convert them through content."
+- What we built: "Market research pipeline + AI video generation + multi-platform auto-poster. Daily 30-second videos posted across YouTube, Instagram, and TikTok, with performance data feeding back into the content strategy."
+- Results:
+  - Content output went from 2 videos/month (manual) to 30+/month (automated)
+  - Engagement rate increased 4x within 60 days
+  - Estimated 150-200 additional free signups per month from content
+  - Conversion to paid increased as content targeted actual user pain points
+- Quote: "The system just runs. We focus on product, and the content handles itself." -- SaaS Founder (Simulated)
+- bg-card, border-subtle, rounded-[1.5rem]
+
+Animation: Fade-up reveal on scroll for all elements
+
+H. FOOTER
+- bg-dark (#1A1A1A) background, rounded-t-[3rem]
+- 3-column grid (stack on mobile):
+
+Column 1: About
+- "mismoi" (heading font, text-on-dark)
+- "We build AI automation systems for SaaS, real estate, and service businesses. We specialize in converting free users into paying customers through automated content and marketing systems."
+
+Column 2: How We Get Started
+1. Click "Pay & Get Started" and complete payment
+2. We send a kickoff form (platform access, brand guidelines, target audience details)
+3. You provide responses within 2 days
+4. We build and configure the full system (Week 1-2)
+5. System goes live with first batch of automated videos
+6. Weekly check-ins begin, system self-optimizes
+
+Column 3: Why Act Now
+- "Q2 is prime growth season for SaaS -- launching your content engine now means catching peak search and social traffic"
+- "Your competitors are already using AI content -- every week without a system is market share left on the table"
+- CTA button: "Pay & Get Started" -> Stripe link (cta-bg/cta-text)
+
+Bottom bar:
+- "System Operational" with pulsing green dot (#22C55E) + IBM Plex Mono label
+- All text: text-on-dark
+
+Animation: Fade-up reveal on scroll
+
+---
+
+ALLOWED ANIMATIONS (use ONLY these):
+
+| # | Animation | Trigger | Type | Details |
+|---|---|---|---|---|
+| 1 | Fade-up reveal | Scroll into view | GSAP | opacity: 0, y: 30 -> opacity: 1, y: 0. ScrollTrigger start: "top 85%", once: true. Duration 0.8s, power3.out. Stagger 0.12 for groups. |
+| 2 | Hero entrance | Page load | GSAP | Staggered fade-up for headline + subtitle + CTA. Stagger 0.15, duration 1s, power3.out. |
+| 3 | Navbar morph | Scroll past hero | GSAP | Single ScrollTrigger on hero element. Toggles background/text styles. No pinning. |
+| 4 | Diagnostic Shuffler | Always (Problem Card 1) | GSAP | 3 sub-cards cycle every 3s. gsap.to() with y-transform. cubic-bezier(0.34, 1.56, 0.64, 1) spring bounce. |
+| 5 | Protocol sticky stack | Scroll (Solution section) | GSAP | Single pinned container. Cards enter from bottom, previous cards scale to 0.95 + fade to 0.7. scrub: 1. |
+| 6 | SVG waveform | Scroll into view (Protocol Card 3 only) | GSAP | stroke-dashoffset animation. 2s repeating. |
+| 7 | Button slide bg | Hover | CSS | Sliding span layer. overflow-hidden on button. transition: transform 0.3s ease. |
+| 8 | Noise overlay | Always | CSS | Use this EXACT CSS (copy verbatim, do NOT generate your own base64 image): body::before { content: ''; position: fixed; inset: 0; z-index: 1; pointer-events: none; mix-blend-mode: overlay; opacity: 0.05; background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); } |
+
+Animation Lifecycle:
+- gsap.registerPlugin(ScrollTrigger) once at script start
+- All ScrollTriggers use once: true EXCEPT Protocol sticky stack (uses scrub: 1)
+- Default easing: power3.out for entrances
+- All GSAP code in a single <script> block before </body>
+- Init animations on DOMContentLoaded
+
+---
+
+RESPONSIVE BREAKPOINTS:
+- Mobile (<640px): Single column, hero font sizes reduced 40%, stack all cards vertically, navbar collapses to brand name + CTA only
+- Tablet (640-1024px): 2-column grids for problems and pricing
+- Desktop (>1024px): 3-column problem cards, 2-column pricing, 72rem max-width container
+
+---
+
+PROPOSAL_CONTENT:
+
+{
+  "meta": {
+    "clientName": "Aro",
+    "clientCompany": "Patent Protector",
+    "proposalTitle": "AI Content Engine Proposal",
+    "preparedBy": "Vu Tran, mismoi",
+    "date": "March 16, 2026",
+    "preset": "A",
+    "paymentLink": "https://invoice.stripe.com/i/acct_1T9xud3qgIDdNkQS/live_YWNjdF8xVDl4dWQzcWdJRGROa1FTLF9VOXlrTDVQZlNiU0REUENaZjZ3VnRzOTh2MGpDREN6LDE2NDIyMjUzOQ0200cSq1egLL?s=db"
+  },
+  "sections": {
+    "cover": {
+      "title": "AI Content Engine Proposal",
+      "subtitle": "Prepared for Patent Protector"
+    },
+    "executiveSummary": {
+      "greeting": "Hi Aro,",
+      "body": "Thanks for walking me through Patent Protector's growth challenge. You mentioned three things that stuck: creating content every day is too time-consuming for your lean team, your YouTube videos get 10K-17K views but single-digit likes, and 85% of your 500 users are still on the free tier.\n\nThat's exactly what this proposal solves.\n\nHere's what we'll build: an AI Content Engine using Make.com automation, Claude AI for scripting, and Google VO for video generation. By mid-April, you'll have automated 30-second videos posting daily across YouTube, Instagram, and TikTok. The system researches your market, scripts videos that actually connect with patent filers, and gets better every cycle based on performance data.\n\nMore importantly, it runs on autopilot. Your team stays focused on operations and demos while the content engine compounds.\n\nThis proposal covers the system, why it works, and what it costs. Let's go.",
+      "keyMetrics": [
+        { "value": "500", "label": "Current Users" },
+        { "value": "85%", "label": "Free Tier" },
+        { "value": "3-6 mo", "label": "Target ROI" }
+      ]
+    },
+    "problemStatement": {
+      "problems": [
+        {
+          "title": "Content Takes Too Much Time",
+          "description": "Your team is lean and focused on operations and demos. Creating content every day is something challenging -- your words. You've tried manual creation and partner content, but it's too slow. You need daily videos across multiple platforms without pulling anyone off core business work.",
+          "costImpact": "Zero consistent content output"
+        },
+        {
+          "title": "Views Without Conversions",
+          "description": "Your YouTube gets 10K-17K views per video, but single-digit likes. Viewers see the content and scroll right past. High impressions, near-zero engagement means the content isn't connecting with the audience that's already finding you.",
+          "costImpact": "85% free users not converting to paid"
+        },
+        {
+          "title": "No Feedback Loop",
+          "description": "You're not collecting feedback from users about why they chose Patent Protector. Without that data, your content strategy is guessing instead of targeting. Your 8,000+ YouTube subscribers are an untapped goldmine of insights you're not using.",
+          "costImpact": "Zero data-driven content decisions"
+        }
+      ]
+    },
+    "solution": {
+      "overview": "A four-part automated content system that researches, scripts, generates, and posts videos daily while getting smarter each cycle.",
+      "components": [
+        {
+          "name": "Market Research & Intelligence",
+          "description": "Automated competitive intelligence that never sleeps.",
+          "bullets": [
+            "Apify scrapes Instagram, Twitter, and Reddit for patent industry trends",
+            "Identifies common pain points and messaging angles from real conversations",
+            "Builds a living database of what your ideal customers actually talk about",
+            "Updates weekly with fresh signals from across the web"
+          ]
+        },
+        {
+          "name": "AI Video Generation Pipeline",
+          "description": "From market insight to published video, fully automated.",
+          "bullets": [
+            "Claude AI writes scripts based on intelligence hub data and top-performing content",
+            "Google VO generates 30-60 second videos from scripts (no filming required)",
+            "Signal aggregator tracks performance: views, engagement, conversions",
+            "System doubles down on what works, filters out what doesn't"
+          ]
+        },
+        {
+          "name": "Multi-Platform Auto-Poster",
+          "description": "One video, every platform, every day. Hands-free.",
+          "bullets": [
+            "Automated posting to YouTube Shorts, Instagram Reels, and TikTok",
+            "Platform-optimized formatting (aspect ratios, captions, hashtags)",
+            "Performance data feeds back into the intelligence hub for next cycle",
+            "Best performers flagged for paid ad promotion"
+          ]
+        }
+      ]
+    },
+    "whyUs": {
+      "industryDefault": "Most SaaS companies rely on manual content creation, hoping a video goes viral, and posting when someone has time.",
+      "ourApproach": "We build systems that learn. Every video feeds the next. Every data point sharpens the message. Content that compounds.",
+      "accentKeyword": "systems that learn"
+    },
+    "timeline": {
+      "phases": [
+        {
+          "name": "Phase 1: Setup & Configuration (Weeks 1-2)",
+          "items": [
+            "Configure market research pipeline (Apify + intelligence hub)",
+            "Set up signal aggregator and connect YouTube, Instagram, TikTok accounts",
+            "Build AI video pipeline (Claude scripting + Google VO generation)",
+            "Configure multi-platform auto-poster",
+            "Generate first batch of test videos and review quality",
+            "Training session: how to monitor the system and make manual tweaks"
+          ]
+        },
+        {
+          "name": "Phase 2: Launch & Optimization (Week 3+)",
+          "items": [
+            "System goes live with daily automated video posting",
+            "Weekly performance check-ins and content quality review",
+            "Signal aggregator begins tracking and optimizing",
+            "Monthly strategy call to review results and plan adjustments",
+            "Bug fixes and system tweaks within 24 hours of notification"
+          ]
+        }
+      ]
+    },
+    "caseStudy": {
+      "title": "SaaS Content System Example",
+      "situation": "A B2B SaaS tool with strong organic search traffic but zero content strategy. 500+ users, mostly free tier, with no systematic way to convert them through content.",
+      "whatWeBuilt": "Market research pipeline + AI video generation + multi-platform auto-poster. Daily 30-second videos posted across YouTube, Instagram, and TikTok, with performance data feeding back into the content strategy.",
+      "results": [
+        "Content output went from 2 videos/month (manual) to 30+/month (automated)",
+        "Engagement rate increased 4x within 60 days",
+        "Estimated 150-200 additional free signups per month from content",
+        "Conversion to paid increased as content targeted actual user pain points"
+      ],
+      "quote": "The system just runs. We focus on product, and the content handles itself.",
+      "quoteAttribution": "SaaS Founder (Simulated)"
+    },
+    "pricing": {
+      "setup": {
+        "amount": "$627",
+        "items": [
+          "Market research system configuration (Apify + intelligence hub)",
+          "Signal aggregator setup and platform connections",
+          "AI video pipeline build (Claude scripting + Google VO)",
+          "Multi-platform poster setup (YouTube, Instagram, TikTok)",
+          "Initial content strategy and first batch of videos",
+          "Training session on system monitoring and manual tweaks"
+        ]
+      },
+      "recurring": {
+        "amount": "$250",
+        "period": "/month",
+        "items": [
+          "Weekly performance check-ins and optimization",
+          "Continuous intelligence hub updates",
+          "Video pipeline monitoring and quality assurance",
+          "Bug fixes within 24 hours",
+          "Monthly strategy call to review results and adjust"
+        ]
+      },
+      "totalFirstMonth": "$877",
+      "notes": "Billed monthly. First payment due before system build begins."
+    },
+    "about": {
+      "companyName": "mismoi",
+      "description": "We build AI automation systems for SaaS, real estate, and service businesses. We specialize in converting free users into paying customers through automated content and marketing systems."
+    },
+    "nextSteps": {
+      "steps": [
+        "Click 'Pay & Get Started' and complete payment",
+        "We send a kickoff form (platform access, brand guidelines, target audience details)",
+        "You provide responses within 2 days",
+        "We build and configure the full system (Week 1-2)",
+        "System goes live with first batch of automated videos",
+        "Weekly check-ins begin, system self-optimizes"
+      ],
+      "urgencyReasons": [
+        "Q2 is prime growth season for SaaS -- launching your content engine now means catching peak search and social traffic",
+        "Your competitors are already using AI content -- every week without a system is market share left on the table"
+      ],
+      "closingCTA": "Pay & Get Started"
+    }
+  }
+}
+
+---
+
+OUTPUT RULES (MANDATORY):
+
+1. Single standalone HTML file. Start with <!DOCTYPE html>, end with </html>.
+2. Tailwind CSS v3 via CDN:
+   <script src="https://cdn.tailwindcss.com"></script>
+   Configure custom colors in an inline <script> with tailwind.config = { theme: { extend: { colors: { page: '#F2F0E9', card: '#FFFFFF', dark: '#1A1A1A', primary: '#1A1A1A', 'on-dark': '#F2F0E9', accent: '#CC5833', muted: '#4A4A4A' }}}}.
+3. GSAP 3 via CDN (ONLY these 2 files):
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+4. Google Fonts via <link> tags: Plus Jakarta Sans (400, 700), Cormorant Garamond (400 italic), IBM Plex Mono (400, 700).
+5. All custom CSS in <style> tags in <head>.
+6. All JavaScript in a single <script> tag before </body>.
+7. Set scroll-behavior: smooth on <html> element (CSS only, no JS smooth scroll).
+8. Use semantic HTML: <header>, <nav>, <main>, <section>, <footer>.
+9. Include alt text on all <img> tags.
+10. Include aria-label on CTA buttons.
+11. Real Unsplash images for hero ONLY. Use a real working Unsplash URL matching "dark forest, organic textures, moss, laboratory" mood. All other sections use solid color backgrounds.
+12. Every section fully populated with content from PROPOSAL_CONTENT JSON above.
+13. All CTA buttons link to: https://invoice.stripe.com/i/acct_1T9xud3qgIDdNkQS/live_YWNjdF8xVDl4dWQzcWdJRGROa1FTLF9VOXlrTDVQZlNiU0REUENaZjZ3VnRzOTh2MGpDREN6LDE2NDIyMjUzOQ0200cSq1egLL?s=db
+14. Responsive: mobile-first using Tailwind breakpoints (sm:, md:, lg:).
+15. No placeholder content. No lorem ipsum. No TODO comments.
+16. Works when opened in any browser with zero build steps.
+
+---
+
+CRITICAL: DO NOT USE ANY OF THE FOLLOWING (these cause rendering bugs):
+
+1. filter: blur() on any element -- causes blurry sections. Use opacity changes instead.
+2. Multiple pin: true in the same section -- only 1 pin allowed (the Protocol wrapper).
+3. Parallax or scroll-linked transforms on background images -- causes jank and misalignment.
+4. Typewriter or character-by-character effects -- unreliable timing, layout shifts.
+5. Mousemove-based position tracking -- fires 60+ events/sec, jank on mobile.
+6. SplitText or character-level word animations -- buggy, breaks text selection.
+7. toggleActions with "reverse" -- causes animation jank on scroll-back. Use once: true or scrub.
+8. overflow: hidden on body or html -- breaks smooth scroll and clips content.
+9. h-screen or h-[100vh] -- use min-h-[100dvh] for hero. No fixed heights on content sections.
+10. backdrop-blur on initial/transparent navbar -- only on scrolled state.
+11. z-index above 100 -- navbar = 50, protocol cards = 10/20/30. Nothing higher.
+12. Text opacity below 0.8 -- all text must be clearly readable.
+13. More than 2 GSAP plugins -- only gsap.min.js + ScrollTrigger.min.js.
+14. Infinite looping SVG on more than 1 card -- only Protocol Card 3 gets the waveform.
+15. position: absolute for text content -- only for decorative elements.
+16. Noise overlay at high z-index -- use ::before pseudo on body at z-index 1 with pointer-events: none and mix-blend-mode: overlay at 0.05 opacity.
+
+17. base64-encoded images for noise/texture overlays -- use the SVG feTurbulence data URI provided in the noise overlay spec. Do NOT generate base64 PNG images.
+
+IMPORTANT REMINDER: Do NOT use filter: blur() anywhere. Do NOT use multiple pin: true. Do NOT use parallax. Do NOT generate base64 PNG images for noise overlays. These are the top causes of rendering bugs and token waste.

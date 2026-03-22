@@ -1,0 +1,18 @@
+field_name,value
+competitor_usernames,"hormozi, imangadzhi, codiesanchez, matthgray, brockjohnsonofficial, zachpogrob, vanessalau.co, nick_saraev, jordanplatten, charliemorganbiz, aiautomation.cc, lvl_aiautomations, youngsters_worldwide"
+niche_keywords,"AI automation, content creation systems, SMMA automation, AI agents, content flywheel, creator economy, short-form strategy, Make.com, n8n, workflow automation, AI consulting"
+brand_voice,"Casual, straight to point, no fluff. Technical but accessible. Talk like a builder showing his work, not a marketer selling a dream. Short sentences. Real examples. No corporate speak."
+funnel_tof,"Broad hooks, viral potential, reach. Goal: new followers who don't know you. Topics: hot takes on AI, relatable creator/agency problems, surprising results."
+funnel_mof,"Authority, expertise, case studies, how-to. Goal: trust and credibility. Topics: system breakdowns, behind-the-scenes, client results, tutorials."
+funnel_bof,"Testimonials, offers, specific results. Goal: book a call. Topics: case studies with numbers, before/after, direct offers."
+icp_creators,"Content creators doing $10K+/mo who are drowning in manual content work. Post inconsistently, no ideation system, waste hours editing. Want AI to handle grunt work."
+icp_smma,"SMMA owners doing $20K+/mo who need automation to scale without hiring. Stuck doing everything manually, can't onboard fast enough, want systems that run without them."
+pillar_1,"AI automation demos and live builds (show the backend, Make.com scenarios running)"
+pillar_2,"Content creation systems (flywheel concept, data-driven content, competitor analysis)"
+pillar_3,"Business results and case studies (what the automation produced, real numbers)"
+pillar_4,"Behind-the-scenes of running an AI automation business (day in the life, tools)"
+pillar_5,"Hot takes on AI tools and trends (what's useful vs hype, comparisons, predictions)"
+view_rate_threshold,0.03
+scripts_per_day,5
+mof_ratio,3
+tof_ratio,2

@@ -1,0 +1,16 @@
+[edge-case-finder]: Before we design 6 offers, here are the failure modes baked into the brief itself.
+
+**The "peer-level" framing is the highest-risk assumption.** Vu has $0 revenue and zero agency operations experience. Agencies will Google him. A peer implies shared context -- if the email signals "I understand your ops" but Vu's digital footprint says "AI freelancer, just started," the peer framing backfires harder than a vendor pitch. Specificity can't substitute for traceable credibility when the prospect has LinkedIn open in another tab.
+
+**"Deliverable in the email" has a fatal calibration problem.** Too useful = they extract value and never reply. Too thin = signals low quality. Without testing, we're guessing. At least 2 deliverables in under 100 words while also running PAS and a CTA is structurally cramped. One good deliverable beats two rushed ones.
+
+**Soft CTAs are low-signal for $0 revenue.** "Let me know if this is useful" doesn't create a pipeline. If the goal is first paying client, soft CTAs optimize for feeling non-pushy, not for conversion. Vu needs replies, not opens.
+
+**The 6-offer constraint may force redundancy.** Agency pain points cluster around TIME. If we're not careful, offers 3-6 become reskins of "I'll save you time with AI." Distinct must mean different jobs-to-be-done, not different deliverable formats.
+
+**Proposed constraints before we design:**
+- Pick 1 primary success metric (reply rate, not open rate)
+- Define what "templated" means concretely -- which parts get customized?
+- Acknowledge the credibility gap in the offer design, don't paper over it
+
+What's everyone's read on whether peer framing survives a Google search?

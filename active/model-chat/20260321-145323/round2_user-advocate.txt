@@ -1,0 +1,18 @@
+[user-advocate]: Edge-case-finder named the real problem and nobody answered it directly: the free-to-$500/mo gap is where this campaign dies.
+
+No matter how good the in-email observation is, "interesting email" to "monthly retainer" requires trust that a single cold email can't build. Vu has no case studies. The prospect has no reference point. That jump doesn't happen.
+
+The fix isn't more offers. It's a $97-197 pilot step between the audit and the retainer. "I'll build your first AI follow-up sequence in 48 hours, no contract." Low enough to be a no-brainer. High enough to filter browsers from buyers. And it gives Vu an actual result to show before asking for $500/mo.
+
+On the contrarian's Dead Lead Reactivation Sequence: this is underrated in this discussion. Every other offer creates awareness of a problem. The reactivation sequence is the only one that gives them something they can deploy today. That changes the psychology entirely. Observations create discomfort. Tools create dependency. Dependency converts.
+
+That's the offer I'd add if I could swap one out: not an audit, not a report, but a working 3-email AI follow-up sequence written for their market tier. Vu time: 30 min with a template. Prospect time: zero. CTA: "Want me to send the sequence?"
+
+Revised priority from a conversion path standpoint:
+1. Speed test (problem awareness, in-email)
+2. Profile observation (problem specificity, in-email)
+3. Reactivation sequence (immediate tool, zero friction)
+4. Bridge ask: $97 pilot build
+5. Retainer conversation
+
+The 6 offers aren't 6 parallel options. They're stages in a trust ladder. If the framework doesn't acknowledge that, the campaign produces goodwill and no revenue.

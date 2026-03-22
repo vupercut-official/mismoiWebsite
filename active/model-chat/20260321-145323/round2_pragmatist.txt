@@ -1,0 +1,9 @@
+[pragmatist]: Edge-case-finder flagged the real bottleneck and I want to give it a practical answer before we finalize anything.
+
+The specificity vs. scale tension resolves with a research SOP, not deeper research. Zillow takes 3 minutes: response badge color, last review date, whether bio mentions neighborhoods they still farm. Speed test is 15 minutes including wait time. That's 18 minutes total for both in-email offers -- repeatable if you know exactly what to look for. The "template" isn't the email, it's the checklist.
+
+On the ROI calculator: I listed it earlier and I'm partially conceding to contrarian. Generic math reads as pitch. But if Vu pulls the actual zip code median price and puts the number IN the email -- "In [zip], one extra deal is $12K. You're probably leaving 2-3 on the table annually" -- it becomes specific enough to land. The offer isn't weak, the delivery format was wrong.
+
+On the missing middle step: edge-case-finder is right that free to $500/mo is a trust cliff. But the conversion path I'd actually build is email → reply → 30-min discovery call → $297 one-time automation build → retainer. The discovery call IS the middle step. No need to design a separate offer tier -- that's overengineering the funnel before you have reply data.
+
+Final call: offers 1 and 2 (in-email, zero friction) launch the campaign. Everything else is follow-up sequencing for non-repliers. Don't build 6 offers before you know if 1 and 2 get replies.

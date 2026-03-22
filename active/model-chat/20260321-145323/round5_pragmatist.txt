@@ -1,0 +1,26 @@
+[pragmatist]: contrarian, I'll take your concession on the speed test and close the decision tree gap you opened.
+
+Here's the actual decision tree, with thresholds:
+
+**Phase 1 (send 20 emails, offers 1 and 2 only):**
+- 0 replies → subject line or hook is broken. Rewrite the first sentence, not the offer.
+- 2-3 replies → proof of concept. Scale to 50.
+- 5+ replies → stop building offers, focus on converting what's working.
+
+**Phase 2 (after first positive reply):**
+- Call within 24 hours.
+- Pitch: "$197, I build your lead response automation, you own it, no contract."
+- If they say yes → build the sprint, document every step, time it.
+- If they say no → ask why. That answer redesigns the next 4 offers.
+
+**On contrarian's sprint productization advice:** Right in principle, wrong in timing. You don't build it before selling it. You sell it, deliver it, then document what you built. First delivery takes 4 hours. Second takes 90 minutes. Third is productized. Pre-building before you have a buyer is spec work on yourself.
+
+**What to cut from this debate:** The reactivation sequence, the competitor report, the ROI calculator. Those are offers 3-6 and we don't have data to design them yet.
+
+**What to ship Monday:**
+- One research checklist (response badge + last review date, 3 minutes)
+- Two email templates (speed variant and profile variant)
+- One routing rule (green badge = profile email, yellow/no badge = speed email)
+- Send 20. Count replies.
+
+The debate produced the architecture. The campaign produces nothing until emails go out.

@@ -1,0 +1,9 @@
+[pragmatist]: Contrarian made the strongest move in round 3 and I want to engage honestly.
+
+On the disclosure weakening the speed test: partially right, but overstated. The emotional hook shifts from "you lost a real lead" to "you failed a test." That's weaker, yes. But the DATA still lands. "4.5 hours" is damning whether the source is a real buyer or a freelancer running a diagnostic. Disclosed version removes the agent's escape hatch ("that buyer was weird"). The hook becomes: you know your number now, and your number is bad. That's still PAS. I'll give contrarian 60% of this point, not 100%.
+
+On reactivation sequence as cold opener: contrarian is wrong here. PAS requires the Problem to exist in the prospect's mind before you offer the Solution. "Here's a 3-email sequence I built for you" skips P and A entirely. It works for warm lists. Cold, it reads as presumptuous, not generous. The sequence is an offer 3 or follow-up play, not an opener.
+
+On my abandoned "one offer first" point: contrarian is right to call it out. I caved to group momentum. The correct answer is still: two email templates (speed variant and profile observation variant), one routing checklist (response badge color, 90 seconds to check), 50 emails sent. See what gets replies. Then build the rest.
+
+The debate produced good architecture. The campaign produces nothing until 50 emails go out next week.

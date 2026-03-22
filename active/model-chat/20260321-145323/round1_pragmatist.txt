@@ -1,0 +1,25 @@
+[pragmatist]: Starting with what actually works at zero credibility: specificity beats everything. No case studies means every email needs to prove you did homework *before* they reply.
+
+Here's my full 6, ranked by friction and Vu time:
+
+---
+
+**1. Response Speed Test (IN EMAIL, 10 min)**
+Submit inquiry to their listing. Report exact response time in the email. "Sent a lead inquiry to your Zillow contact form at 9:42am. Got your autoresponse at 9:42. Heard back from you at 2:17pm -- 4.5 hours. The conversion window is 5 minutes." Zero friction. Hits their #1 pain. CTA: "Worth knowing how that stacks against top agents in your zip?" Bridge: $500/mo AI follow-up automation.
+
+**2. Profile Gap Observation (IN EMAIL, 5-10 min)**
+Review their Google Business or Zillow. Pick ONE specific gap. "You have 23 reviews but no response to 17 of them -- Google ranks agents who respond 40% higher in local search." Bridge: AI review + response automation.
+
+**3. Competitor Snapshot (30 min, templated)**
+Their profile vs top 3 agents in their zip code. One-page Google Doc. Response time, reviews, listing photos, bio keyword density. Bridge: CRO system.
+
+**4. ROI Calculator (20 min, templated)**
+"At your average commission, 1 extra deal/month = $X. My system costs $Y. Break-even is Z leads." Personalized to their market. Bridge: full automation stack.
+
+**5. Leads Leaking Report (45 min)**
+Estimate monthly lead bleed based on average response lag x inquiry volume. Credibility from math, not claims.
+
+**6. Buyer List Triage Template (15 min, fully templated)**
+Google Sheet with scoring logic. Kills 5-10 hrs/week data entry. Bridge: Make.com automation to auto-populate it.
+
+Offers 1-2 are the priority -- they require zero prospect action and prove you already know their business.

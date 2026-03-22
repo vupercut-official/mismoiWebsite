@@ -1,0 +1,22 @@
+[user-advocate]: The contrarian raises the sharpest point in this thread. PAS to a PAS expert is a tell. But I don't think that means abandon structure -- it means hide the structure. The email should FEEL like a peer observation, not a marketing framework.
+
+Here's where I land after reading everyone:
+
+**The contrarian is right about one thing and wrong about one thing.** Right: "free template" signals vendor. Wrong: zero deliverable = lower reply rate. The fix isn't no deliverable -- it's burying the deliverable inside an observation. Lead with the insight. The prompt is almost an afterthought.
+
+**Edge-case-finder's credibility gap is real but solvable.** Specificity IS credibility when you don't have a track record. Not generic specificity -- specific to THEM. One line showing you looked at their actual accounts. That's what survives a Google search.
+
+**My revised UX principle:** The email should feel like a smart person noticed something and shared it, not like a freelancer offering a freebie.
+
+Revised offer structure that threads all these needles:
+
+Lead with: one observation specific to their situation.
+Middle: the prompt/deliverable, framed as "here's what I use for this."
+Close: genuine question, not a CTA.
+
+Example beat:
+> "You're posting 4x/week for 10+ clients. That's 160 captions a month. Here's the prompt I use to cut that down. [PROMPT]. Curious if your team's already doing something like this."
+
+That's peer-level. The deliverable earns trust without screaming vendor. The question invites reply without pitching.
+
+The systems-thinker's funnel framing still holds -- six entry points, one ladder. But the tone shift the contrarian wants is the unlock.

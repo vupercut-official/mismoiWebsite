@@ -1,0 +1,79 @@
+[pragmatist]: My take before diving in: the best offers here are ones deliverable in the body of the email. No links, no downloads, no friction. A prompt pasted directly into a cold email is zero-risk for the prospect. That's the bar I'm designing to.
+
+Here are 6 practical offers, in order of lowest Vu time to highest:
+
+---
+
+**Offer 1: The 1-to-5 Caption Prompt**
+- **What they get:** A Claude/ChatGPT prompt (pasted in email) that turns any long-form piece into 5 platform-native captions (IG, LinkedIn, X, TikTok, Facebook)
+- **Why valuable:** Saves 30-45 min per piece, works across every client
+- **CTA:** "Copy it, run it on your next piece, reply and tell me if it saved you time."
+- **Bridge:** Automate full content repurposing pipeline (new post → all platforms → scheduled) via Make.com
+- **Vu time:** 20 min (prompt is templated, swap niche variable)
+
+**Example email (87 words):**
+> You're writing captions for 10+ clients. Same process, different brands, every week. That's probably 5-10 hours of work that could be 30 minutes. I built a prompt for it -- takes one long-form piece and outputs 5 platform-specific captions with hooks, CTAs, and tone adjustments per platform. Pasting it below. Works in Claude or ChatGPT. [PROMPT BLOCK] Run it on your next post and see what you think. Happy to share the Make.com setup that runs this automatically if it's useful.
+
+---
+
+**Offer 2: The 10-Minute Client Report**
+- **What they get:** A ChatGPT/Claude prompt (in email) that takes raw metrics → outputs client-ready narrative summary paragraph
+- **Why valuable:** Monthly reporting is a manual grind; this collapses it
+- **CTA:** "Try it on your next report. Reply with how long it took before vs. after."
+- **Bridge:** Full automated report pipeline: pull data from APIs → AI narrative → email to client → archived in Drive
+- **Vu time:** 25 min
+
+**Example email (92 words):**
+> Social agencies spend 2-4 hours per client every month writing performance reports that say the same things differently. I mapped the pattern and turned it into a prompt. Paste in your raw numbers -- reach, engagement, follower delta, top post -- and it writes the client narrative. Below is the prompt. [PROMPT BLOCK] It won't replace your strategy commentary but it cuts the mechanical writing to under 10 minutes. If you want the Make.com version that pulls the data automatically and sends it, happy to walk you through it.
+
+---
+
+**Offer 3: The 30-Day Content Calendar Generator**
+- **What they get:** A prompt that takes client niche, goals, and brand voice → outputs a full 30-day content calendar with hooks and CTAs per day
+- **Why valuable:** Content planning is a weekly drain across multiple clients
+- **CTA:** "Run it for one client. Reply if it's worth building out."
+- **Bridge:** Monthly auto-calendar generation via Make.com (triggered on the 25th of each month per client)
+- **Vu time:** 25 min
+
+**Example email (88 words):**
+> Content calendars are the same 4 steps every month: brainstorm topics, match to client voice, structure hooks, assign dates. You're doing this for every client manually. I built a prompt that does it in under 2 minutes per client. You feed it the niche, 3 brand voice descriptors, and the goal for the month. It outputs a 30-day calendar with hooks and CTAs. [PROMPT BLOCK] Try it on your next client renewal. If you want this wired into a Make.com flow that runs automatically, let me know.
+
+---
+
+**Offer 4: The New Client Brief Generator**
+- **What they get:** A prompt that converts raw intake form answers → structured onboarding brief (audience, tone, content pillars, goals, KPIs)
+- **Why valuable:** New client onboarding is inconsistent and time-consuming; this standardizes it in minutes
+- **CTA:** "Paste your last intake answers into it and see what comes out."
+- **Bridge:** Full intake-to-brief automation: form submission → AI brief → shared to client Notion/Drive automatically
+- **Vu time:** 25 min
+
+**Example email (91 words):**
+> Every new client you take on means another intake call, another round of back-and-forth, another hour building the onboarding brief. Multiply that by 5 new clients a quarter and it adds up fast. I built a prompt that takes raw intake answers and outputs a structured brief: audience, tone, content pillars, KPIs, goals. [PROMPT BLOCK] Drop your last client's intake answers in and see if it matches what you built manually. If you want this automated end-to-end -- form to brief to client -- that's a Make.com build I can walk you through.
+
+---
+
+**Offer 5: The Social Agency Automation Audit**
+- **What they get:** A plain-text list (in email) of 12 tasks most agencies still do manually + the specific AI/Make.com tool that eliminates each
+- **Why valuable:** Instant visibility into time leaks; no tool required to use it
+- **CTA:** "Reply with which of these you're still doing manually -- curious what the biggest time sink is."
+- **Bridge:** Vu builds whichever automations they identify as priorities
+- **Vu time:** 30 min (templated list, minor personalization)
+
+**Example email (96 words):**
+> Most social agencies are running on manual workflows they've never audited. I mapped 12 tasks that agencies with 5-50 clients are still doing by hand -- and the exact tool that handles each automatically. Things like caption repurposing, hashtag research, performance reporting, client onboarding briefs, content scheduling, and monthly analytics pulls. Here's the list: [12-ITEM LIST IN EMAIL] If you're doing 6 or more of these manually, you're burning talent on work that should be automated. Reply and tell me which ones hit home -- I'll share how I'd wire them up for an agency your size.
+
+---
+
+**Offer 6: The Hashtag Intel Prompt**
+- **What they get:** A Claude prompt (in email) that researches and outputs hashtag sets by niche, categorized by reach tier (micro/mid/broad) with usage context
+- **Why valuable:** Hashtag research is repetitive, tedious, and done per client per month
+- **CTA:** "Run it for one client niche and reply if the output is usable."
+- **Bridge:** Automated hashtag research → integrated into content calendar pipeline via Make.com
+- **Vu time:** 15 min (fastest to produce)
+
+**Example email (83 words):**
+> Hashtag research is one of those tasks that takes 20 minutes per client every month and feels like it should already be automated. It mostly can be. I built a Claude prompt that takes a niche and outputs a tiered hashtag set -- micro, mid, and broad -- with notes on when to use each. Below is the prompt. [PROMPT BLOCK] Run it for one of your clients and see if the output is usable. If you want this wired into your content pipeline so it runs automatically, reply and I'll explain how.
+
+---
+
+**My practical read:** Offers 1, 2, and 5 are highest-probability plays. Prompts in the email body = zero friction. The audit (Offer 5) is the best for getting replies because it ends with a genuine question, not a soft pitch. Ship all 6, A/B test reply rates, kill the losers in 2 weeks.

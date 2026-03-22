@@ -1,0 +1,11 @@
+Design 6 lead magnet offers for cold email campaigns targeting real estate agents. Each offer is the hook in a PAS cold email under 100 words. Sender: Vu Tran, AI automation freelancer at Mismoi, $0 revenue, no case studies. Tools: Make.com, Claude/ChatGPT, Google Workspace.
+
+Offer rules: Under 2 hours of Vu time (ideally templated to under 30 min). Zero friction for prospect. Free. Must feel specific to real estate, not generic. Must ladder into paid AI automation services ($500-2K/mo). CTA = soft ask ("Worth a quick look?" style).
+
+RE agent pain points: Leads going cold from slow follow-up (5-min response window is 100x more effective). 5-10 hrs/week manual data entry. Comp research bottlenecks. Chaotic buyer lists. Mostly cold-calling, rare inbound leads. Speed culture (deals move in 9-14 days). Pay $500-2K/mo for systems that add 1-2 extra deals. Won't pay without ROI proof. "CRO" confuses them.
+
+Cold email rules: PAS framework, 75-100 words, soft CTAs, plain text, zero links. Without case studies, credibility = specificity. Offer hierarchy: (1) observation in the email itself, (2) written mini-audit, (3) Loom video audit.
+
+Seed directions (not prescriptions): Lead response speed test (submit inquiry, measure response time). Competitor comparison snapshot (their online presence vs top 3 agents in zip). Custom ROI calculator. Deal scoring template. "Your leads are leaking" mini-report. In-email observation about their Zillow/Google profile.
+
+Output per offer: Name, what prospect gets, why valuable, example CTA, bridge to paid service, Vu time, example 75-100 word PAS email. 6 distinct offers covering different pain points. At least 2 deliverable IN the email (zero friction). At least 2 templated to under 30 min.

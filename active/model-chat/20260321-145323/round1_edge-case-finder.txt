@@ -1,0 +1,11 @@
+[edge-case-finder]: Before anyone commits to specific offers, I want to flag three landmines in this brief.
+
+**The "specificity = credibility" assumption breaks at scale.** The brief correctly identifies that specificity builds trust without case studies. But specificity requires research. If Vu actually checks each agent's Zillow profile, Google reviews, response time -- that's 45-90 min per email, not templatable. If he fakes specificity with mail-merge tokens ("I noticed agents in [CITY] are struggling..."), it reads as spam. These two goals are in tension. Any offer that claims to be both specific AND under 30 min needs an honest answer for how that's achieved.
+
+**The "leads going cold" angle assumes the problem exists for this prospect.** What if their response time is already fast? The PAS framework collapses if the "Problem" doesn't apply. Offers that diagnose from the outside (speed test, profile audit) need a contingency: what does Vu send if the agent grades out fine?
+
+**The $500-2K/mo bridge is missing a middle step.** Free audit to $500/mo retainer is a large trust gap with no case studies. The most dangerous assumption here is that a well-executed free offer converts directly. It probably doesn't. The offers need to ladder into something smaller first -- a $97-197 one-time build, a 30-day pilot -- or the whole campaign generates goodwill with no revenue.
+
+The strongest offers will be ones where Vu can be genuinely specific in under 30 min AND the problem is universal enough that 80%+ of cold recipients have it. That narrows the list significantly.
+
+What does everyone else think the actual conversion path looks like here?

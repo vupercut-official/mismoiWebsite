@@ -1,0 +1,78 @@
+[systems-thinker]:
+
+---
+
+## Offers 1-3 (Settled — Confirmed)
+
+**1. Caption Prompt | 2. Report Prompt | 3. 12-Task Audit**
+
+Confirmed as the first ship. Stack them as a sequence, not simultaneous blasts. Day 1: caption. No reply by day 5: report. No reply by day 10: audit. Same prospect, escalating value. This is a drip, not a spray.
+
+---
+
+## Offers 4-6 (My Proposals)
+
+### Offer 4: Client Churn Signal Prompt
+
+**What they get:** A Claude prompt that takes a client's last 30 days of activity (engagement rate, response lag, scope request frequency) and outputs a 1-5 health score with 3 specific risk flags.
+
+**Why valuable:** Churn is predictable. Agencies that catch it at score-drop stage retain at 2x the rate of those who catch it at cancellation. The signal exists — no one is reading it.
+
+**CTA:** "Which client would you least want to run this on right now?"
+
+**Bridge to paid:** Weekly automated health check in Make.com + Google Sheets that pings the account manager when a client crosses a threshold. Build time: 4 hours.
+
+**Vu time:** 20 min to personalize prompt for their portfolio size and vertical.
+
+**Example email (87 words):**
+> Your agency runs 14 active accounts based on your team size and posting cadence. That's 14 client relationships to track manually each month. I built a Claude prompt that reads a client's last 30 days — engagement, response time, scope asks — and outputs a churn risk score plus 3 early warning signals. Two minutes per client. Here's the prompt: [prompt]. Most agencies catch churn at week 16. This catches it at week 6. Which client would you least want to run this on right now?
+
+---
+
+### Offer 5: Production Bottleneck Map
+
+**What they get:** A structured Claude prompt that maps their content production flow across 5 stages (brief → draft → approval → scheduling → reporting) and identifies the single constraint limiting throughput — not the busiest stage, the rate-limiting one.
+
+**Why valuable:** Most agencies optimize the wrong stage. Fixing the wrong bottleneck accelerates throughput right up to the next constraint. You get faster work piling up at the real chokepoint. One correct diagnosis 10x's the ROI of any workflow change.
+
+**CTA:** "Which stage are you most confident is NOT your bottleneck right now?"
+
+**Bridge to paid:** Automation targeting the identified constraint specifically — AI brief generation, approval flow automation, bulk scheduling handoff. No generic stack audit.
+
+**Vu time:** 15 min to run prompt + write follow-up based on their answer.
+
+**Example email (83 words):**
+> You've added at least 6 clients in the last year based on your team's LinkedIn activity. At that pace, you've hit a production crunch where the calendar slipped. The problem is almost never where founders think it is. I use a prompt to map content pipelines and find the single constraining step — not the busiest one, the blocking one. Here's the prompt: [prompt]. Most teams I see are optimizing the wrong stage. Which step are you most confident is not your bottleneck?
+
+---
+
+### Offer 6: Scope Delta Detector
+
+**What they get:** A Claude prompt that takes a client's original brief plus 3 recent client messages and outputs a scope delta report — what was promised vs. what's being delivered, quantified in estimated hours.
+
+**Why valuable:** Scope creep is margin destruction on a slow drip. Agencies that measure it survive the 18-month mark. Agencies that feel it but can't show it don't. The prompt makes the invisible visible and gives account managers something concrete to bring to a retainer renegotiation.
+
+**CTA:** "Which client would you least want to see this number on?"
+
+**Bridge to paid:** Automated scope tracking that runs weekly against their PM tool (ClickUp/Asana) and flags threshold breaches before they compound.
+
+**Vu time:** 20 min to configure for their specific PM tool.
+
+**Example email (88 words):**
+> Three of your recent posts tag secondary accounts that weren't in the original campaign brief based on your public content — which usually means the scope expanded. I built a prompt that takes an original brief plus 3 recent client threads and outputs a scope delta: what was promised, what's being delivered, estimated hours difference. Here's the prompt: [prompt]. Agencies that catch this early are the ones still profitable at 18 months. Which client would you least want to run this on right now?
+
+---
+
+## Final Structural Decisions (Systems Lens)
+
+**On 2 vs 3 vs 6 simultaneous:** Ship 3, but build a sequence, not a campaign. Offers 1-3 run as a 10-day drip to the same prospect. Offers 4-6 deploy to non-responders at day 14. You're testing sequences, not offers in isolation. Measuring open rate on 6 simultaneous sends gives you noise. Measuring reply rate on a 3-step sequence gives you a conversion model.
+
+**On task-focused vs outcome-focused for 4-6:** False binary. Outcome-framed email gets the open. Operationally-specific CTA ("which client would you least want to run this on") gets the reply. The outcome framing does the PAS work silently. The operational CTA proves you understand their business well enough to ask the uncomfortable question.
+
+**On PAS vs peer observation:** These are the same container with different labels. "You're growing fast" implies the problem. "Here's the signal I watch for" implies the agitation. "Here's the prompt I use" is the solution. Peer observation IS PAS — just without the vendor-style signposting that gets skipped.
+
+**The ladder (complete):**
+```
+Free email prompt → 20-min async Loom audit → paid project
+```
+Offer 3 (12-task audit) is the natural bridge to the Loom. The audit question ("which of these 12 tasks is your team doing manually?") identifies the paid build scope before the call. By the time Vu sends the Loom, the prospect has already pre-sold themselves on the problem.

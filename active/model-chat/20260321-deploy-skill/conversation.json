@@ -1,0 +1,29 @@
+{
+  "topic": "Design a /deploy skill for Claude Code that deploys HTML proposals to Vercel",
+  "agent_count": 5,
+  "round_count": 5,
+  "timestamp": "2026-03-21T00:00:00Z",
+  "agents": [
+    {"id": "systems-thinker", "idx": 0},
+    {"id": "pragmatist", "idx": 1},
+    {"id": "edge-case-finder", "idx": 2},
+    {"id": "user-advocate", "idx": 3},
+    {"id": "contrarian", "idx": 4}
+  ],
+  "consensus": {
+    "--prod directly": "No preview step. Static HTML near-zero failure rate.",
+    "--yes --name --prod flags": "Non-interactive deploy. Suppresses all prompts.",
+    "auth check first": "vercel whoami before deploy. Fail fast.",
+    ".vercel/ gitignored": "Per-proposal .gitignore. Name is source of truth.",
+    "skill justified": "Auth check + name derivation + .gitignore + URL output."
+  },
+  "key_decisions": {
+    "naming": "mismoi-[client-folder-name], derived from folder path",
+    "project_json": "Let CLI manage it, gitignore it, name is source of truth",
+    "preview_vs_prod": "Prod directly, print verify reminder",
+    "npx_vs_global": "npx vercel (no install dependency)",
+    "gitignore_scope": "Per-proposal .gitignore matching moe-shaheen pattern"
+  },
+  "pre_ship_gate": "Verify --name idempotency: deploy twice with same --name, confirm same project/URL",
+  "synthesis": "Build with: auth check -> validate index.html -> derive name from folder -> deploy --yes --name --prod -> manage .gitignore -> print URL"
+}

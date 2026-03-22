@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en" style="scroll-behavior: smooth;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patent Protector - AI Content Engine Proposal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital@1&family=IBM+Plex+Mono&family=Plus+Jakarta+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        page: '#F2F0E9',
+                        card: '#FFFFFF',
+                        dark: '#1A1A1A',
+                        primary: '#1A1A1A',
+                        'on-dark': '#F2F0E9',
+                        accent: '#CC5833',
+                        muted: '#4A4A4A',
+                        subtle: 'rgba(26, 26, 26, 0.12)', // border-subtle
+                        green: '#22C55E' // for pulsing dot
+                    },
+                    fontFamily: {
+                        heading: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        drama: ['"Cormorant Garamond"', 'serif'],
+                        mono: ['"IBM Plex Mono"', 'monospace'],
+                        body: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    spacing: { // Map spacing tokens to Tailwind
+                        'xs': '0.5rem',
+                        'sm': '1rem',
+                        'md': '1.5rem',
+                        'lg': '2rem',
+                        'xl': '3rem',
+                        '2xl': '4rem',
+                        '3xl': '6rem',
+                        '4xl': '8rem',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --space-xs: 0.5rem;
+            --space-sm: 1rem;
+            --space-md: 1.5rem;
+            --space-lg: 2rem;
+            --space-xl: 3rem;
+            --space-2xl: 4rem;
+            --space-3xl: 6rem;
+            --space-4xl: 8rem;
+        }
+
+        body {
+            font-family: var(--font-body);
+            line-height: 1.7;
+            color: var(--primary);
+            background-color: var(--page);
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
+            mix-blend-mode: overlay;
+            opacity: 0.05;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        }
+
+        .container {
+            max-width: 72rem; /* 1152px */
+            margin-inline: auto;
+            padding-inline: var(--space-md);
+        }
+
+        .section-padding {
+            padding-top: var(--space-2xl);
+            padding-bottom: var(--space-2xl);
+        }
+        @media (min-width: 1024px) {
+            .section-padding {
+                padding-top: var(--space-3xl);
+                padding-bottom: var(--space-3xl);
+            }
+        }
+
+        .card {
+            background-color: var(--card);
+            border: 1px solid var(--subtle);
+            border-radius: 1.5rem;
+            padding: var(--space-md);
+        }
+        @media (min-width: 1024px) {
+            .card {
+                padding: var(--space-lg);
+            }
+        }
+
+        .btn-primary {
+            background-color: var(--cta-bg);
+            color: var(--cta-text);
+            border-radius: 9999px;
+            padding: var(--space-sm) var(--space-lg);
+            font-family: var(--font-heading);
+            font-weight: 700;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            white-space: nowrap;
+        }
+        .btn-primary span.btn-slide-bg-layer {
+            position: absolute;
+            inset: 0;
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+            z-index: 0;
+        }
+        .btn-primary:hover span.btn-slide-bg-layer {
+            transform: translateX(0);
+        }
+        .btn-primary > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .navbar {
+            position: fixed;
+            top: var(--space-md);
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 50;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: var(--space-sm) var(--space-lg);
+            border-radius: 9999px;
+            background-color: transparent;
+            color: var(--on-dark);
+            transition: background-color 0.3s ease, color 0.3s ease, backdrop-filter 0.3s ease, border-color 0.3s ease;
+            border: 1px solid transparent; /* Initial transparent border */
+            max-width: calc(100% - var(--space-md) * 2); /* Ensure it doesn't overflow on small screens */
+            width: fit-content;
+        }
+        .navbar.scrolled {
+            background-color: rgba(242, 240, 233, 0.95); /* bg-page at 95% opacity */
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            color: var(--primary); /* text-primary */
+            border-color: var(--subtle); /* border-subtle */
+        }
+        .navbar-links {
+            display: none;
+        }
+        @media (min-width: 640px) {
+            .navbar-links {
+                display: flex;
+                gap: var(--space-lg);
+            }
+        }
+        .navbar-logo {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 1.25rem;
+            letter-spacing: -0.02em;
+        }
+        .navbar-link {
+            font-family: var(--font-body);
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+        .navbar.scrolled .navbar-link:hover {
+            color: var(--accent);
+        }
+        .navbar:not(.scrolled) .navbar-link:hover {
+            color: var(--accent);
+        }
+        .navbar-cta {
+            margin-left: var(--space-lg);
+        }
+        @media (max-width: 639px) {
+            .navbar-cta {
+                padding: var(--space-xs) var(--space-md); /* Smaller button on mobile */
+                font-size: 0.875rem;
+            }
+        }
+
+        /* Hero specific styles */
+        .hero-headline-1 {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 2.5rem; /* Mobile */
+            letter-spacing: -0.02em;
+        }
+        .hero-headline-2 {
+            font-family: var(--font-drama);
+            font-style: italic;
+            font-size: 4rem; /* Mobile */
+            color: var(--accent);
+            line-height: 1;
+        }
+        @media (min-width: 640px) {
+            .hero-headline-1 {
+                font-size: 4rem; /* Desktop */
+            }
+            .hero-headline-2 {
+                font-size: 8rem; /* Desktop */
+            }
+        }
+        @media (min-width: 1024px) {
+            .hero-headline-1 {
+                font-size: 5rem; /* Larger Desktop */
+            }
+            .hero-headline-2 {
+                font-size: 10rem; /* Larger Desktop */
+            }
+        }
+
+        /* Diagnostic Shuffler */
+        .shuffler-container {
+            position: relative;
+            height: 12rem; /* Fixed height for the stack */
+        }
+        .shuffler-card {
+            position: absolute;
+            width: 100%;
+            left: 0;
+            top: 0;
+            padding: var(--space-md);
+            border-radius: 1.5rem;
+            background-color: var(--card);
+            border: 1px solid var(--subtle);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transform-origin: center center;
+        }
+
+        /* Protocol Sticky Stack */
+        .protocol-wrapper {
+            position: relative;
+            height: 300vh; /* 3 cards * 100vh */
+        }
+        .protocol-card {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100dvh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-md);
+        }
+        .protocol-card-inner {
+            width: 100%;
+            max-width: 72rem;
+            margin-inline: auto;
+            padding-inline: var(--space-md);
+            height: fit-content;
+            max-height: 80dvh; /* Ensure cards don't fill entire viewport */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            box-sizing: border-box;
+            background-color: var(--card);
+            border: 1px solid var(--subtle);
+            border-radius: 1.5rem;
+            padding: var(--space-md);
+        }
+        @media (min-width: 1024px) {
+            .protocol-card-inner {
+                padding: var(--space-lg);
+            }
+        }
+        .protocol-card-1 { z-index: 10; }
+        .protocol-card-2 { z-index: 20; }
+        .protocol-card-3 { z-index: 30; }
+
+        /* Pulsing green dot */
+        .pulsing-dot {
+            display: inline-block;
+            width: 0.75rem;
+            height: 0.75rem;
+            background-color: var(--green);
+            border-radius: 50%;
+            animation: pulse 1.5s infinite cubic-bezier(0.4, 0, 0.6, 1);
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+    </style>
+</head>
+<body class="font-body text-primary bg-page">
+
+    <header class="navbar">
+        <a href="#hero" class="navbar-logo">Patent Protector</a>
+        <nav class="navbar-links">
+            <a href="#problems" class="navbar-link">Challenges</a>
+            <a href="#solution" class="navbar-link">Solution</a>
+            <a href="#pricing" class="navbar-link">Investment</a>
+            <a href="#footer" class="navbar-link">Next Steps</a>
+        </nav>
+        <a href="https://invoice.stripe.com/i/acct_1T9xud3qgIDdNkQS/live_YWNjdF8xVDl4dWQzcWdJRGROa1FTLF9VOXlrTDVQZlNiU0REUENaZjZ3VnRzOTh2MGpDREN6LDE2NDIyMjUzOQ0200cSq1egLL?s=db" class="btn-primary navbar-cta" aria-label="Pay and Get Started">
+            <span class="btn-slide-bg-layer"></span>
+            Pay & Get Started
+        </a>
+    </header>
+
+    <main>
+        <!-- B. HERO -->
+        <section id="hero" class="hero-section relative min-h-[100dvh] flex items-end pb-space-4xl text-on-dark overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1518005020951-eccb494c7c81?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Dark forest with organic textures and moss, hinting at a laboratory" class="absolute inset-0 w-full h-full object-cover -z-10">
+            <div class="absolute inset-0 bg-gradient-to-t from-dark via-dark/70 to-transparent -z-10"></div>
+            <div class="container relative z-10">
+                <div class="max-w-3xl">
+                    <h1 class="hero-headline-1 opacity-0 translate-y-10">Automate the</h1>
+                    <h2 class="hero-headline-2 opacity-0 translate-y-10">Content Engine.</h2>
+                    <p class="mt-space-lg text-lg md:text-xl opacity-0 translate-y-10">Thanks for walking me through Patent Protector's growth challenge. You mentioned three things that stuck: creating content every day is too time-consuming for your lean team, your YouTube videos get 10K-17K views but single-digit likes, and 85% of your 500 users are still on the free tier.</p>
+                    <a href="https://invoice.stripe.com/i/acct_1T9xud3qgIDdNkQS/live_YWNjdF8xVDl4dWQzcWdJRGROa1FTLF9VOXlrTDVQZlNiU0REUENaZjZ3VnRzOTh2MGpDREN6LDE2NDIyMjUzOQ0200cSq1egLL?s=db" class="btn-primary mt-space-xl opacity-0 translate-y-10" aria-label="Pay and Get Started">
+                        <span class="btn-slide-bg-layer"></span>
+                        Pay & Get Started
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- C. SUMMARY (Executive Brief) -->
+        <section id="summary" class="section-padding bg-page">
+            <div class="container max-w-3xl text-center">
+                <p class="font-heading text-lg mb-space-sm fade-up-item">Hi Aro,</p>
+                <p class="text-lg leading-relaxed fade-up-item">Thanks for walking me through Patent Protector's growth challenge. You mentioned three things that stuck: creating content every day is too time-consuming for your lean team, your YouTube videos get 10K-17K views but single-digit likes, and 85% of your 500 users are still on the free tier.</p>
+                <p class="text-lg leading-relaxed mt-space-sm fade-up-item">That's exactly what this proposal solves.</p>
+                <p class="text-lg leading-relaxed mt-space-sm fade-up-item">Here's what we'll build: an AI Content Engine using Make.com automation, Claude AI for scripting, and Google VO for video generation. By mid-April, you'll have automated 30-second videos posting daily across YouTube, Instagram, and TikTok. The system researches your market, scripts videos that actually connect with patent filers, and gets better every cycle based on performance data.</p>
+                <p class="text-lg leading-relaxed mt-space-sm fade-up-item">More importantly, it runs on autopilot. Your team stays focused on operations and demos while the content engine compounds.</p>
+                <p class="text-lg leading-relaxed mt-space-sm fade-up-item">This proposal covers the system, why it works, and what it costs. Let's go.</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-space-lg mt-space-xl fade-up-group">
+                    <div class="card text-center fade-up-item">
+                        <p class="font-heading text-4xl font-bold">500</p>
+                        <p class="font-mono text-sm text-muted mt-space-xs">Current Users</p>
+                    </div>
+                    <div class="card text-center fade-up-item">
+                        <p class="font-heading text-4xl font-bold">85%</p>
+                        <p class="font-mono text-sm text-muted mt-space-xs">Free Tier</p>
+                    </div>
+                    <div class="card text-center fade-up-item">
+                        <p class="font-heading text-4xl font-bold">3-6 mo</p>
+                        <p class="font-mono text-sm text-muted mt-space-xs">Target ROI</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- D. PROBLEMS (3-column card grid) -->
+        <section id="problems" class="section-padding bg-page">
+            <div class="container">
+                <h2 class="font-heading text-4xl font-bold letter-spacing-tight fade-up-item">The Challenge</h2>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-space-lg mt-space-xl">
+                    <!-- Card 1: Diagnostic Shuffler -->
+                    <div class="card fade-up-item">
+                        <h3 class="font-heading text-2xl font-bold letter-spacing-tight mb-space-md">Content Takes Too Much Time</h3>
+                        <div class="shuffler-container relative h-48 overflow-hidden">
+                            <div class="shuffler-card absolute w-full h-full flex items-center justify-center text-center text-lg z-30" style="top:0; left:0;">Manual creation drains hours daily</div>
+                            <div class="shuffler-card absolute w-full h-full flex items-center justify-center text-center text-lg z-20" style="top:20px; left:0;">Team spread thin across operations</div>
+                            <div class="shuffler-card absolute w-full h-full flex items-center justify-center text-center text-lg z-10" style="top:40px; left:0;">No bandwidth for daily posting</div>
+                        </div>
+                        <p class="font-mono text-accent mt-space-md text-sm">Zero consistent content output</p>
+                    </div>
+
+                    <!-- Card 2: Static card -->
+                    <div class="card fade-up-item">
+                        <h3 class="font-heading text-2xl font-bold letter-spacing-tight mb-space-md">Views Without Conversions</h3>
+                        <p class="text-base text-primary mb-space-md">Your YouTube gets 10K-17K views per video, but single-digit likes. Viewers see the content and scroll right past. High impressions, near-zero engagement means the content isn't connecting with the audience that's already finding you.</p>
+                        <p class="font-mono text-accent text-sm">85% free users not converting to paid</p>
+                    </div>
+
+                    <!-- Card 3: Static card -->
+                    <div class="card fade-up-item">
+                        <h3 class="font-heading text-2xl font-bold letter-spacing-tight mb-space-md">No Feedback Loop</h3>
+                        <p class="text-base text-primary mb-space-md">You're not collecting feedback from users about why they chose Patent Protector. Without that data, your content strategy is guessing instead of targeting. Your 8,000+ YouTube subscribers are an untapped goldmine of insights you're not using.</p>
+                        <p class="font-mono text-accent text-sm">Zero data-driven content decisions</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- E. PHILOSOPHY (The Manifesto) -->
+        <section id="philosophy" class="section-padding bg-dark text-on-dark">
+            <div class="container max-w-4xl text-center">
+                <p class="text-lg mb-space-xl fade-up-item">Most SaaS companies rely on: manual content creation, hoping a video goes viral, and posting when someone has time.</p>
+                <h2 class="font-drama italic text-4xl md:text-6xl lg:text-7xl leading-tight fade-up-item">We build <span class="text-accent">systems that learn</span>. Every video feeds the next. Every data point sharpens the message. Content that compounds.</h2>
+            </div>
+        </section>
+
+        <!-- F. SOLUTION/PROTOCOL (Sticky Stacking Archive) -->
+        <section id="solution" class="protocol-wrapper bg-page">
+            <!-- Card 1 -->
+            <div class="protocol-card protocol-card-1">
+                <div class="protocol-card-inner fade-up-item">
+                    <p class="font-mono text-sm text-muted mb-space-sm">01</p>
+                    <h3 class="font-heading text-3xl font-bold letter-spacing-tight mb-space-md">Market Research & Intelligence</h3>
+                    <p class="text-lg mb-space-sm">Automated competitive intelligence that never sleeps.</p>
+                    <ul class="list-disc list-inside text-base space-y-space-xs">
+                        <li>Apify scrapes Instagram, Twitter, and Reddit for patent industry trends</li>
+                        <li>Identifies common pain points and messaging angles from real conversations</li>
+                        <li>Builds a living database of what your ideal customers actually talk about</li>
+                        <li>Updates weekly with fresh signals from across the web</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="protocol-card protocol-card-2">
+                <div class="protocol-card-inner fade-up-item">
+                    <p class="font-mono text-sm text-muted mb-space-sm">02</p>
+                    <h3 class="font-heading text-3xl font-bold letter-spacing-tight mb-space-md">AI Video Generation Pipeline</h3>
+                    <p class="text-lg mb-space-sm">From market insight to published video, fully automated.</p>
+                    <ul class="list-disc list-inside text-base space-y-space-xs">
+                        <li>Claude AI writes scripts based on intelligence hub data and top-performing content</li>
+                        <li>Google VO generates 30-60 second videos from scripts (no filming required)</li>
+                        <li>Signal aggregator tracks performance: views, engagement, conversions</li>
+                        <li>System doubles down on what works, filters out what doesn't</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="protocol-card protocol-card-3">
+                <div class="protocol-card-inner fade-up-item">
+                    <p class="font-mono text-sm text-muted mb-space-sm">03</p>
+                    <h3 class="font-heading text-3xl font-bold letter-spacing-tight mb-space-md">Multi-Platform Auto-Poster</h3>
+                    <p class="text-lg mb-space-sm">One video, every platform, every day. Hands-free.</p>
+                    <ul class="list-disc list-inside text-base space-y-space-xs">
+                        <li>Automated posting to YouTube Shorts, Instagram Reels, and TikTok</li>
+                        <li>Platform-optimized formatting (aspect ratios, captions, hashtags)</li>
+                        <li>Performance data feeds back into the intelligence hub for next cycle</li>
+                        <li>Best performers flagged for paid ad promotion</li>
+                    </ul>
+                    <svg class="w-full h-16 mt-space-lg" viewBox="0 0 400 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path class="waveform-path" d="M0 30 C 50 10, 100 50, 150 30 S 250 10, 300 30 S 350 50, 400 30" stroke="#CC5833" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+            </div>
+        </section>
+
+        <!-- G. PRICING (The Investment) -->
+        <section id="pricing" class="section-padding bg-page">
+            <div class="container">
+                <h2 class="font-heading text-4xl font-bold letter-spacing-tight fade-up-item">Investment</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-space-lg mt-space-xl">
+                    <!-- Setup Card -->
+                    <div class="card fade-up-item">
+                        <p class="font-heading text-5xl font-bold">$627</p>
+                        <p class="font-mono text-sm text-muted mt-space-xs">One-Time Setup</p>
+                        <ul class="list-disc list-inside text-base space-y-space-xs mt-space-lg">
+                            <li>Market research system configuration (Apify + intelligence hub)</li>
+                            <li>Signal aggregator setup and platform connections</li>
+                            <li>AI video pipeline build (Claude scripting + Google VO)</li>
+                            <li>Multi-platform poster setup (YouTube, Instagram, TikTok)</li>
+                            <li>Initial content strategy and first batch of videos</li>
+                            <li>Training session on system monitoring and manual tweaks</li>
+                        </ul>
+                    </div>
+
+                    <!-- Recurring Card -->
+                    <div class="card fade-up-item">
+                        <p class="font-heading text-5xl font-bold">$250</p>
+                        <p class="font-mono text-sm text-muted mt-space-xs">/month</p>
+                        <ul class="list-disc list-inside text-base space-y-space-xs mt-space-lg">
+                            <li>Weekly performance check-ins and optimization</li>
+                            <li>Continuous intelligence hub updates</li>
+                            <li>Video pipeline monitoring and quality assurance</li>
+                            <li>Bug fixes within 24 hours</li>
+                            <li>Monthly strategy call to review results and adjust</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <a href="https://invoice.stripe.com/i/acct_1T9xud3qgIDdNkQS/live_YWNjdF8xVDl4dWQzcWdJRGROa1FTLF9VOXlrTDVQZlNiU0REUENaZjZ3VnRzOTh2MGpDREN6LDE2NDIyMjUzOQ0200cSq1egLL?s=db" class="btn-primary mt-space-xl w-full md:w-auto fade-up-item" aria-label="Pay and Get Started">
+                    <span class="btn-slide-bg-layer"></span>
+                    Pay & Get Started
+                </a>
+
+                <!-- Guarantee -->
+                <div class="bg-accent text-white rounded-[1.5rem] p-space-lg mt-space-xl fade-up-item">
+                    <h3 class="font-heading text-2xl font-bold letter-spacing-tight mb-space-sm">Our Guarantee</h3>
+                    <p class="text-lg">250 extra paid users in 3 months -- or every monthly retainer gets refunded. We put our revenue on the line because we believe in the system.</p>
+                </div>
+
+                <!-- Case Study -->
+                <div class="card mt-space-xl fade-up-item">
+                    <h3 class="font-heading text-2xl font-bold letter-spacing-tight mb-space-md">SaaS Content System Example</h3>
+                    <p class="text-base text-primary mb-space-sm"><strong>Situation:</strong> A B2B SaaS tool with strong organic search traffic but zero content strategy. 500+ users, mostly free tier, with no systematic way to convert them through content.</p>
+                    <p class="text-base text-primary mb-space-sm"><strong>What we built:</strong> Market research pipeline + AI video generation + multi-platform auto-poster. Daily 30-second videos posted across YouTube, Instagram, and TikTok, with performance data feeding back into the content strategy.</p>
+                    <p class="text-base text-primary mb-space-sm"><strong>Results:</strong></p>
+                    <ul class="list-disc list-inside text-base space-y-space-xs ml-space-md">
+                        <li>Content output went from 2 videos/month (manual) to 30+/month (automated)</li>
+                        <li>Engagement rate increased 4x within 60 days</li>
+                        <li>Estimated 150-200 additional free signups per month from content</li>
+                        <li>Conversion to paid increased as content targeted actual user pain points</li>
+                    </ul>
+                    <p class="font-drama italic text-lg mt-space-md">"The system just runs. We focus on product, and the content handles itself."</p>
+                    <p class="text-sm text-muted mt-space-xs">-- SaaS Founder (Simulated)</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- H. FOOTER -->
+    <footer id="footer" class="bg-dark text-on-dark rounded-t-[3rem] section-padding">
+        <div class="container">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-space-xl">
+                <!-- Column 1: About -->
+                <div class="fade-up-item">
+                    <h3 class="font-heading text-2xl font-bold letter-spacing-tight mb-space-md">mismoi</h3>
+                    <p class="text-base">We build AI automation systems for SaaS, real estate, and service businesses. We specialize in converting free users into paying customers through automated content and marketing systems.</p>
+                </div>
+
+                <!-- Column 2: How We Get Started -->
+                <div class="fade-up-item">
+                    <h3 class="font-heading text-2xl font-bold letter-spacing-tight mb-space-md">How We Get Started</h3>
+                    <ol class="list-decimal list-inside text-base space-y-space-xs">
+                        <li>Click "Pay & Get Started" and complete payment</li>
+                        <li>We send a kickoff form (platform access, brand guidelines, target audience details)</li>
+                        <li>You provide responses within 2 days</li>
+                        <li>We build and configure the full system (Week 1-2)</li>
+                        <li>System goes live with first batch of automated videos</li>
+                        <li>Weekly check-ins begin, system self-optimizes</li>
+                    </ol>
+                </div>
+
+                <!-- Column 3: Why Act Now -->
+                <div class="fade-up-item">
+                    <h3 class="font-heading text-2xl font-bold letter-spacing-tight mb-space-md">Why Act Now</h3>
+                    <ul class="list-disc list-inside text-base space-y-space-xs">
+                        <li>Q2 is prime growth season for SaaS -- launching your content engine now means catching peak search and social traffic</li>
+                        <li>Your competitors are already using AI content -- every week without a system is market share left on the table</li>
+                    </ul>
+                    <a href="https://invoice.stripe.com/i/acct_1T9xud3qgIDdNkQS/live_YWNjdF8xVDl4dWQzcWdJRGROa1FTLF9VOXlrTDVQZlNiU0REUENaZjZ3VnRzOTh2MGpDRED6LDE2NDIyMjUzOQ0200cSq1egLL?s=db" class="btn-primary mt-space-lg w-full" aria-label="Pay and Get Started">
+                        <span class="btn-slide-bg-layer"></span>
+                        Pay & Get Started
+                    </a>
+                </div>
+            </div>
+
+            <!-- Bottom Bar -->
+            <div class="flex items-center justify-center mt-space-3xl pt-space-md border-t border-subtle">
+                <span class="pulsing-dot mr-space-sm"></span>
+                <p class="font-mono text-sm">System Operational</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            gsap.registerPlugin(ScrollTrigger);
+
+            // Animation 2: Hero entrance (Page load)
+            gsap.timeline({ defaults: { duration: 1, ease: "power3.out" } })
+                .from(".hero-headline-1", { y: 40, opacity: 0 }, 0.15)
+                .from(".hero-headline-2", { y: 40, opacity: 0 }, 0.30)
+                .from(".hero-section p", { y: 40, opacity: 0 }, 0.45)
+                .from(".hero-section .btn-primary", { y: 40, opacity: 0 }, 0.60);
+
+            // Animation 3: Navbar morph
+            const navbar = document.querySelector(".navbar");
+            ScrollTrigger.create({
+                trigger: ".hero-section",
+                start: "bottom top", // When hero bottom hits top of viewport
+                onEnter: () => navbar.classList.add("scrolled"),
+                onLeaveBack: () => navbar.classList.remove("scrolled"),
+            });
+
+            // Animation 1: Fade-up reveal (Scroll into view)
+            gsap.utils.toArray(".fade-up-item").forEach(item => {
+                gsap.from(item, {
+                    y: 30,
+                    opacity: 0,
+                    duration: 0.8,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: item,
+                        start: "top 85%",
+                        once: true,
+                    }
+                });
+            });
+
+            gsap.utils.toArray(".fade-up-group").forEach(group => {
+                gsap.from(group.children, {
+                    y: 30,
+                    opacity: 0,
+                    duration: 0.8,
+                    ease: "power3.out",
+                    stagger: 0.12,
+                    scrollTrigger: {
+                        trigger: group,
+                        start: "top 85%",
+                        once: true,
+                    }
+                });
+            });
+
+            // Animation 4: Diagnostic Shuffler (Problem Card 1)
+            const shufflerCards = gsap.utils.toArray(".shuffler-card");
+            const cardOffset = 20; // Visual offset for stacking
+
+            // Initial setup
+            gsap.set(shufflerCards, {
+                y: (i) => i * cardOffset,
+                zIndex: (i) => shufflerCards.length - i,
+            });
+
+            function cycleShuffler() {
+                gsap.timeline({
+                    defaults: { duration: 0.8, ease: "cubic-bezier(0.34, 1.56, 0.64, 1)" },
+                    onComplete: () => {
+                        // After animation, move the first card to the end of the array (conceptually)
+                        // and reset its properties for the next cycle
+                        const firstCard = shufflerCards.shift();
+                        shufflerCards.push(firstCard);
+
+                        gsap.set(firstCard, {
+                            y: (shufflerCards.length - 1) * cardOffset,
+                            zIndex: 1,
+                        });
+
+                        // Update z-index and y for the remaining cards
+                        shufflerCards.forEach((card, i) => {
+                            gsap.set(card, {
+                                y: i * cardOffset,
+                                zIndex: shufflerCards.length - i,
+                            });
+                        });
+
+                        gsap.delayedCall(3, cycleShuffler); // Schedule next cycle
+                    }
+                })
+                .to(shufflerCards[0], { y: `-=${cardOffset * 2}`, opacity: 0, duration: 0.5, ease: "power1.in" }, 0) // Top card moves up and fades out
+                .to(shufflerCards[1], { y: `-=${cardOffset}`, zIndex: 3 }, 0) // Second card moves to top
+                .to(shufflerCards[2], { y: `-=${cardOffset}`, zIndex: 2 }, 0); // Third card moves to second position
+            }
+
+            gsap.delayedCall(3, cycleShuffler); // Start the first cycle
+
+
+            // Animation 5: Protocol sticky stack
+            gsap.timeline({
+                scrollTrigger: {
+                    trigger: ".protocol-wrapper",
+                    pin: true,
+                    scrub: 1,
+                    start: "top top",
+                    end: "+=300%" // 3 cards * 100vh each
+                }
+            })
+            .to(".protocol-card-1 .protocol-card-inner", { scale: 0.95, opacity: 0.7, ease: "none" }, 0) // Card 1 scales/fades
+            .from(".protocol-card-2 .protocol-card-inner", { yPercent: 100, ease: "none" }, 0.5) // Card 2 enters
+            .to(".protocol-card-1 .protocol-card-inner", { scale: 0.95, opacity: 0.7, ease: "none" }, 0.5) // Card 1 stays scaled/faded
+            .to(".protocol-card-2 .protocol-card-inner", { scale: 0.95, opacity: 0.7, ease: "none" }, 1) // Card 2 scales/fades
+            .from(".protocol-card-3 .protocol-card-inner", { yPercent: 100, ease: "none" }, 1.5); // Card 3 enters
+
+            // Animation 6: SVG waveform (Protocol Card 3 only)
+            const waveformPath = document.querySelector(".waveform-path");
+            if (waveformPath) {
+                const length = waveformPath.getTotalLength();
+                gsap.set(waveformPath, { strokeDasharray: `${length / 4} ${length / 2}`, strokeDashoffset: length / 4 });
+
+                gsap.to(waveformPath, {
+                    strokeDashoffset: `-=${length}`, // Animate offset to simulate movement
+                    duration: 2,
+                    ease: "linear",
+                    repeat: -1,
+                    scrollTrigger: {
+                        trigger: ".protocol-card-3",
+                        start: "top bottom",
+                        toggleActions: "play pause resume reset",
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

@@ -20,7 +20,7 @@
 ### Q2 2026
 - Hit $100K revenue milestone
 - Transition away from lower-ROI restaurant niche
-- Focus on high-ROI niches: Real Estate (CRO), Instagram Influencers (Marketing), PM Consultants (Sales)
+- Focus on high-ROI niches: Real Estate (CRO), Instagram Influencers / Social Media (Marketing)
 
 ### H2 2026
 - Scale to $1M annual revenue

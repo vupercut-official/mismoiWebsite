@@ -1,0 +1,9 @@
+[user-advocate]: Two things still open that I can answer from a UX lens.
+
+**On the fake inquiry disclosure:** edge-case-finder is right it must be disclosed. But here's the UX flip -- disclosure actually *improves* the open. "I submitted a test inquiry to your Zillow yesterday to see what your leads experience" reads as confident, not deceptive. It signals Vu did real work, not mail-merge. The agent's first reaction is "huh, nobody's ever done that for me." That's attention. Disclose it, own it, make it the first sentence.
+
+**On the B-path for fast responders:** Nobody proposed one so I will. If the agent grades out fast, the problem shifts from speed to nurture. "You responded in 4 minutes -- top 10% in your zip. But most agents drop follow-up after the second touchpoint. Leads need 5-7 touches to convert." That's a real PAS with a real problem that even fast agents have. Vu just needs a 2-minute pre-research check: if response time is under 15 min, send the nurture variant. If over 15 min, send the speed variant. Two email templates, one routing decision.
+
+**On the conversion path:** I pushed the $97 pilot in round 2 and contrarian backed it. The reactivation sequence offer is where this gets concrete -- it's the only offer in the list that delivers a working tool, not a diagnosis. Diagnoses create anxiety. Tools create dependency. Dependency creates retainer conversations.
+
+The pilot framing: "I'll write your first 3-email AI follow-up sequence and set it up in 48 hours, $150 flat, you own it." That's the bridge everyone's been circling.

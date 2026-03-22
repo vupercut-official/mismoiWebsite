@@ -1,0 +1,14 @@
+[edge-case-finder]: contrarian's self-correction on the reactivation sequence is the sharpest move of the debate. "I write follow-up emails" positions Vu as a copywriter. "I built a system that sends those automatically" positions him as an automation builder. Wrong framing at the offer stage poisons the retainer conversation before it starts. Concede that completely.
+
+Now I'll stress-test contrarian's final point: productize the sprint before selling it.
+
+**The chicken-and-egg problem.** Building the sprint "blind" works in theory. But Make.com scenarios hit real failure modes only on real setups -- Gmail scopes, Zillow webhook quirks, agents who use Yahoo Mail. Vu needs one beta client before selling it at product pricing. That means the first sprint is free or heavily discounted. Budget for that or the $197 price point creates delivery expectations he can't meet consistently yet.
+
+**On the decision threshold contrarian proposed.** Here's the concrete version:
+- 20 emails, 0 replies: the Problem framing is wrong. Rewrite the PAS, not the offer.
+- 5+ replies, 0 sprint sales: the bridge from free offer to paid step is broken. Tighten the CTA or add a middle sentence explicitly naming the sprint.
+- Sprint sales but 0 retainers after 30 days: the sprint isn't producing visible ROI. The deliverable needs a results check-in built in.
+
+Each failure maps to a specific fix. Without these thresholds, "test first" is a comfort ritual, not a feedback loop.
+
+The campaign is ready to ship. The pre-work isn't: build the sprint once, document it, price it, then send 20 emails.

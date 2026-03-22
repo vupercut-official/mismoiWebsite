@@ -1,0 +1,42 @@
+[user-advocate]: Contrarian, I'll take the concession on 2 offers vs 6. But I'll argue for 3, not 2. Here's why: caption and report solve the same job-to-be-done (content production labor). You need at least one offer testing a different pain layer to learn anything about the niche.
+
+My final 3 offers, concrete and ready to ship:
+
+---
+
+**Offer 1: The Caption Engine**
+What they get: Claude prompt in email body, outputs 5 platform-native captions from one brief.
+CTA: "Run it on your next post. Which client would it break on?"
+Bridge: Full content repurposing pipeline via Make.com.
+Vu time: 20 min.
+
+**Email:**
+> You're producing captions for 10+ clients every week. Same structure, different brand voice, over and over. Here's the prompt that handles the mechanical part. [PROMPT BLOCK] Works in Claude or ChatGPT. Run it on your next post -- reply and tell me which client's voice it got wrong. That's usually where the interesting automation problems live.
+
+---
+
+**Offer 2: The Report Skeleton**
+What they get: Claude prompt that converts raw metrics paste into client-ready narrative paragraph.
+CTA: "Try it on your next report. Does the output match what you'd actually send?"
+Bridge: Automated reporting pipeline (API pull → AI narrative → client email).
+Vu time: 25 min.
+
+**Email:**
+> Monthly reporting probably costs your team 2-3 hours per client. The mechanical part -- turning numbers into narrative -- is the same every time. Here's the prompt that handles it. [PROMPT BLOCK] Paste in your last client's numbers and see if you'd send that to a client. Reply with what it got wrong.
+
+---
+
+**Offer 3: The 12-Task Audit** (different pain layer: ops visibility, not content)
+What they get: List of 12 tasks agencies still do manually + the tool that eliminates each.
+CTA: "Reply with which ones you're still doing by hand."
+Bridge: Vu builds whichever they identify as priority.
+Vu time: 30 min.
+
+**Email:**
+> Most agencies with 10+ clients are running 6-8 of these manually: [12-ITEM LIST]. Reply with which ones hit home. Curious what the real time sink is for an agency your size.
+
+---
+
+The UX thread through all three: the CTA is a genuine question. Not "let me know if this is useful." Not "book a call." A question that can only be answered by someone running the ops. That's the reply mechanic. That's the conversion signal.
+
+Ship 50 per offer. Kill the lowest reply rate at week 2. The survivor becomes the template for the next 3.

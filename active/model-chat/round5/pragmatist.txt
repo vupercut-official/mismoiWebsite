@@ -1,0 +1,143 @@
+[pragmatist]: Offers 4-6 below. Then the full 6 with emails.
+
+---
+
+**Offer 4: Onboarding Brief Generator**
+Dead in Round 4? Disagree. Reframe: not "template," but "the exact prompt I send new clients before kickoff." Operational, not back-office.
+
+**Offer 5: Monthly Content Gap Finder**
+Agreed with contrarian. Prompt that scans a client's posting history and flags 3 content categories they're missing vs competitors.
+
+**Offer 6: Loom Audit Offer (20-min async)**
+The missing ladder rung. Not a lead magnet prompt -- a conversion step. Offer to record a 20-min Loom walking through their current workflow gaps. Free. No call required. Bridges email to paid.
+
+---
+
+## The Full 6
+
+---
+
+### Offer 1: Caption Prompt
+**Gets:** Prompt that writes 5 caption variants from a brief
+**Why valuable:** Saves 30-45 min per client per week
+**CTA:** "Which client would this break on first?"
+**Bridge to paid:** Caption automation in Make.com (submit brief, get 5 variants, auto-post)
+**Vu time:** 5 min to personalize, paste, send
+
+**Email:**
+> Saw you're running content for [Brand]. Caption writing at that volume is the part that quietly kills agency margins.
+>
+> Here's the prompt I use: paste a campaign brief, get 5 caption variants in 30 seconds. Tone, CTA, hashtags, platform-adjusted.
+>
+> [paste prompt]
+>
+> Which client account would this break on first? Curious where the edge cases are.
+>
+> Vu
+
+---
+
+### Offer 2: Report Prompt
+**Gets:** Prompt that generates client-ready performance narrative from raw metrics
+**Why valuable:** Turns 2-hr report into 10-min task
+**CTA:** "What's the metric your clients always ask about that isn't in the default exports?"
+**Bridge to paid:** Auto-report pipeline (pull data, generate narrative, send to client)
+**Vu time:** 10 min to personalize metrics format
+
+**Email:**
+> [Agency] is posting consistently for [Brand] -- the reporting side is where that work either justifies its rate or doesn't.
+>
+> Here's a prompt I use: paste raw metrics, get a client-ready narrative with wins, gaps, and next-month recommendation. No formatting time.
+>
+> [paste prompt]
+>
+> What's the metric your clients always ask about that isn't in the default platform exports? That's usually where I build the custom pull.
+>
+> Vu
+
+---
+
+### Offer 3: 12-Task Audit
+**Gets:** List of 12 repeatable agency tasks with automation feasibility rating
+**Why valuable:** Instantly shows where they're leaving hours on the table
+**CTA:** "Which of these is your biggest current time sink?"
+**Bridge to paid:** Build the top 1-2 automations they identify
+**Vu time:** 15 min to customize list to their visible workflow
+
+**Email:**
+> You're running [X] accounts at [Agency]. At that count, the bottleneck is almost never the creative -- it's the 12 tasks that happen around the creative.
+>
+> Here's the audit list I run on agency workflows. Each task rated by automation feasibility (hours saved, build complexity, failure risk).
+>
+> [12-task list]
+>
+> Which of these is your actual biggest time sink right now? Not the obvious answer -- the one that actually slows down your Fridays.
+>
+> Vu
+
+---
+
+### Offer 4: Onboarding Brief Generator
+**Gets:** Prompt that extracts a complete client brief from a 15-min intake call transcript
+**Why valuable:** Eliminates back-and-forth, gets strategy doc done same day
+**CTA:** "What questions do clients always forget to answer in kickoff?"
+**Bridge to paid:** Automated onboarding pipeline (Calendly -> transcript -> brief -> Notion)
+**Vu time:** 10 min to customize for their intake format
+
+**Email:**
+> Saw [Agency] brought on [Brand] recently. The first 2 weeks of a new client is where scope creep either gets contained or doesn't.
+>
+> Here's the prompt I use after kickoff calls: paste the transcript, get a complete strategy brief -- goals, audience, tone, content pillars, success metrics. Same day.
+>
+> [paste prompt]
+>
+> What questions do clients always forget to answer in kickoff that cost you time later? That's usually where I add the custom extraction rules.
+>
+> Vu
+
+---
+
+### Offer 5: Content Gap Finder
+**Gets:** Prompt that analyzes a client's last 30 posts and flags 3 missing content categories vs top competitors
+**Why valuable:** Justifies retainer, surfaces upsell conversation with client
+**CTA:** "What content type do your clients always resist that performs best when they finally try it?"
+**Bridge to paid:** Monthly competitive scan automation (pull posts, run gap analysis, generate recommendations)
+**Vu time:** 15 min to pull their visible posting history as context
+
+**Email:**
+> [Agency] is posting [X times/week] for [Brand]. At that cadence, the risk isn't running out of content -- it's posting into a narrower and narrower lane without noticing.
+>
+> Here's a prompt I use: paste the last 30 posts plus 2 competitor handles, get a gap analysis -- what categories they're missing, what's overweighted, what the data says to test next month.
+>
+> [paste prompt]
+>
+> What content type do your clients always resist that performs best when they finally try it? Reels is the obvious answer -- what's the less obvious one?
+>
+> Vu
+
+---
+
+### Offer 6: Loom Workflow Audit
+**Gets:** 20-min async Loom walkthrough of their workflow, recorded within 48 hours
+**Why valuable:** Specific to them, no call required, shows work not just promises
+**CTA:** "Send me your current client onboarding steps -- however you have them, even rough -- and I'll record it."
+**Bridge to paid:** Natural. Audit identifies exactly what to build. Proposal follows the Loom.
+**Vu time:** 45 min (15 prep, 20 record, 10 send). High-intent leads only.
+
+**Email:**
+> [Agency] is at the size where manual processes start to compound -- what worked at 3 accounts breaks at 15.
+>
+> I do 20-min async Loom audits for agencies your size. I look at your current workflow, map the 3 highest-leverage automation points, record a walkthrough, send it over. No call, no pitch.
+>
+> Send me your onboarding steps -- however rough -- and I'll turn it around in 48 hours.
+>
+> Vu
+
+---
+
+## Ship order
+
+1. Week 1-2: Offers 1, 2, 3 (prompt-based, zero Vu time, A/B volume test)
+2. Week 3+: Add Offer 5 if gap analysis resonates from audit replies
+3. Reserve Offer 6 for replies that show operational detail -- don't blast it cold
+4. Offer 4 (onboarding brief) is lowest priority -- most back-office framing of the six

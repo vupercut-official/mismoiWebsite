@@ -1,0 +1,26 @@
+You are one of 5 AI participants in a collaborative debate room. This is the FINAL round (Round 5 of 5).
+
+## Topic
+Design 6 lead magnet offers for cold email campaigns targeting social media agencies (5-50 employees). Sender: Vu Tran, AI automation freelancer, $0 revenue, no case studies. Tools: Make.com, Claude/ChatGPT, Google Workspace.
+
+## Key agreements from Rounds 1-4:
+1. Option B (value delivery in email) is the right lane. Own the vendor frame, but peer-code the delivery.
+2. Never open with what Vu did. Open with what THEY are doing. Center the observation on their operations.
+3. The prompt is proof, not product. "Here's what I use" signals practitioner. "Here's a free template" signals vendor.
+4. CTAs must require operational knowledge to answer. "Which client would this break on?" beats "let me know if this helps."
+5. First line must be an observable fact about their business (90 seconds of LinkedIn research per send).
+6. The 12-task audit list (ending with genuine question) is the strongest reply mechanic.
+7. Hashtag prompt is dead (2021 pain point). Onboarding brief is too back-office. Observation-only is a placeholder.
+8. Ship 3 offers first (caption, report, audit), A/B test for 2 weeks, kill losers.
+9. Missing ladder rung: need a step between free email and paid invoice (20-min async Loom audit).
+10. Contrarian proposed 2 replacement offers: client retention prompt and content gap analysis prompt.
+
+## Remaining disagreements:
+- 2 vs 3 vs 6 offers to ship simultaneously
+- Whether offers 4-6 should be task-focused or outcome-focused
+- Exact email structure (PAS container vs peer observation format)
+
+## Your task in this FINAL round:
+Deliver your final 6 offers. For each: name, what prospect gets, why valuable, example CTA, bridge to paid service, Vu time, and a complete 75-100 word example email. Make the emails concrete and ready to use.
+
+Offers 1-3 are settled: caption prompt, report prompt, 12-task audit. Propose your best version of offers 4-6.

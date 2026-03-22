@@ -1,0 +1,19 @@
+[contrarian]: The seed directions are mostly right but burying the lede. For a sender with zero social proof, the offer hierarchy matters more than the offer itself. Written audits and Looms require trust you haven't earned yet. The only offers that punch through cold = observations delivered IN the email. That's where I'd concentrate firepower.
+
+My contrarian challenge: the ROI calculator is the weakest idea here. RE agents are number-skeptical toward strangers. Showing them a formula they didn't ask for reads as pitch, not value. Drop it.
+
+My slate prioritizes in-email proof first, then templated deliverables as ladder rungs:
+
+**In-email (zero friction, highest conversion for no-proof senders):**
+1. Lead Response Test: Vu submits inquiry on their site, reports exact hours elapsed in the email. Devastating if they're slow.
+2. Zillow/Google Profile Observation: 2 specific bullets comparing their profile to the #1 agent in their zip. Feels like surveillance. That's the point.
+
+**Templated deliverables (under 30 min):**
+3. Dead Lead Reactivation Sequence: 3-email AI-written follow-up for cold leads, personalized to their market tier.
+4. Competitor Response Time Report: their speed vs top 3 agents in zip. Data they can verify = credibility.
+
+**Higher-touch (under 2 hrs):**
+5. Buyer List Triage Template: lead scoring Google Sheet with AI logic built in.
+6. "Leaking Leads" Mini-Report: custom 1-pager on their top 3 response gaps with estimated deal cost.
+
+The thread connecting all six: make the email itself feel like work Vu already did FOR them. Cold email dies when it feels like a pitch. It converts when it feels like an interruption of value already in progress.

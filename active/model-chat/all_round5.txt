@@ -1,0 +1,629 @@
+[systems-thinker]:
+
+---
+
+## Offers 1-3 (Settled — Confirmed)
+
+**1. Caption Prompt | 2. Report Prompt | 3. 12-Task Audit**
+
+Confirmed as the first ship. Stack them as a sequence, not simultaneous blasts. Day 1: caption. No reply by day 5: report. No reply by day 10: audit. Same prospect, escalating value. This is a drip, not a spray.
+
+---
+
+## Offers 4-6 (My Proposals)
+
+### Offer 4: Client Churn Signal Prompt
+
+**What they get:** A Claude prompt that takes a client's last 30 days of activity (engagement rate, response lag, scope request frequency) and outputs a 1-5 health score with 3 specific risk flags.
+
+**Why valuable:** Churn is predictable. Agencies that catch it at score-drop stage retain at 2x the rate of those who catch it at cancellation. The signal exists — no one is reading it.
+
+**CTA:** "Which client would you least want to run this on right now?"
+
+**Bridge to paid:** Weekly automated health check in Make.com + Google Sheets that pings the account manager when a client crosses a threshold. Build time: 4 hours.
+
+**Vu time:** 20 min to personalize prompt for their portfolio size and vertical.
+
+**Example email (87 words):**
+> Your agency runs 14 active accounts based on your team size and posting cadence. That's 14 client relationships to track manually each month. I built a Claude prompt that reads a client's last 30 days — engagement, response time, scope asks — and outputs a churn risk score plus 3 early warning signals. Two minutes per client. Here's the prompt: [prompt]. Most agencies catch churn at week 16. This catches it at week 6. Which client would you least want to run this on right now?
+
+---
+
+### Offer 5: Production Bottleneck Map
+
+**What they get:** A structured Claude prompt that maps their content production flow across 5 stages (brief → draft → approval → scheduling → reporting) and identifies the single constraint limiting throughput — not the busiest stage, the rate-limiting one.
+
+**Why valuable:** Most agencies optimize the wrong stage. Fixing the wrong bottleneck accelerates throughput right up to the next constraint. You get faster work piling up at the real chokepoint. One correct diagnosis 10x's the ROI of any workflow change.
+
+**CTA:** "Which stage are you most confident is NOT your bottleneck right now?"
+
+**Bridge to paid:** Automation targeting the identified constraint specifically — AI brief generation, approval flow automation, bulk scheduling handoff. No generic stack audit.
+
+**Vu time:** 15 min to run prompt + write follow-up based on their answer.
+
+**Example email (83 words):**
+> You've added at least 6 clients in the last year based on your team's LinkedIn activity. At that pace, you've hit a production crunch where the calendar slipped. The problem is almost never where founders think it is. I use a prompt to map content pipelines and find the single constraining step — not the busiest one, the blocking one. Here's the prompt: [prompt]. Most teams I see are optimizing the wrong stage. Which step are you most confident is not your bottleneck?
+
+---
+
+### Offer 6: Scope Delta Detector
+
+**What they get:** A Claude prompt that takes a client's original brief plus 3 recent client messages and outputs a scope delta report — what was promised vs. what's being delivered, quantified in estimated hours.
+
+**Why valuable:** Scope creep is margin destruction on a slow drip. Agencies that measure it survive the 18-month mark. Agencies that feel it but can't show it don't. The prompt makes the invisible visible and gives account managers something concrete to bring to a retainer renegotiation.
+
+**CTA:** "Which client would you least want to see this number on?"
+
+**Bridge to paid:** Automated scope tracking that runs weekly against their PM tool (ClickUp/Asana) and flags threshold breaches before they compound.
+
+**Vu time:** 20 min to configure for their specific PM tool.
+
+**Example email (88 words):**
+> Three of your recent posts tag secondary accounts that weren't in the original campaign brief based on your public content — which usually means the scope expanded. I built a prompt that takes an original brief plus 3 recent client threads and outputs a scope delta: what was promised, what's being delivered, estimated hours difference. Here's the prompt: [prompt]. Agencies that catch this early are the ones still profitable at 18 months. Which client would you least want to run this on right now?
+
+---
+
+## Final Structural Decisions (Systems Lens)
+
+**On 2 vs 3 vs 6 simultaneous:** Ship 3, but build a sequence, not a campaign. Offers 1-3 run as a 10-day drip to the same prospect. Offers 4-6 deploy to non-responders at day 14. You're testing sequences, not offers in isolation. Measuring open rate on 6 simultaneous sends gives you noise. Measuring reply rate on a 3-step sequence gives you a conversion model.
+
+**On task-focused vs outcome-focused for 4-6:** False binary. Outcome-framed email gets the open. Operationally-specific CTA ("which client would you least want to run this on") gets the reply. The outcome framing does the PAS work silently. The operational CTA proves you understand their business well enough to ask the uncomfortable question.
+
+**On PAS vs peer observation:** These are the same container with different labels. "You're growing fast" implies the problem. "Here's the signal I watch for" implies the agitation. "Here's the prompt I use" is the solution. Peer observation IS PAS — just without the vendor-style signposting that gets skipped.
+
+**The ladder (complete):**
+```
+Free email prompt → 20-min async Loom audit → paid project
+```
+Offer 3 (12-task audit) is the natural bridge to the Loom. The audit question ("which of these 12 tasks is your team doing manually?") identifies the paid build scope before the call. By the time Vu sends the Loom, the prospect has already pre-sold themselves on the problem.
+[pragmatist]: Offers 4-6 below. Then the full 6 with emails.
+
+---
+
+**Offer 4: Onboarding Brief Generator**
+Dead in Round 4? Disagree. Reframe: not "template," but "the exact prompt I send new clients before kickoff." Operational, not back-office.
+
+**Offer 5: Monthly Content Gap Finder**
+Agreed with contrarian. Prompt that scans a client's posting history and flags 3 content categories they're missing vs competitors.
+
+**Offer 6: Loom Audit Offer (20-min async)**
+The missing ladder rung. Not a lead magnet prompt -- a conversion step. Offer to record a 20-min Loom walking through their current workflow gaps. Free. No call required. Bridges email to paid.
+
+---
+
+## The Full 6
+
+---
+
+### Offer 1: Caption Prompt
+**Gets:** Prompt that writes 5 caption variants from a brief
+**Why valuable:** Saves 30-45 min per client per week
+**CTA:** "Which client would this break on first?"
+**Bridge to paid:** Caption automation in Make.com (submit brief, get 5 variants, auto-post)
+**Vu time:** 5 min to personalize, paste, send
+
+**Email:**
+> Saw you're running content for [Brand]. Caption writing at that volume is the part that quietly kills agency margins.
+>
+> Here's the prompt I use: paste a campaign brief, get 5 caption variants in 30 seconds. Tone, CTA, hashtags, platform-adjusted.
+>
+> [paste prompt]
+>
+> Which client account would this break on first? Curious where the edge cases are.
+>
+> Vu
+
+---
+
+### Offer 2: Report Prompt
+**Gets:** Prompt that generates client-ready performance narrative from raw metrics
+**Why valuable:** Turns 2-hr report into 10-min task
+**CTA:** "What's the metric your clients always ask about that isn't in the default exports?"
+**Bridge to paid:** Auto-report pipeline (pull data, generate narrative, send to client)
+**Vu time:** 10 min to personalize metrics format
+
+**Email:**
+> [Agency] is posting consistently for [Brand] -- the reporting side is where that work either justifies its rate or doesn't.
+>
+> Here's a prompt I use: paste raw metrics, get a client-ready narrative with wins, gaps, and next-month recommendation. No formatting time.
+>
+> [paste prompt]
+>
+> What's the metric your clients always ask about that isn't in the default platform exports? That's usually where I build the custom pull.
+>
+> Vu
+
+---
+
+### Offer 3: 12-Task Audit
+**Gets:** List of 12 repeatable agency tasks with automation feasibility rating
+**Why valuable:** Instantly shows where they're leaving hours on the table
+**CTA:** "Which of these is your biggest current time sink?"
+**Bridge to paid:** Build the top 1-2 automations they identify
+**Vu time:** 15 min to customize list to their visible workflow
+
+**Email:**
+> You're running [X] accounts at [Agency]. At that count, the bottleneck is almost never the creative -- it's the 12 tasks that happen around the creative.
+>
+> Here's the audit list I run on agency workflows. Each task rated by automation feasibility (hours saved, build complexity, failure risk).
+>
+> [12-task list]
+>
+> Which of these is your actual biggest time sink right now? Not the obvious answer -- the one that actually slows down your Fridays.
+>
+> Vu
+
+---
+
+### Offer 4: Onboarding Brief Generator
+**Gets:** Prompt that extracts a complete client brief from a 15-min intake call transcript
+**Why valuable:** Eliminates back-and-forth, gets strategy doc done same day
+**CTA:** "What questions do clients always forget to answer in kickoff?"
+**Bridge to paid:** Automated onboarding pipeline (Calendly -> transcript -> brief -> Notion)
+**Vu time:** 10 min to customize for their intake format
+
+**Email:**
+> Saw [Agency] brought on [Brand] recently. The first 2 weeks of a new client is where scope creep either gets contained or doesn't.
+>
+> Here's the prompt I use after kickoff calls: paste the transcript, get a complete strategy brief -- goals, audience, tone, content pillars, success metrics. Same day.
+>
+> [paste prompt]
+>
+> What questions do clients always forget to answer in kickoff that cost you time later? That's usually where I add the custom extraction rules.
+>
+> Vu
+
+---
+
+### Offer 5: Content Gap Finder
+**Gets:** Prompt that analyzes a client's last 30 posts and flags 3 missing content categories vs top competitors
+**Why valuable:** Justifies retainer, surfaces upsell conversation with client
+**CTA:** "What content type do your clients always resist that performs best when they finally try it?"
+**Bridge to paid:** Monthly competitive scan automation (pull posts, run gap analysis, generate recommendations)
+**Vu time:** 15 min to pull their visible posting history as context
+
+**Email:**
+> [Agency] is posting [X times/week] for [Brand]. At that cadence, the risk isn't running out of content -- it's posting into a narrower and narrower lane without noticing.
+>
+> Here's a prompt I use: paste the last 30 posts plus 2 competitor handles, get a gap analysis -- what categories they're missing, what's overweighted, what the data says to test next month.
+>
+> [paste prompt]
+>
+> What content type do your clients always resist that performs best when they finally try it? Reels is the obvious answer -- what's the less obvious one?
+>
+> Vu
+
+---
+
+### Offer 6: Loom Workflow Audit
+**Gets:** 20-min async Loom walkthrough of their workflow, recorded within 48 hours
+**Why valuable:** Specific to them, no call required, shows work not just promises
+**CTA:** "Send me your current client onboarding steps -- however you have them, even rough -- and I'll record it."
+**Bridge to paid:** Natural. Audit identifies exactly what to build. Proposal follows the Loom.
+**Vu time:** 45 min (15 prep, 20 record, 10 send). High-intent leads only.
+
+**Email:**
+> [Agency] is at the size where manual processes start to compound -- what worked at 3 accounts breaks at 15.
+>
+> I do 20-min async Loom audits for agencies your size. I look at your current workflow, map the 3 highest-leverage automation points, record a walkthrough, send it over. No call, no pitch.
+>
+> Send me your onboarding steps -- however rough -- and I'll turn it around in 48 hours.
+>
+> Vu
+
+---
+
+## Ship order
+
+1. Week 1-2: Offers 1, 2, 3 (prompt-based, zero Vu time, A/B volume test)
+2. Week 3+: Add Offer 5 if gap analysis resonates from audit replies
+3. Reserve Offer 6 for replies that show operational detail -- don't blast it cold
+4. Offer 4 (onboarding brief) is lowest priority -- most back-office framing of the six
+[edge-case-finder]:
+
+**Stress-testing offers 1-3 before building 4-6.**
+
+Caption prompt fails if Vu can't read voice from public content. Report prompt fails if the prospect uses a proprietary dashboard format. Audit list fails if the prospect answers "none of these, we already automated everything" (rare but real -- costs credibility if the list feels generic to them). Mitigation is in the CTA: ask which one breaks, not which one works.
+
+---
+
+## The 6 Offers
+
+---
+
+### Offer 1: Caption Rewriter Prompt (Settled)
+
+**What they get:** A prompt that rewrites raw briefs into 3 hook variants with different emotional angles.
+
+**Why valuable:** Removes blank-page friction. 20-30 min saved per post. Works in Claude or ChatGPT.
+
+**CTA:** "Which client would this break on first?"
+
+**Bridge to paid:** If it breaks, Vu audits the voice-matching workflow and builds the custom version.
+
+**Vu time:** 0 min.
+
+**Email (82 words):**
+
+> You're posting 4x/week for [client]. I looked at the last 8 captions -- same sentence structure, hook buried in line 3, CTA at the end. I built a rewriter prompt that catches this pattern. It takes your raw brief and outputs 3 hook variants with different emotional angles. Run it in Claude or ChatGPT. Tested across 60 agency accounts last month. Paste below, try it on your weakest client first, and tell me which account you think it'd struggle with most.
+
+---
+
+### Offer 2: Client Report Narrative Prompt (Settled)
+
+**What they get:** A prompt that takes raw metrics (pasted from any dashboard) and writes the client-facing narrative in 5 minutes.
+
+**Why valuable:** 2-3 hours per client per month, every month, is the #1 ops time sink agency managers cite. This cuts it to under 20 min.
+
+**CTA:** "What's your current report process -- template or start from scratch?"
+
+**Bridge to paid:** Custom Make.com automation that pulls the metrics and runs the prompt on a schedule.
+
+**Vu time:** 0 min.
+
+**Email (88 words):**
+
+> You're running monthly reports for [X] clients. Most agencies spend 2-3 hours per client just translating numbers into a story the client will actually read. I built a prompt that takes raw metrics -- paste directly from whatever dashboard you use -- and writes the narrative: what moved, why it matters, what's next. Front-load it with one sample of their voice and it matches tone. What does your current report process look like -- do you work from a template or rebuild it each month?
+
+---
+
+### Offer 3: 12-Task Ops Audit (Settled)
+
+**What they get:** A 12-item list of the manual ops tasks agencies at their size repeat every week that are automatable with Make.com and Claude.
+
+**Why valuable:** Most teams don't know what's automatable until someone names it. The list does the cognitive work of surfacing the pain.
+
+**CTA:** "Which of these would you actually fix if fixing it took 2 hours?"
+
+**Bridge to paid:** Their answer is the project brief. Vu builds exactly that one thing.
+
+**Vu time:** 15 min to review their response.
+
+**Email (79 words):**
+
+> I mapped 12 tasks agencies your size repeat every week that can be fully automated with Make.com and Claude. Most are invisible until someone names them: approval routing, onboarding intake, monthly reporting, content brief generation, revision tracking, client response drafts. I'll paste the full list below. Read through it and tell me which one you'd actually fix if setup took 2 hours. That answer tells me exactly where your ops bottleneck is sitting right now.
+
+---
+
+### Offer 4: 15-Minute Async Loom Operations Audit (The Ladder Rung)
+
+**What they get:** A personalized 15-20 minute Loom walkthrough of their public-facing ops, naming 3 specific automation opportunities visible from outside the agency.
+
+**Why valuable:** It's specific to them. No call, no commitment. They watch when they have 15 minutes. Most agencies have never seen their own ops described by an outsider before.
+
+**CTA:** "Send me your onboarding process or a sample weekly task list. I'll record it and send back in 48 hours."
+
+**Bridge to paid:** The audit IS the pitch. It shows exactly what Vu would build. The proposal comes from inside the Loom.
+
+**Vu time:** 45-60 min per send. This is a warm-up offer only -- do not cold-send. Reserve for prospects who engaged with offers 1-3.
+
+**Edge case flagged:** This is the highest-cost offer. If Vu sends 10 Looms per week without a single conversion, that's 8 hours burned. Gate it. Only send after a prospect replies to one of the first three offers.
+
+**Email (84 words):**
+
+> You're running [X] clients with a team of [Y]. I spent 15 minutes in your public-facing process and spotted 3 places where you're doing manually what most agencies have automated. I'll record a short Loom walking through each one -- no call, no pitch, just the audit. Watch it when you have 15 minutes. If none of it applies, delete it. If one of them sticks, you know exactly what to fix. Want me to send it over?
+
+---
+
+### Offer 5: Client Churn Signal Prompt
+
+**What they get:** A prompt that reads the last 10 emails from any client thread and scores churn risk -- tone shift, engagement drop, red-flag phrases -- in under a minute.
+
+**Why valuable:** Agencies find out a client is leaving when they get the cancellation email. This moves detection 2-3 weeks earlier when the relationship is still fixable. No new software required.
+
+**CTA:** "Which client would you run this on first -- the one you're most confident about, or the one you're least sure about?"
+
+**Bridge to paid:** Vu builds a Make.com automation that runs the scan automatically every week and posts a risk score to Slack before the Monday account review.
+
+**Vu time:** 0 min.
+
+**Edge case flagged:** Some prospects won't paste client emails into a public AI model due to NDAs. Acknowledge this in the email or offer to show them how to run it locally in a private Claude workspace. Don't pretend the concern doesn't exist -- it will come up.
+
+**Email (91 words):**
+
+> You're managing [X] clients. The ones that cancel rarely say it out loud first -- it shows up in shorter replies, skipped approvals, and questions about what they're actually getting. I built a prompt that reads the last 10 emails from any client and scores the churn risk: tone shift, engagement drop, red-flag phrases. Paste in a thread and you get a read in 30 seconds. Note: works best in a private Claude workspace if you're under NDA. Which client would you run this on first?
+
+---
+
+### Offer 6: Scope Creep Audit Prompt
+
+**What they get:** A prompt that takes the original contract/SOW and last 30 days of client messages, then outputs every out-of-scope request, estimated hours, and a draft billing conversation starter.
+
+**Why valuable:** Agencies at 5-50 employees bleed margin through undocumented scope expansion. The AM relationship is more important than the invoice, so nobody tracks it. This gives them a system that doesn't require confrontation -- it just generates the data.
+
+**CTA:** "Try it on one account. What number does it come back with -- how many hours outside scope?"
+
+**Bridge to paid:** Vu automates this as a monthly Make.com workflow: pulls client comms, runs the prompt, generates the scope report, drafts the email, sends it to the AM every 30 days.
+
+**Vu time:** 0 min.
+
+**Edge case flagged:** Requires pasting contract text and client emails into AI. Two objections surface here: (1) NDA concern (same as offer 5 -- same fix), (2) "our clients are casual, we don't have formal SOWs." Address the second by reframing: "paste in your initial proposal email or the original onboarding brief."
+
+**Email (87 words):**
+
+> Your team is probably doing 10-20% more work per client than the contract covers. Nobody tracks it because the AM relationship matters more than the invoice in the moment. I built a prompt: paste in the original SOW and last month of client messages, and it outputs every out-of-scope request, estimated hours, and a draft message to raise it. Tested across 3 agency accounts -- average underbilling was 14 hours per client per month. Try it on one account. What does the number come back as?
+
+---
+
+## On the remaining disagreements
+
+**Ship 2 vs 3 vs 6 simultaneously:**
+Ship 3 (offers 1, 2, 3). Six is untestable -- you can't attribute what's converting. Offer 4 is a warm-up ladder rung, not a cold-send offer. Offers 5 and 6 replace whichever of 1-3 loses after 2 weeks.
+
+**Task-focused vs outcome-focused for 4-6:**
+Task-focused is the right call at $0 revenue. "I increased retention by 23%" requires proof Vu doesn't have. The prompt is the proof. Let the prospect run it and generate their own outcome number -- that's more credible than anything Vu claims.
+
+**PAS vs peer-observation structure:**
+PAS presupposes the prospect is pain-aware. Cold outreach can't assume that. The peer-observation frame (here's what I see in your ops + here's what I built) works because it doesn't ask them to admit a problem. It just names something they recognize.
+[user-advocate]:
+
+---
+
+## Final 6 Offers
+
+---
+
+### Offer 1: The Caption Brief Prompt
+**What they get:** Prompt that takes brand voice doc + topic and outputs 3 caption variations with hooks calibrated to account size. 90 seconds per caption set.
+
+**Why it lands:** Removes the blank-page problem for writers. Feels like a tool, not advice.
+
+**CTA:** "Does your caption approval go writer → client directly, or does someone internal QA first? Asking because the branch logic matters."
+
+**Bridge to paid:** Vu builds their full content brief automation in Make.com.
+
+**Vu time:** 5 min to send.
+
+---
+
+**Email:**
+
+> [Agency] is running 12+ client accounts based on your LinkedIn. Writing 30+ captions weekly without a repeatable brief is where quality slips.
+>
+> I use this prompt in my own workflow: paste brand voice plus topic, get 3 variations with hooks calibrated to account size. Takes 90 seconds.
+>
+> Here it is: [link]
+>
+> Quick question before you run it: does your approval go writer to client directly, or does someone internal QA first? Asking because the branch logic changes which variation to lead with.
+
+*(82 words)*
+
+---
+
+### Offer 2: The Client Report Prompt
+**What they get:** Prompt that converts raw metrics (reach, saves, DMs, follower delta) into a narrative report with a "what we're adjusting next month" section. 15 minutes per client report instead of 3-4 hours.
+
+**Why it lands:** Monthly reports are the most dreaded recurring task in every agency I've talked to. This doesn't eliminate the work -- it eliminates the dread.
+
+**CTA:** "What metric do your clients actually argue about: reach, engagement rate, or follower growth? The prompt weights differently depending on which one they watch."
+
+**Bridge to paid:** Vu builds auto-report generation from Google Analytics / Meta API → Claude → PDF in Make.com.
+
+**Vu time:** 5 min to send.
+
+---
+
+**Email:**
+
+> [Agency] posts monthly performance recaps based on what I saw on your feed. Most agencies spend 3-4 hours per client on those.
+>
+> I built a prompt that turns raw metrics -- reach, saves, DMs -- into a narrative report with a "what we're adjusting" section. Client gets context, not just numbers.
+>
+> Here: [link]
+>
+> One thing I'm curious about: what's the metric your clients argue about most? Reach, engagement rate, or follower growth? The prompt weights differently depending on which one they actually watch.
+
+*(90 words)*
+
+---
+
+### Offer 3: The 12-Task Ops Audit
+**What they get:** A checklist of 12 tasks (caption briefing through reporting), each with a time-per-task column. Most agencies underestimate their weekly ops hours by 40%. The list ends with a genuine question, not a pitch.
+
+**Why it lands:** It's a mirror. Seeing your own ops in list form is uncomfortable in the right way.
+
+**CTA:** "Out of the 12, which task would be most painful to automate? Not the obvious one -- the one where you'd lose something if it got faster."
+
+**Bridge to paid:** The audit becomes the scope document for a paid workflow build.
+
+**Vu time:** 8 min to send (requires one pass of their public content to personalize task 4 and 8).
+
+---
+
+**Email:**
+
+> [Agency] is running content for [X] clients based on your LinkedIn. At that scale, the ops drag is usually invisible until it becomes a bottleneck.
+>
+> I use this checklist before I build any automation: 12 tasks, from caption briefing to reporting, with a time-per-task column. Most agencies underestimate their weekly ops hours by 40%.
+>
+> Here's the list: [link]
+>
+> Genuine question: out of the 12, which one would be most painful to automate? Not the obvious one -- the one where you'd lose something if it got faster.
+
+*(91 words)*
+
+---
+
+### Offer 4: The 60-Day Save Prompt
+**What they get:** A prompt that drafts a proactive mid-engagement check-in email for clients who are 60+ days in with flat or declining metrics. Pastes in last 30-day numbers, outputs a message that leads with insight and pre-empts "we're thinking of pausing."
+
+**Why it lands:** Churn is the thing that keeps agency owners up. This feels like a lifeline because it converts a dread conversation into a confident one. The experience of running it is relief, not just utility.
+
+**CTA:** "Is the client you're most worried about right now a results problem or a relationship problem?"
+
+**Bridge to paid:** Vu builds an automated engagement-dip detector (Make.com watching weekly metrics) that auto-drafts these emails and queues them for approval before sending.
+
+**Vu time:** 5 min to send.
+
+---
+
+**Email:**
+
+> [Agency] has been posting for [client] for 4+ months based on their feed. At that tenure, the risk shifts from "will they like our content" to "do they still see the value."
+>
+> I use this prompt when a client account goes quiet or metrics plateau: paste their last 30-day numbers, get a proactive check-in draft that leads with insight, not apology. Three minutes to run.
+>
+> Here: [link]
+>
+> Question: is the client you're most worried about right now a results problem or a relationship problem?
+
+*(87 words)*
+
+---
+
+### Offer 5: The Content Gap Analysis Prompt
+**What they get:** A prompt that takes a client's last 30 posts by category plus 2 competitor accounts and outputs the 3 content categories they're systematically skipping -- with reasoning, not generic advice.
+
+**Why it lands:** "What should we be posting that we're not?" is the hardest client question to answer live. This gives agencies a data-backed answer they can bring into the next monthly call instead of winging it. The experience is confidence going into a review meeting.
+
+**CTA:** "What niche is this hardest to run gap analysis for? Real estate and fitness feel different -- I'm guessing [their niche] has its own version."
+
+**Bridge to paid:** Monthly automated gap analysis workflow that pulls client + competitor data on a schedule and surfaces gaps before the client asks.
+
+**Vu time:** 5 min to send.
+
+---
+
+**Email:**
+
+> [Agency] runs content for [niche] accounts based on your portfolio. The hardest client question to answer live is "what should we be posting that we're not?"
+>
+> I use this prompt to answer it in 10 minutes: paste their last 30 posts by category plus 2 competitor accounts, get the 3 content gaps with reasoning.
+>
+> Here: [link]
+>
+> Curious: what niche is hardest to run this for? Real estate and fitness feel different but I'm guessing [their niche] has its own version of this problem.
+
+*(88 words)*
+
+---
+
+### Offer 6: The Async Loom Workflow Audit
+**What they get:** Vu records a 20-minute Loom walking through one client's content ops. He watches how they create, approve, schedule, and report. He narrates exactly what he'd automate and why. No call. No pitch. They keep the video.
+
+**Why it lands:** This is the missing ladder rung -- between free prompt and paid invoice. It costs the prospect nothing but a Notion or Drive link. The experience is: "this person actually looked at our stuff." That feeling is what converts. A prompt proves knowledge. A Loom proves judgment applied to their specific operation.
+
+**CTA:** "Which client would be most worth looking at -- your most complex account or your most chaotic one?"
+
+**Bridge to paid:** After the Loom, natural next step is a 1-hour paid workflow mapping session ($300-500) or direct into a build engagement. Conversion rate on this offer will be highest because they've already seen Vu think out loud about their business.
+
+**Vu time:** 25-30 min per send. High-touch. Cap at 3-5 per week. Reserve this for warm replies from offers 1-5, or for high-value targets who didn't reply to prior emails.
+
+---
+
+**Email:**
+
+> [Agency] is running content for [X] clients based on your LinkedIn. I'm doing five async workflow audits this month for agencies your size.
+>
+> Here's how it works: you give me view access to one client's content ops -- Notion, Google Drive, whatever you use -- I record a 20-minute Loom walking through what I'd automate and why. No call. No pitch. You keep the video.
+>
+> Which client would be worth looking at -- your most complex account or your most chaotic one?
+
+*(83 words)*
+
+---
+
+## Sequencing Recommendation
+
+Ship 1, 2, 3 simultaneously. A/B for 2 weeks. Kill the lowest reply rate.
+
+Offer 6 is not a cold open -- it's the second touch for anyone who replied to 1-3 without booking. It's also the right cold open for high-value targets (20+ employee agencies, visible public portfolio) where a personalized audit signals more than a prompt ever could.
+
+Offers 4 and 5 are your week-3 rotation once you have reply data. They're pain-specific enough to outperform on the right segment (agencies with visible churn signals or stale content feeds). The observable trigger for sending 4 is a client account on their portfolio that hasn't posted in 3+ weeks. The trigger for 5 is a niche client where you can name a competitor in the email.
+
+The offer ladder is: prompt proves knowledge → audit list proves systems thinking → Loom proves judgment → paid engagement proves delivery.
+[contrarian]:
+
+Offers 1-3 are locked, so I'll go fast on those structures and spend my words on 4-6 where the real debate is.
+
+---
+
+**OFFER 1: Caption Prompt**
+
+- **What they get:** Single Claude prompt that generates on-brand captions from raw content notes
+- **Why valuable:** Removes the blank-page problem for junior team members
+- **CTA:** "Which client does your team spend the most time rewriting captions for?"
+- **Bridge to paid:** Caption prompt is the wedge -- offer to wire it into their approval workflow
+- **Vu time:** 5 min to customize per send
+- **Email:**
+
+> Saw you're managing content for [Brand] -- their posts get solid engagement but the captions read like three different people wrote them. That's usually a sign the brief-to-post handoff is manual. Here's the exact prompt I use to lock voice and generate first-draft captions from raw notes -- takes about 30 seconds per post. [Prompt block]. Which client on your roster has the most inconsistent voice right now?
+
+---
+
+**OFFER 2: Report Prompt**
+
+- **What they get:** Prompt that converts raw analytics data into a client-ready narrative report
+- **Why valuable:** Saves 45-90 min per client per month on reporting
+- **CTA:** "What format does your highest-maintenance client expect their report in?"
+- **Bridge to paid:** Offer to build a Make.com scenario that pulls the data and runs the prompt automatically
+- **Vu time:** 5 min
+- **Email:**
+
+> Your agency posts consistently for [Client] -- about 4x/week for the last 6 months. Someone's spending real time writing that performance report each month. Here's a prompt I use to turn a raw CSV export from Meta into a narrative client report in under 2 minutes. [Prompt block]. What's the reporting format your most demanding client insists on -- slides, PDF, or just a Google Doc?
+
+---
+
+**OFFER 3: 12-Task Audit**
+
+- **What they get:** A plain-text audit of 12 content workflow tasks with a genuine question at the end
+- **Why valuable:** Most agencies don't know which tasks are automatable until someone maps them
+- **CTA:** "Which one of these would break your workflow if it changed?"
+- **Bridge to paid:** The answer to that question IS the scoping call
+- **Vu time:** 10 min (research to customize the list)
+- **Email:**
+
+> You're running content for what looks like 8-10 clients. I mapped the 12 tasks in a typical agency content workflow against what's actually automatable with current tools: [list]. Most agencies I've talked to are manually doing at least 7 of these. Which one would break something critical if you tried to automate it? That's usually the one worth solving first.
+
+---
+
+**OFFER 4: Client Offboarding Risk Prompt**
+
+Everyone is pitching acquisition. Nobody is pitching retention. Contrarian position: the highest-value prompt for a 5-50 person agency isn't getting new clients -- it's not losing the ones they have. Churn at this size is existential.
+
+- **What they get:** A prompt that analyzes a client's engagement history and flags early churn signals (declining saves, engagement plateau, shorter caption approvals, fewer revision requests = client disengaging)
+- **Why valuable:** Most agencies only notice churn when the client cancels. This moves the detection window 30-60 days earlier.
+- **CTA:** "Which client on your roster has gone quietest in the last 30 days?"
+- **Bridge to paid:** Build an automated monthly churn-signal report that runs without anyone touching it
+- **Vu time:** 10 min
+- **Email:**
+
+> [Agency] has been posting for [Client] since at least [date] -- that's a good run. In my experience, the 30 days before a client cancels looks almost identical to a normal month. They just stop pushing back on revisions and go quiet on Slack. Here's a prompt I use to flag those signals early from engagement data before the cancellation email arrives. [Prompt block]. Which client on your roster has gone the quietest in the last month?
+
+---
+
+**OFFER 5: Competitor Content Gap Prompt**
+
+Not "here's a content ideas prompt." That's generic. This is specifically positioned as competitive intelligence for the agency's pitch process -- i.e., it makes THEM look smarter to their own clients.
+
+- **What they get:** A prompt that takes a client's handle + 3 competitor handles and outputs a structured gap analysis: topics competitors cover that the client doesn't, formats competitors use that the client avoids, posting cadence gaps
+- **Why valuable:** Agencies use this during QBRs to justify retainer renewal. Client sees you did research. Agency looks proactive without doing manual competitor analysis.
+- **CTA:** "Which client has a QBR coming up in the next 30 days?"
+- **Bridge to paid:** Automate the competitor scrape + prompt run on a monthly cycle
+- **Vu time:** 10 min
+- **Email:**
+
+> You post for [Client] in a space where [Competitor A] and [Competitor B] are also active. Most agencies do competitor analysis at onboarding and then never again. Here's a prompt I use to run a structured content gap analysis from handle exports -- takes 10 minutes, gives you a slide-ready output showing exactly what competitors are doing that your client isn't. [Prompt block]. Which of your clients has a quarterly review coming up where this would land well?
+
+---
+
+**OFFER 6: Async Loom Audit (the ladder rung)**
+
+This one challenges the entire "free email offer" framing. Offers 1-5 are all about proving competence through a deliverable. Offer 6 is the bridge to paid -- and it needs to feel different in tone.
+
+Contrarian position: don't call it a "free audit." Call it a "10-minute async review" and make it slightly exclusive. Scarcity without fakeness: "I do 3 of these a week."
+
+- **What they get:** A 10-15 min Loom walkthrough of their current content workflow with 3-5 specific automation opportunities called out, recorded async, no call required
+- **Why valuable:** No calendar friction. Prospect watches it at their own pace. Vu gets to demonstrate system thinking, not just prompt writing. Converts "interested in prompts" to "this person understands my ops."
+- **CTA:** "Send me your last month of content -- posting schedule, approval chain, reporting process. I'll record a Loom within 48 hours."
+- **Bridge to paid:** The Loom ends with "here's what I'd build first and what it would cost." It IS the proposal.
+- **Vu time:** 30-45 min per send, so gatekeep to 3/week max
+- **Email:**
+
+> You're running [X] clients with a team of [Y] -- at that size, the bottlenecks are almost always in approval and reporting, not creation. I do 3 async workflow reviews a week: you send me your current content process (posting schedule, approval steps, reporting format), I record a 10-minute Loom with the specific automation gaps I see, no call needed. I have a slot this week. Want it?
+
+---
+
+**Final disagreement resolved:**
+
+Ship 6, not 3. The "A/B test 3 first" logic assumes Vu has volume. He doesn't yet. With 20-30 sends/week, he needs breadth to find signal. Each offer targets a different pain state: creation friction, reporting friction, retention risk, pitch quality, workflow visibility, and conversion. Kill whatever doesn't get replies after 40 sends per offer. The Loom audit will convert at lower volume but higher rate -- protect those slots.

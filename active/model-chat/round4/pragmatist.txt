@@ -1,0 +1,27 @@
+[pragmatist]: Contrarian, I'll meet you halfway. 6 simultaneous is too many. 2 is too few to learn anything about which pain point resonates. 3 offers, 40 emails each, is the right sample size for a two-week test.
+
+Here are the 3 I'd ship, with final email drafts:
+
+---
+
+**Offer 1: Caption Prompt (in-email)**
+
+> You're producing captions for [X] clients every week. Same process, different brands, 20+ minutes per client. Here's the Claude prompt I use to cut it to under 2 minutes. [PROMPT: "You are a social media copywriter. Given: [brand niche], [tone: 3 words], [source content]. Output: 5 platform-native captions for IG, TikTok, LinkedIn, X, Facebook. Each with hook, body, CTA."] Run it on your next client. Which account would it break on?
+
+---
+
+**Offer 2: Report Prompt (in-email)**
+
+> Monthly reporting at [agency size] usually runs 2-3 hours per client. The mechanical writing part -- translating numbers into narrative -- is the fixable chunk. [PROMPT: "Given these metrics: [paste raw data]. Write a 3-paragraph client performance summary: what happened, why it matters, what we do next. Tone: confident, plain English."] Try it on your next report. Curious if the output matches what you'd write or misses something.
+
+---
+
+**Offer 3: 12-Task Audit (in-email, no prompt)**
+
+> Most agencies with [X] clients are running 8-10 manual workflows that could be automated today. Here's the list: [caption repurposing, hashtag research, report writing, content scheduling, onboarding briefs, analytics pulls, competitor monitoring, client updates, approval workflows, platform cross-posting, performance alerts, monthly calendar generation]. Which of these are still manual for your team?
+
+---
+
+The third offer is the contrarian's instinct operationalized -- no deliverable, just a list that ends with a genuine question. Different mechanic, different reply type. That's enough variation to learn something.
+
+Ship these 3. Kill the lowest-reply offer at week 2.

@@ -1,0 +1,274 @@
+{
+  "name": "Owner Control - Drive/OneDrive Watcher",
+  "flow": [
+    {
+      "id": 1,
+      "module": "google-drive:TriggerNewFile",
+      "version": 2,
+      "parameters": {
+        "account": null
+      },
+      "mapper": {
+        "folderId": "",
+        "includeSubfolders": true,
+        "filter": ""
+      },
+      "metadata": {
+        "designer": {
+          "x": 0,
+          "y": 0
+        },
+        "label": "Watch Google Drive Folder"
+      }
+    },
+    {
+      "id": 2,
+      "module": "google-drive:ActionDownloadAFile",
+      "version": 2,
+      "parameters": {
+        "account": null
+      },
+      "mapper": {
+        "fileId": "{{1.id}}"
+      },
+      "metadata": {
+        "designer": {
+          "x": 300,
+          "y": 0
+        },
+        "label": "Download File"
+      }
+    },
+    {
+      "id": 3,
+      "module": "builtin:BasicRouter",
+      "version": 1,
+      "parameters": {},
+      "mapper": null,
+      "metadata": {
+        "designer": {
+          "x": 600,
+          "y": 0
+        }
+      },
+      "routes": [
+        {
+          "flow": [
+            {
+              "id": 4,
+              "module": "builtin:BasicFilter",
+              "version": 1,
+              "parameters": {},
+              "mapper": {
+                "conditions": [
+                  [
+                    {
+                      "a": "{{1.mimeType}}",
+                      "b": "application/pdf",
+                      "o": "text:equal"
+                    }
+                  ]
+                ]
+              },
+              "metadata": {
+                "designer": {
+                  "x": 900,
+                  "y": -150
+                },
+                "label": "Is PDF"
+              }
+            },
+            {
+              "id": 5,
+              "module": "cloudconvert:ConvertAFile",
+              "version": 2,
+              "parameters": {
+                "account": null
+              },
+              "mapper": {
+                "input": "upload",
+                "data": "{{2.data}}",
+                "filename": "{{1.name}}",
+                "input_format": "pdf",
+                "output_format": "txt"
+              },
+              "metadata": {
+                "designer": {
+                  "x": 1200,
+                  "y": -150
+                },
+                "label": "Convert PDF to Text"
+              }
+            },
+            {
+              "id": 8,
+              "module": "datastore:ActionAddRecord",
+              "version": 1,
+              "parameters": {
+                "dataStore": null
+              },
+              "mapper": {
+                "source": "google_drive",
+                "filename": "{{1.name}}",
+                "content": "{{5.data}}",
+                "sender": "",
+                "subject": "",
+                "received_date": "{{1.createdTime}}",
+                "drive_file_id": "{{1.id}}",
+                "processed": false
+              },
+              "metadata": {
+                "designer": {
+                  "x": 1500,
+                  "y": -150
+                },
+                "label": "Store Parsed PDF"
+              }
+            }
+          ]
+        },
+        {
+          "flow": [
+            {
+              "id": 6,
+              "module": "builtin:BasicFilter",
+              "version": 1,
+              "parameters": {},
+              "mapper": {
+                "conditions": [
+                  [
+                    {
+                      "a": "{{1.mimeType}}",
+                      "b": "spreadsheet|excel|csv",
+                      "o": "text:matches"
+                    }
+                  ]
+                ]
+              },
+              "metadata": {
+                "designer": {
+                  "x": 900,
+                  "y": 0
+                },
+                "label": "Is Spreadsheet"
+              }
+            },
+            {
+              "id": 7,
+              "module": "csv:ActionParseCSV",
+              "version": 1,
+              "parameters": {},
+              "mapper": {
+                "data": "{{2.data}}",
+                "delimiter": ",",
+                "containsHeaders": true
+              },
+              "metadata": {
+                "designer": {
+                  "x": 1200,
+                  "y": 0
+                },
+                "label": "Parse Spreadsheet/CSV"
+              }
+            },
+            {
+              "id": 9,
+              "module": "datastore:ActionAddRecord",
+              "version": 1,
+              "parameters": {
+                "dataStore": null
+              },
+              "mapper": {
+                "source": "google_drive",
+                "filename": "{{1.name}}",
+                "content": "{{toString(7.array)}}",
+                "sender": "",
+                "subject": "",
+                "received_date": "{{1.createdTime}}",
+                "drive_file_id": "{{1.id}}",
+                "processed": false
+              },
+              "metadata": {
+                "designer": {
+                  "x": 1500,
+                  "y": 0
+                },
+                "label": "Store Parsed Spreadsheet"
+              }
+            }
+          ]
+        },
+        {
+          "flow": [
+            {
+              "id": 10,
+              "module": "builtin:BasicFilter",
+              "version": 1,
+              "parameters": {},
+              "mapper": {
+                "conditions": [
+                  [
+                    {
+                      "a": "{{1.mimeType}}",
+                      "b": "document|text|word",
+                      "o": "text:matches"
+                    }
+                  ]
+                ]
+              },
+              "metadata": {
+                "designer": {
+                  "x": 900,
+                  "y": 150
+                },
+                "label": "Is Document"
+              }
+            },
+            {
+              "id": 11,
+              "module": "datastore:ActionAddRecord",
+              "version": 1,
+              "parameters": {
+                "dataStore": null
+              },
+              "mapper": {
+                "source": "google_drive",
+                "filename": "{{1.name}}",
+                "content": "{{2.data}}",
+                "sender": "",
+                "subject": "",
+                "received_date": "{{1.createdTime}}",
+                "drive_file_id": "{{1.id}}",
+                "processed": false
+              },
+              "metadata": {
+                "designer": {
+                  "x": 1200,
+                  "y": 150
+                },
+                "label": "Store Document Content"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "instant": false,
+    "version": 1,
+    "scenario": {
+      "roundtrips": 1,
+      "maxErrors": 3,
+      "autoCommit": true,
+      "autoCommitTriggerLast": true,
+      "sequential": false,
+      "confidential": false,
+      "dataloss": false,
+      "dlq": false
+    },
+    "designer": {
+      "orphans": []
+    }
+  }
+}

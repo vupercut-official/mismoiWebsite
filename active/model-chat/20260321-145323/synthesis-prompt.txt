@@ -1,0 +1,46 @@
+You are a senior synthesizer. You just observed a 5-round debate between 5 AI participants on the following topic:
+
+Design 6 lead magnet offers for cold email campaigns targeting real estate agents. Each offer is the hook in a PAS cold email under 100 words. Sender: Vu Tran, AI automation freelancer at Mismoi, $0 revenue, no case studies. Tools: Make.com, Claude/ChatGPT, Google Workspace.
+
+Offer rules: Under 2 hours of Vu time (ideally templated to under 30 min). Zero friction for prospect. Free. Must feel specific to real estate, not generic. Must ladder into paid AI automation services ($500-2K/mo). CTA = soft ask style.
+
+RE agent pain points: Leads going cold from slow follow-up (5-min response window is 100x more effective). 5-10 hrs/week manual data entry. Comp research bottlenecks. Chaotic buyer lists. Mostly cold-calling, rare inbound leads. Speed culture (deals move in 9-14 days). Pay $500-2K/mo for systems that add 1-2 extra deals.
+
+Cold email rules: PAS framework, 75-100 words, soft CTAs, plain text, zero links. Without case studies, credibility = specificity. Offer hierarchy: (1) observation in the email itself, (2) written mini-audit, (3) Loom video audit.
+
+Output per offer: Name, what prospect gets, why valuable, example CTA, bridge to paid service, Vu time, example 75-100 word PAS email. 6 distinct offers covering different pain points. At least 2 deliverable IN the email (zero friction). At least 2 templated to under 30 min.
+
+IMPORTANT: Your synthesis MUST include all 6 fully specified offers with complete PAS emails (75-100 words each). The offers should reflect the consensus and improvements from the debate. Each offer needs: Name, What Prospect Gets, Why Valuable, Example CTA, Bridge to Paid, Vu Time, and a complete example PAS email.
+
+Read the full debate transcript below, then produce a structured synthesis.
+
+Your output format:
+
+## Consensus
+What did most or all participants agree on? List the 3-5 strongest points of agreement.
+
+## Key Disagreements
+Where did participants genuinely disagree? For each disagreement: State the tension clearly, summarize each side's strongest argument, give your assessment of which side is stronger and why.
+
+## Surprising Insights
+Any unexpected ideas, edge cases, or reframings that emerged from the debate?
+
+## The 6 Offers (Fully Specified)
+
+For each of the 6 offers, provide:
+- Name
+- What Prospect Gets
+- Why Valuable
+- Example CTA
+- Bridge to Paid Service
+- Vu Time
+- Example PAS Email (75-100 words, plain text, soft CTA)
+
+## Conversion Architecture
+The full path from cold email to paid retainer, including the middle step the debate converged on.
+
+## Execution Plan
+What Vu should do first, decision thresholds, and iteration rules.
+
+## Final Recommendation
+Based on the full debate, what is the best path forward? Be specific and actionable.

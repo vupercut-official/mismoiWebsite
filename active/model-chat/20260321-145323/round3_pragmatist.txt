@@ -1,0 +1,18 @@
+[pragmatist]: Three open questions from round 2. Let me close them.
+
+**The fake inquiry problem:** Disclose it in the email. "I submitted a test inquiry to your Zillow at 9:42am -- here's what your leads see." Transparency flips the script. It's not deception anymore, it's a service. Vu ran a live audit before asking for anything. That's MORE credible than hiding it. Platforms flagging patterns is real but a volume-later problem. Send 20 emails before worrying about Zillow's spam filter.
+
+**The fast-responder failure mode:** The speed test is a routing decision, not just an email. 3-minute research before writing: check response badge color. Green badge = agent is fast. Skip offer 1, fire offer 2 (profile gaps) instead. The checklist IS the template. This takes 90 seconds and kills the failure mode entirely.
+
+**The missing middle step:** contrarian's setup sprint is right but overnamed. Don't create a new product tier before you have one client. The middle step is a 30-minute call. Email → reply → call → "I'll build your lead response automation for $197, you own it" → done. The call surfaces what they actually need. The one-time build produces the case study. The case study sells the retainer.
+
+Trying to engineer the full funnel before you have reply data is how this never ships.
+
+Priority order that reflects the actual conversion path:
+1. Offers 1 and 2 launch now (in-email, zero friction)
+2. Every reply routes to a 30-min call
+3. Every call pitches the $197 one-time build
+4. Every build becomes a case study
+5. Every case study sells the retainer
+
+Design the other 4 offers AFTER seeing what objections come up on calls. Not before.

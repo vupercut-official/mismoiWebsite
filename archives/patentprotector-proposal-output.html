@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PatentProtector.ai — Content Pipeline Proposal | mismoi</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@1&family=Space+Grotesk:wght@400;700&family=Space+Mono&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --paper: #E8E4DD;
+            --signal-red: #E63B2E;
+            --off-white: #F5F3EE;
+            --black: #111111;
+        }
+
+        html, body {
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            color: var(--black);
+            background-color: var(--off-white);
+        }
+
+        /* Brutalist Signal Typography */
+        .font-space-grotesk { font-family: 'Space Grotesk', sans-serif; }
+        .font-dm-serif { font-family: 'DM Serif Display', serif; }
+        .font-space-mono { font-family: 'Space Mono', monospace; }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Space Grotesk', sans-serif;
+            letter-spacing: -0.02em;
+        }
+
+        /* Custom Tailwind Colors */
+        .bg-paper { background-color: var(--paper); }
+        .bg-signal-red { background-color: var(--signal-red); }
+        .bg-off-white { background-color: var(--off-white); }
+        .text-black { color: var(--black); }
+        .text-signal-red { color: var(--signal-red); }
+        .border-signal-red { border-color: var(--signal-red); }
+
+        /* Global Noise Overlay */
+        .noise-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.05;
+            -webkit-filter: url(#noise);
+            filter: url(#noise);
+        }
+
+        /* Scrollbar styles (optional, but for brutalist feel) */
+        ::-webkit-scrollbar {
+            width: 8px;
+            background-color: var(--off-white);
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: var(--signal-red);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background-color: var(--off-white);
+        }
+
+        /* Custom easing for button hover */
+        .ease-out-quad {
+            transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+    </style>
+</head>
+<body class="bg-off-white relative">
+
+    <!-- Noise Overlay SVG Filter -->
+    <svg style="position: fixed; top: 0; left: 0; width: 0; height: 0;" aria-hidden="true" focusable="false">
+        <filter id="noise">
+            <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" />
+            <feColorMatrix type="saturate" values="0" />
+            <feBlend in="SourceGraphic" in2="noise" mode="multiply" />
+        </filter>
+    </svg>
+    <div class="noise-overlay"></div>
+
+    <!-- NAVBAR - The Floating Island -->
+    <nav id="navbar" class="fixed top-0 left-1/2 -translate-x-1/2 z-50 py-3 px-6 rounded-[2rem] border border-transparent transition-all duration-300 ease-out-quad mt-6">
+        <div class="container mx-auto flex justify-between items-center space-x-8">
+            <a href="#" class="text-black font-space-grotesk font-bold text-xl nav-link">mismoi</a>
+            <div class="hidden md:flex space-x-6">
+                <a href="#problems" class="text-black hover:text-signal-red transition-all duration-200 ease-out-quad nav-link">Problem</a>
+                <a href="#solution" class="text-black hover:text-signal-red transition-all duration-200 ease-out-quad nav-link">Solution</a>
+                <a href="#pricing" class="text-black hover:text-signal-red transition-all duration-200 ease-out-quad nav-link">Pricing</a>
+                <a href="#next-steps" class="text-black hover:text-signal-red transition-all duration-200 ease-out-quad nav-link">Next Steps</a>
+            </div>
+            <a href="https://invoice.stripe.com/i/acct_1T9xud3qgIDdNkQS/live_YWNjdF8xVDl4dWQzcWdJRGROa1FTLF9VOXlrTDVQZlNiU0REUENaZjZ3VnRzOTh2MGpDREN6LDE2NDIyMjUzOQ0200cSq1egLL?s=db"
+               class="cta-button relative overflow-hidden group py-2 px-5 rounded-[2rem] bg-black text-white text-sm font-space-grotesk font-bold transition-all duration-300 ease-out-quad">
+                <span class="absolute inset-0 bg-signal-red transition-transform duration-300 ease-out-quad transform translate-y-full group-hover:translate-y-0 z-0"></span>
+                <span class="relative z-10 transition-colors duration-300 group-hover:text-black">Pay & Get Started</span>
+            </a>
+        </div>
+    </nav>
+
+    <main>
+        <!-- HERO - The Opening Shot -->
+        <section id="hero" class="relative h-screen flex items-end pb-24 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1579737197170-c0352ef95b3f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTQ4NTd8MHwxfHNlYXJjaHw0fHxicnV0YWxpc3QlMjBhcmNoaXRlY3R1cmV8ZW58MHx8fHwxNzA2MjUyNzMzfDA&ixlib=rb-4.0.3&q=80&w=1920"
+                 alt="Brutalist concrete architecture" class="absolute inset-0 w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent via-black/60 opacity-90"></div>
+
+            <div class="container mx-auto px-6 relative z-10 text-white flex flex-col items-start max-w-4xl">
+                <h1 class="font-space-grotesk font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl leading-tight opacity-0 hero-text-reveal">Automate the</h1>
+                <h1 class="font-dm-serif italic text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] leading-none text-signal-red opacity-0 hero-text-reveal">Content Engine.</h1>
+                <p class="font-space-grotesk text-xl sm:text-2xl mt-4 max-w-2xl opacity-0 hero-text-reveal">An end-to-end content pipeline for PatentProtector.ai. 1-2 videos per day. Zero manual effort. Self-improving.</p>
+                <p class="font-space-mono text-sm sm:text-base mt-6 opacity-0 hero-text-reveal">Prepared for Auro — March 16, 2026</p>
+                <a href="https://invoice.stripe.com/i/acct_1T9xud3qgIDdNkQS/live_YWNjdF8xVDl4dWQzcWdJRGROa1FTLF9VOXlrTDVQZlNiU0REUENaZjZ3VnRzOTh2MGpDREN6LDE2NDIyMjUzOQ0200cSq1egLL?s=db"
+                   class="cta-button relative overflow-hidden group py-3 px-8 mt-10 rounded-[2rem] bg-signal-red text-black text-lg font-space-grotesk font-bold transition-all duration-300 ease-out-quad opacity-0 hero-text-reveal">
+                    <span class="absolute inset-0 bg-paper transition-transform duration-300 ease-out-quad transform translate-y-full group-hover:translate-y-0 z-0"></span>
+                    <span class="relative z-10 transition-colors duration-300 group-hover:text-black">Pay & Get Started</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- EXECUTIVE SUMMARY -->
+        <section id="executive-summary" class="bg-off-white py-20 md:py-32 container mx-auto px-6">
+            <div class="max-w-4xl mx-auto exec-summary-reveal">
+                <h2 class="text-3xl md:text-4xl font-space-grotesk font-bold mb-8 text-black">Executive Summary</h2>
+                <div class="space-y-6 text-lg md:text-xl leading-relaxed text-black/80 font-space-grotesk">
+                    <p>Auro,</p>
+                    <p>Thanks for the call. You mentioned your team is lean, you're splitting time between the consulting business and the SaaS product, and creating content every day is "too time-taking." Your YouTube videos get 10K-17K views but single-digit likes — views without engagement, engagement without conversions.</p>
+                    <p>That's exactly what this proposal solves.</p>
+                    <p>We'll build an automated content pipeline using Make.com, AI scripting, and multi-platform posting that generates 1-2 short-form videos per day — researched, scripted, produced, and posted without your team touching it. The system learns from performance data and gets smarter every cycle.</p>
+                    <p>Within 3 months, you'll have a self-improving content engine driving you toward 1,000 paid users. And if it doesn't deliver 250 extra paid users in that time — you don't pay.</p>
+                    <p class="font-dm-serif italic text-signal-red text-2xl md:text-3xl mt-10">Let's build it.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16 text-center text-black">
+                    <div class="p-8 bg-paper rounded-[2rem] shadow-lg flex flex-col items-center">
+                        <span class="font-space-mono text-5xl font-bold text-signal-red">500</span>
+                        <span class="font-space-mono text-xl mt-2">Current Users</span>
+                        <span class="font-space-mono text-base text-black/70">→ 10,000 Target</span>
+                    </div>
+                    <div class="p-8 bg-paper rounded-[2rem] shadow-lg flex flex-col items-center">
+                        <span class="font-space-mono text-5xl font-bold text-signal-red">85%</span>
+                        <span class="font-space-mono text-xl mt-2">Free Tier</span>
+                        <span class="font-space-mono text-base text-black/70">→ 1,000 Paid Goal</span>
+                    </div>
+                    <div class="p-8 bg-paper rounded-[2rem] shadow-lg flex flex-col items-center">
+                        <span class="font-space-mono text-5xl font-bold text-signal-red">3-6</span>
+                        <span class="font-space-mono text-xl mt-2">Months</span>
+                        <span class="font-space-mono text-base text-black/70">→ Pipeline ROI</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FEATURES - Interactive Functional Artifacts (Problem Statement) -->
+        <section id="problems" class="py-20 md:py-32 bg-black text-off-white overflow-hidden">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl md:text-4xl font-space-grotesk font-bold mb-16 text-center text-off-white problem-heading-reveal">The Core Problems We Solve</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+
+                    <!-- Card 1: Diagnostic Shuffler -->
+                    <div class="problem-card bg-paper text-black p-8 rounded-[2rem] relative h-[300px] overflow-hidden flex flex-col justify-between">
+                        <h3 class="font-space-grotesk font-bold text-xl mb-4 text-signal-red">Problem 1: Content Takes Too Much Time</h3>
+                        <p class="font-space-grotesk text-base">Your team has no content creation background. Every hour spent on content is an hour not spent on demos or closing deals.</p>
+                        <div class="absolute bottom-0 left-0 w-full h-[150px] overflow-hidden">
+                            <div class="problem-shuffler relative w-full h-full p-4">
+                                <div class="shuffler-item absolute top-0 left-0 w-full p-2 bg-black/5 text-xs font-space-mono rounded-lg border border-black/10 shadow-sm opacity-0 -translate-y-full">Manual video creation</div>
+                                <div class="shuffler-item absolute top-0 left-0 w-full p-2 bg-black/5 text-xs font-space-mono rounded-lg border border-black/10 shadow-sm opacity-0 -translate-y-full">Partner coordination</div>
+                                <div class="shuffler-item absolute top-0 left-0 w-full p-2 bg-black/5 text-xs font-space-mono rounded-lg border border-black/10 shadow-sm opacity-0 -translate-y-full">Daily posting burden</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Telemetry Typewriter -->
+                    <div class="problem-card bg-paper text-black p-8 rounded-[2rem] relative h-[300px] flex flex-col justify-between">
+                        <h3 class="font-space-grotesk font-bold text-xl mb-4 text-signal-red">Problem 2: Views Without Conversions</h3>
+                        <p class="font-space-grotesk text-base">Your YouTube Shorts get 10K-17K views but single-digit likes. You're paying for attention that doesn't convert.</p>
+                        <div class="font-space-mono text-sm mt-4 bg-black p-4 rounded-lg text-off-white leading-loose overflow-hidden flex-grow">
+                            <div class="flex items-center text-signal-red mb-2">
+                                <span class="relative flex h-2 w-2 mr-2">
+                                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-signal-red opacity-75"></span>
+                                    <span class="relative inline-flex rounded-full h-2 w-2 bg-signal-red"></span>
+                                </span>
+                                LIVE FEED
+                            </div>
+                            <pre id="telemetry-output" class="whitespace-pre-wrap"></pre><span id="telemetry-cursor" class="bg-signal-red inline-block w-2 h-4 animate-pulse"></span>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Cursor Protocol Scheduler -->
+                    <div class="problem-card bg-paper text-black p-8 rounded-[2rem] relative h-[300px] flex flex-col justify-between">
+                        <h3 class="font-space-grotesk font-bold text-xl mb-4 text-signal-red">Problem 3: No Feedback Loop</h3>
+                        <p class="font-space-grotesk text-base">No system to track which content converts into paid users. No performance data flowing back into content decisions.</p>
+                        <div class="relative flex-grow mt-4 p-4 bg-black/5 rounded-lg border border-black/10 grid grid-cols-7 gap-1 text-center font-space-mono text-xs text-black/60">
+                            <span class="col-span-7 mb-2 text-black font-bold">WEEKLY REPORT</span>
+                            <span class="col-span-1">M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span>
+                            <span class="day-cell">5</span><span class="day-cell">6</span><span class="day-cell">7</span><span class="day-cell">8</span><span class="day-cell">9</span><span class="day-cell">10</span><span class="day-cell">11</span>
+                            <span class="day-cell">12</span><span class="day-cell">13</span><span class="day-cell">14</span><span class="day-cell">15</span><span class="day-cell">16</span><span class="day-cell">17</span><span class="day-cell">18</span>
+                            <svg id="cursor-svg" class="absolute top-0 left-0 pointer-events-none" width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
+                                <rect id="animated-cursor" x="0" y="0" width="10" height="10" fill="var(--signal-red)" rx="2" ry="2" opacity="0.8"/>
+                            </svg>
+                            <div class="absolute bottom-4 left-0 w-full text-center text-signal-red font-space-mono text-sm font-bold">No data. No signal. No optimization.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="max-w-4xl mx-auto mt-16 text-center text-xl md:text-2xl font-space-grotesk text-off-white/80 problem-cost-reveal">
+                    <span class="font-bold text-signal-red">The cost of inaction:</span> Every day without a working content engine is a day your 500 users stay flat while competitors with automated systems scale past you.
+                </div>
+            </div>
+        </section>
+
+        <!-- PHILOSOPHY - The Manifesto -->
+        <section id="philosophy" class="relative py-32 md:py-48 bg-black text-off-white overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1510617937409-d754790e21a8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTQ4NTd8MHwxfHNlYXJjaHwyMHx8aW5kdXN0cmlhbCUyMHRleHR1cmV8ZW58MHx8fHwxNzA2MjUzMjMxfDA&ixlib=rb-4.0.3&q=80&w=1920"
+                 alt="Industrial texture" class="absolute inset-0 w-full h-full object-cover opacity-50 parallax-bg">
+            <div class="absolute inset-0 bg-black/60"></div>
+
+            <div class="container mx-auto px-6 relative z-10 text-center max-w-5xl">
+                <p class="text-2xl md:text-3xl font-space-grotesk mb-10 text-off-white/80 philosophy-text-1-reveal">Most SaaS companies hire freelancers to make content, post it manually, and hope something sticks. It's slow, expensive, and doesn't compound.</p>
+                <h2 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-dm-serif italic text-signal-red philosophy-text-2-reveal leading-tight">
+                    We build systems that <span class="text-off-white">learn.</span>
+                </h2>
+            </div>
+        </section>
+
+        <!-- PROTOCOL - Sticky Stacking Archive (Solution + Timeline) -->
+        <section id="solution" class="relative bg-off-white overflow-hidden">
+            <div id="protocol-section" class="relative h-[300vh]"> <!-- This height will determine scroll duration -->
+
+                <!-- Card 1: Research & Intelligence -->
+                <div id="protocol-card-1" class="protocol-card sticky top-0 h-screen w-full flex items-center justify-center p-8 bg-paper rounded-[2rem] border-4 border-black/10 text-black z-30">
+                    <div class="max-w-4xl mx-auto text-center relative">
+                        <h3 class="text-4xl md:text-5xl font-space-grotesk font-bold mb-8 text-signal-red">1. Market Research & Intelligence</h3>
+                        <p class="text-xl md:text-2xl font-space-grotesk mb-6 leading-relaxed">Apify scrapes competitor content, Reddit, Twitter, and Instagram for patent-related pain points and angles. This identifies trending topics and language your ICP actually uses. Feeds research directly into the intelligence hub — no manual input needed. Updates weekly to stay current.</p>
+                        <p class="text-lg md:text-xl font-space-grotesk leading-relaxed">Aggregates all performance data from YouTube, Instagram, TikTok. Signal aggregator identifies high-performing outliers automatically and weeds out factors that caused underperforming content. Stores ICP language, winning angles, and client feedback data.</p>
+                        <div class="absolute -bottom-24 left-1/2 -translate-x-1/2 w-48 h-48 md:w-64 md:h-64 rounded-full bg-black/5 flex items-center justify-center">
+                            <svg class="protocol-svg-1 w-full h-full text-black/20" viewBox="0 0 100 100">
+                                <circle cx="50" cy="50" r="40" stroke="currentColor" stroke-width="2" fill="none" />
+                                <circle cx="50" cy="50" r="30" stroke="currentColor" stroke-width="2" fill="none" />
+                                <circle cx="50" cy="50" r="20" stroke="currentColor" stroke-width="2" fill="none" />
+                                <line x1="50" y1="10" x2="50" y2="90" stroke="currentColor" stroke-width="2" />
+                                <line x1="10" y1="50" x2="90" y2="50" stroke="currentColor" stroke-width="2" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2: Script & Generate -->
+                <div id="protocol-card-2" class="protocol-card sticky top-0 h-screen w-full flex items-center justify-center p-8 bg-black rounded-[2rem] border-4 border-signal-red text-off-white z-20">
+                    <div class="max-w-4xl mx-auto text-center relative">
+                        <h3 class="text-4xl md:text-5xl font-space-grotesk font-bold mb-8 text-signal-red">2. AI Video Generation Pipeline</h3>
+                        <p class="text-xl md:text-2xl font-space-grotesk mb-6 leading-relaxed">Claude scripts 1-2 videos per day (30 sec - 1 min) based on intelligence hub data. Google Veo generates the video from scripts — fully AI, no recording needed. Each batch of videos is better than the last because scripts are informed by real performance data.</p>
+                        <p class="text-lg md:text-xl font-space-grotesk leading-relaxed">Content style: testimonial-style, product demos, "how I filed a patent in minutes" angles.</p>
+                        <div class="absolute -bottom-24 left-1/2 -translate-x-1/2 w-48 h-48 md:w-64 md:h-64 bg-off-white/5 flex items-center justify-center rounded-lg">
+                            <svg class="protocol-svg-2 w-full h-full text-off-white/20" viewBox="0 0 100 100">
+                                <rect x="10" y="45" width="80" height="10" fill="currentColor" opacity="0.5"/>
+                                <circle cx="15" cy="50" r="5" fill="currentColor" />
+                                <circle cx="85" cy="50" r="5" fill="currentColor" />
+                                <path d="M 20 20 L 80 20 L 80 80 L 20 80 Z" fill="none" stroke="currentColor" stroke-width="2" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3: Post & Optimize -->
+                <div id="protocol-card-3" class="protocol-card sticky top-0 h-screen w-full flex items-center justify-center p-8 bg-paper rounded-[2rem] border-4 border-black/10 text-black z-10">
+                    <div class="max-w-4xl mx-auto text-center relative">
+                        <h3 class="text-4xl md:text-5xl font-space-grotesk font-bold mb-8 text-signal-red">3. Multi-Platform Auto-Poster & Optimize</h3>
+                        <p class="text-xl md:text-2xl font-space-grotesk mb-6 leading-relaxed">Posts automatically to YouTube Shorts, Instagram Reels, TikTok. Schedules for optimal posting times per platform. Performance data feeds back into the signal aggregator.</p>
+                        <p class="text-lg md:text-xl font-space-grotesk leading-relaxed">The flywheel: research → script → generate → post → measure → improve → repeat.</p>
+                        <div class="absolute -bottom-24 left-1/2 -translate-x-1/2 w-48 h-48 md:w-64 md:h-64 rounded-full bg-black/5 flex items-center justify-center">
+                            <svg class="protocol-svg-3 w-full h-full text-black/20" viewBox="0 0 100 100">
+                                <path fill="none" stroke="currentColor" stroke-width="2" d="M10 50 C 30 30, 70 70, 90 50 S 110 30, 90 50" />
+                                <circle cx="10" cy="50" r="3" fill="currentColor" />
+                                <circle cx="30" cy="30" r="3" fill="currentColor" />
+                                <circle cx="70" cy="70" r="3" fill="currentColor" />
+                                <circle cx="90" cy="50" r="3" fill="currentColor" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- CASE STUDY -->
+        <section id="case-study" class="py-20 md:py-32 bg-off-white text-black">
+            <div class="container mx-auto px-6 max-w-5xl">
+                <h2 class="text-3xl md:text-4xl font-space-grotesk font-bold mb-16 text-center text-black case-study-heading-reveal">Case Study: The Barber Content Flywheel</h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                    <div class="case-study-content-reveal">
+                        <p class="text-lg md:text-xl font-space-grotesk mb-6 leading-relaxed">I built this exact system for myself as a barber. Same flywheel: research what's working → script content → post → measure → feed winners back in → repeat.</p>
+                        <p class="text-lg md:text-xl font-space-grotesk mb-6 leading-relaxed">Result: Booked out a full month in advance. Videos started popping off — not because I was filming more, but because the system was learning what my audience actually responded to and doubling down on those angles automatically.</p>
+                    </div>
+                    <div class="case-study-image-reveal space-y-8">
+                        <div class="bg-paper p-6 rounded-[2rem] shadow-lg">
+                            <h3 class="font-space-mono text-xl text-signal-red mb-2">Before:</h3>
+                            <p class="font-space-grotesk text-lg">Empty calendar, inconsistent content.</p>
+                            <img src="https://images.unsplash.com/photo-1596792370716-e578c773950f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTQ4NTd8MHwxfHNlYXJjaHwyMHx8YmFyYmVyJTIwc2hvcCUyMGVtcHR5fGVufDB8fHx8MTcwNjI1MzI1NHww&ixlib=rb-4.0.3&q=80&w=600"
+                                 alt="Empty barber shop" class="w-full h-48 object-cover rounded-xl mt-4 border border-black/10">
+                        </div>
+                        <div class="bg-black text-off-white p-6 rounded-[2rem] shadow-lg border border-signal-red">
+                            <h3 class="font-space-mono text-xl text-signal-red mb-2">After:</h3>
+                            <p class="font-space-grotesk text-lg">Booked out 30 days, videos popping off.</p>
+                            <img src="https://images.unsplash.com/photo-1596792361005-4f40f2e03947?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTQ4NTd8MHwxfHNlYXJjaHw3fHxiYXJiZXIlMjBjdXN0b21lcnN8ZW58MHx8fHwxNzA2MjUzMjcxfDA&ixlib=rb-4.0.3&q=80&w=600"
+                                 alt="Busy barber shop" class="w-full h-48 object-cover rounded-xl mt-4 border border-signal-red">
+                        </div>
+                    </div>
+                </div>
+
+                <blockquote class="mt-20 p-8 bg-paper rounded-[2rem] border-l-8 border-signal-red text-center shadow-xl quote-reveal">
+                    <p class="font-dm-serif italic text-2xl md:text-3xl lg:text-4xl leading-snug">
+                        "The same engine that filled my calendar is the same engine we're building for PatentProtector.ai."
+                    </p>
+                    <footer class="mt-6 text-xl font-space-grotesk font-bold text-signal-red">— Vu Tran, mismoi</footer>
+                </blockquote>
+            </div>
+        </section>
+
+        <!-- PRICING -->
+        <section id="pricing" class="py-20 md:py-32 bg-off-white text-black">
+            <div class="container mx-auto px-6 max-w-5xl">
+                <h2 class="text-3xl md:text-4xl font-space-grotesk font-bold mb-16 text-center text-black pricing-heading-reveal">Investment</h2>
+
+                <div class="flex flex-col md:flex-row gap-8 justify-center items-stretch">
+                    <!-- Setup Card -->
+                    <div class="pricing-card bg-paper p-8 rounded-[3rem] shadow-xl flex flex-col items-center border border-black/20 pricing-reveal-item">
+                        <h3 class="font-space-grotesk font-bold text-3xl mb-4 text-signal-red">SETUP</h3>
+                        <p class="font-space-mono text-6xl font-bold text-black mb-8">$627</p>
+                        <p class="font-space-grotesk text-lg text-center mb-6">End-to-End Content Pipeline</p>
+                        <ul class="text-left font-space-grotesk text-base space-y-3 mb-8 w-full">
+                            <li class="flex items-start"><span class="mr-3 text-signal-red text-xl">&raquo;</span> Market research engine configured</li>
+                            <li class="flex items-start"><span class="mr-3 text-signal-red text-xl">&raquo;</span> Central intelligence hub + signal aggregator built</li>
+                            <li class="flex items-start"><span class="mr-3 text-signal-red text-xl">&raquo;</span> AI video generation pipeline tested</li>
+                            <li class="flex items-start"><span class="mr-3 text-signal-red text-xl">&raquo;</span> Multi-platform auto-poster configured</li>
+                            <li class="flex items-start"><span class="mr-3 text-signal-red text-xl">&raquo;</span> Full integration, testing, and calibration</li>
+                            <li class="flex items-start"><span class="mr-3 text-signal-red text-xl">&raquo;</span> Training call on system management</li>
+                        </ul>
+                        <p class="font-space-mono text-sm text-black/70 italic mt-auto">One-time payment</p>
+                    </div>
+
+                    <!-- Ongoing Card -->
+                    <div class="pricing-card bg-black text-off-white p-8 rounded-[3rem] shadow-xl flex flex-col items-center border-4 border-signal-red relative -translate-y-4 md:-translate-y-8 pricing-reveal-item">
+                        <h3 class="font-space-grotesk font-bold text-3xl mb-4 text-signal-red">ONGOING</h3>
+                        <p class="font-space-mono text-6xl font-bold text-off-white mb-8">$250<span class="text-2xl ml-2">/month</span></p>
+                        <p class="font-space-grotesk text-lg text-center mb-6">Continuous Optimization & Support</p>
+                        <ul class="text-left font-space-grotesk text-base space-y-3 mb-8 w-full">
+                            <li class="flex items-start"><span class="mr-3 text-signal-red text-xl">&raquo;</span> Weekly performance check-ins</li>
+                            <li class="flex items-start"><span class="mr-3 text-signal-red text-xl">&raquo;</span> 24-hour bug fix SLA</li>
+                            <li class="flex items-start"><span class="mr-3 text-signal-red text-xl">&raquo;</span> System monitoring and optimization</li>
+                            <li class="flex items-start"><span class="mr-3 text-signal-red text-xl">&raquo;</span> Monthly strategy review with Auro</li>
+                            <li class="flex items-start"><span class="mr-3 text-signal-red text-xl">&raquo;</span> Manual tweaks and adjustments as needed</li>
+                        </ul>
+                        <p class="font-space-mono text-sm text-off-white/70 italic mt-auto">Recurring payment</p>
+                    </div>
+                </div>
+
+                <div class="max-w-xl mx-auto text-center mt-12 font-space-mono text-lg text-black/80 pricing-reveal-item">
+                    <p class="mb-4">AI Credits (on you): <span class="text-signal-red font-bold">~$50-100/month</span></p>
+                    <p>Covers AI generation costs for 1-2 videos/day (Claude API + Google Veo usage).</p>
+                </div>
+
+                <div class="mt-16 bg-signal-red text-white p-8 rounded-[2rem] text-center shadow-2xl pricing-guarantee-reveal">
+                    <h3 class="font-space-grotesk font-bold text-2xl md:text-3xl lg:text-4xl leading-tight">GUARANTEE:</h3>
+                    <p class="font-dm-serif italic text-3xl md:text-4xl lg:text-5xl mt-4">250 extra paid users in 3 months — or your money back. <span class="font-space-grotesk">Every dollar.</span></p>
+                </div>
+
+                <div class="text-center mt-16 pricing-cta-reveal">
+                    <a href="https://invoice.stripe.com/i/acct_1T9xud3qgIDdNkQS/live_YWNjdF8xVDl4dWQzcWdJRGROa1FTLF9VOXlrTDVQZlNiU0REUENaZjZ3VnRzOTh2MGpDREN6LDE2NDIyMjUzOQ0200cSq1egLL?s=db"
+                       class="cta-button relative overflow-hidden group py-4 px-12 rounded-[2rem] bg-black text-white text-xl font-space-grotesk font-bold transition-all duration-300 ease-out-quad">
+                        <span class="absolute inset-0 bg-signal-red transition-transform duration-300 ease-out-quad transform translate-y-full group-hover:translate-y-0 z-0"></span>
+                        <span class="relative z-10 transition-colors duration-300 group-hover:text-black">Pay & Get Started</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer id="next-steps" class="bg-black text-off-white py-20 md:py-32 rounded-t-[4rem] footer-reveal">
+        <div class="container mx-auto px-6 max-w-6xl">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
+                <!-- About mismoi -->
+                <div>
+                    <h3 class="text-2xl font-space-grotesk font-bold text-signal-red mb-4">About mismoi</h3>
+                    <p class="font-space-grotesk text-lg leading-relaxed">We build AI automation systems that make businesses money or save them time. Specializing in content pipelines, lead generation, and marketing automation using Make.com, Claude, and Google Workspace. We don't do one-off projects — we build machines that compound.</p>
+                </div>
+
+                <!-- How to get started -->
+                <div>
+                    <h3 class="text-2xl font-space-grotesk font-bold text-signal-red mb-4">How we get started:</h3>
+                    <ol class="list-decimal list-inside font-space-grotesk text-lg space-y-2">
+                        <li>You pay the $627 setup fee (link below)</li>
+                        <li>We schedule a kickoff call within 48 hours</li>
+                        <li>System is built and tested in 2 weeks</li>
+                        <li>Videos start posting daily in week 3</li>
+                        <li>Weekly check-ins every Friday</li>
+                    </ol>
+                </div>
+
+                <!-- What we need from you -->
+                <div>
+                    <h3 class="text-2xl font-space-grotesk font-bold text-signal-red mb-4">What we need from you:</h3>
+                    <ul class="list-disc list-inside font-space-grotesk text-lg space-y-2">
+                        <li>Access to YouTube, Instagram, TikTok accounts</li>
+                        <li>Brand guidelines or preferences (if any)</li>
+                        <li>User feedback data (as you collect it)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="text-center mt-16">
+                <a href="https://invoice.stripe.com/i/acct_1T9xud3qgIDdNkQS/live_YWNjdF8xVDl4dWQzcWdJRGROa1FTLF9VOXlrTDVQZlNiU0REUENaZjZ3VnRzOTh2MGpDREN6LDE2NDIyMjUzOQ0200cSq1egLL?s=db"
+                   class="cta-button relative overflow-hidden group py-4 px-12 rounded-[2rem] bg-signal-red text-black text-xl font-space-grotesk font-bold transition-all duration-300 ease-out-quad">
+                    <span class="absolute inset-0 bg-paper transition-transform duration-300 ease-out-quad transform translate-y-full group-hover:translate-y-0 z-0"></span>
+                    <span class="relative z-10 transition-colors duration-300 group-hover:text-black">Secure Your Spot</span>
+                </a>
+            </div>
+
+            <div class="flex items-center justify-center mt-12 text-black/60">
+                <span class="relative flex h-3 w-3 mr-3">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                </span>
+                <span class="font-space-mono text-sm">System Operational</span>
+            </div>
+
+            <p class="text-center font-space-mono text-xs text-black/40 mt-10">&copy; 2026 mismoi. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- GSAP CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Draggable.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/MotionPathPlugin.min.js"></script> <!-- For cursor animation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/CustomEase.min.js"></script> <!-- For cubic-bezier easing if needed explicitly -->
+
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger, Draggable, MotionPathPlugin, CustomEase);
+
+        // Custom ease for "magnetic" feel
+        CustomEase.create("out-quad", "0.25, 0.46, 0.45, 0.94");
+
+        let mm = gsap.matchMedia();
+
+        const ctx = gsap.context(() => {
+            // Global default easing
+            gsap.defaults({ ease: "power3.out" });
+
+            // Smooth Scroll for Nav Links
+            document.querySelectorAll('nav a.nav-link[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Navbar Morph
+            const navbar = document.getElementById('navbar');
+            gsap.to(navbar, {
+                backgroundColor: "rgba(232, 228, 221, 0.6)", // var(--paper) with opacity
+                borderColor: "rgba(17, 17, 17, 0.1)", // var(--black) with opacity
+                backdropFilter: "blur(12px)",
+                scroll: 1, // Only animate if ScrollTrigger is active, this is a placeholder
+                duration: 0.3,
+                ease: "power2.out",
+                overwrite: true,
+                scrollTrigger: {
+                    trigger: "body",
+                    start: "top top",
+                    end: "200px",
+                    scrub: true,
+                    onUpdate: (self) => {
+                        if (self.progress > 0) {
+                            navbar.classList.add('bg-paper/60', 'backdrop-blur-xl', 'border-black/10');
+                            navbar.classList.remove('bg-transparent', 'border-transparent');
+                        } else {
+                            navbar.classList.remove('bg-paper/60', 'backdrop-blur-xl', 'border-black/10');
+                            navbar.classList.add('bg-transparent', 'border-transparent');
+                        }
+                    }
+                }
+            });
+
+            // Magnetic Buttons
+            const magneticButtons = document.querySelectorAll('.cta-button');
+            magneticButtons.forEach(btn => {
+                let innerText = btn.querySelector('span:last-child'); // The actual text span
+                btn.addEventListener('mousemove', (e) => {
+                    const rect = btn.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+
+                    const moveX = (x - centerX) * 0.2;
+                    const moveY = (y - centerY) * 0.2;
+
+                    gsap.to(innerText, {
+                        x: moveX,
+                        y: moveY,
+                        duration: 0.5,
+                        ease: "power3.out"
+                    });
+                    gsap.to(btn, {
+                        scale: 1.03,
+                        duration: 0.3,
+                        ease: "power2.out"
+                    });
+                });
+
+                btn.addEventListener('mouseleave', () => {
+                    gsap.to(innerText, {
+                        x: 0,
+                        y: 0,
+                        duration: 0.5,
+                        ease: "elastic.out(1, 0.5)"
+                    });
+                    gsap.to(btn, {
+                        scale: 1,
+                        duration: 0.5,
+                        ease: "elastic.out(1, 0.5)"
+                    });
+                });
+            });
+
+            // Hero Section Animations
+            gsap.fromTo(".hero-text-reveal",
+                { y: 40, opacity: 0 },
+                { y: 0, opacity: 1, stagger: 0.08, duration: 1.2, ease: "power3.out" }
+            );
+
+            // Executive Summary Reveal
+            gsap.from(".exec-summary-reveal > *", {
+                opacity: 0,
+                y: 50,
+                stagger: 0.1,
+                scrollTrigger: {
+                    trigger: "#executive-summary",
+                    start: "top 80%",
+                    toggleActions: "play none none reverse"
+                }
+            });
+
+            // Problem Section Reveals (Cards)
+            gsap.from(".problem-heading-reveal", {
+                opacity: 0,
+                y: 50,
+                scrollTrigger: {
+                    trigger: "#problems",
+                    start: "top 80%",
+                    toggleActions: "play none none reverse"
+                }
+            });
+            gsap.from(".problem-card", {
+                opacity: 0,
+                y: 50,
+                stagger: 0.15,
+                scrollTrigger: {
+                    trigger: "#problems",
+                    start: "top 70%",
+                    toggleActions: "play none none reverse"
+                }
+            });
+            gsap.from(".problem-cost-reveal", {
+                opacity: 0,
+                y: 50,
+                scrollTrigger: {
+                    trigger: ".problem-cost-reveal",
+                    start: "top 80%",
+                    toggleActions: "play none none reverse"
+                }
+            });
+
+            // Card 1: Diagnostic Shuffler
+            const shufflerItems = document.querySelectorAll('.shuffler-item');
+            gsap.timeline({ repeat: -1, delay: 0.5 })
+                .to(shufflerItems[0], { opacity: 1, y: 0, duration: 0.8, ease: "back.out(1.7)" })
+                .to(shufflerItems[0], { opacity: 0, y: "100%", delay: 2, duration: 0.8, ease: "power2.in" })
+                .to(shufflerItems[1], { opacity: 1, y: 0, duration: 0.8, ease: "back.out(1.7)" }, "-=0.5")
+                .to(shufflerItems[1], { opacity: 0, y: "100%", delay: 2, duration: 0.8, ease: "power2.in" })
+                .to(shufflerItems[2], { opacity: 1, y: 0, duration: 0.8, ease: "back.out(1.7)" }, "-=0.5")
+                .to(shufflerItems[2], { opacity: 0, y: "100%", delay: 2, duration: 0.8, ease: "power2.in" });
+
+            // Card 2: Telemetry Typewriter
+            const telemetryOutput = document.getElementById('telemetry-output');
+            const telemetryCursor = document.getElementById('telemetry-cursor');
+            const messages = [
+                "17,421 views... 5 likes... 0 conversions...",
+                "10,892 views... 7 likes... 0 downloads...",
+                "8,543 views... 2 likes... 0 signups...",
+                "12,110 views... 9 likes... 0 click-throughs..."
+            ];
+            let messageIndex = 0;
+            let charIndex = 0;
+
+            function typeWriter() {
+                if (charIndex < messages[messageIndex].length) {
+                    telemetryOutput.textContent += messages[messageIndex].charAt(charIndex);
+                    charIndex++;
+                    setTimeout(typeWriter, 50); // Typing speed
+                } else {
+                    setTimeout(() => {
+                        telemetryOutput.textContent = '';
+                        charIndex = 0;
+                        messageIndex = (messageIndex + 1) % messages.length;
+                        typeWriter();
+                    }, 2000); // Pause before erasing and typing next message
+                }
+            }
+
+            ScrollTrigger.create({
+                trigger: "#telemetry-output",
+                start: "top 70%",
+                onEnter: () => typeWriter(),
+                once: true
+            });
+
+            // Card 3: Cursor Protocol Scheduler
+            const cursorSvg = document.getElementById('animated-cursor');
+            const dayCells = document.querySelectorAll('.day-cell');
+            const numColumns = 7;
+            const cellWidth = 100 / numColumns; // Approximate percentage width
+
+            gsap.to(cursorSvg, {
+                motionPath: {
+                    path: [
+                        { x: 10, y: 60 },
+                        { x: 30, y: 40 },
+                        { x: 50, y: 70 },
+                        { x: 70, y: 30 },
+                        { x: 90, y: 80 },
+                        { x: 10, y: 20 },
+                        { x: 80, y:50 },
+                        { x: 20, y:90 },
+                    ],
+                    curviness: 1.25
+                },
+                duration: 10,
+                repeat: -1,
+                yoyo: true,
+                ease: "power1.inOut",
+                scrollTrigger: {
+                    trigger: cursorSvg,
+                    start: "top 70%",
+                    toggleActions: "play pause resume reverse"
+                }
+            });
+
+            // Philosophy Section Parallax & Text Reveal
+            gsap.to(".parallax-bg", {
+                yPercent: 30, // Move background 30% slower than scroll
+                ease: "none",
+                scrollTrigger: {
+                    trigger: "#philosophy",
+                    start: "top bottom",
+                    end: "bottom top",
+                    scrub: true,
+                }
+            });
+
+            gsap.from(".philosophy-text-1-reveal", {
+                opacity: 0,
+                y: 50,
+                scrollTrigger: {
+                    trigger: ".philosophy-text-1-reveal",
+                    start: "top 80%",
+                    toggleActions: "play none none reverse"
+                }
+            });
+
+            gsap.from(".philosophy-text-2-reveal", {
+                opacity: 0,
+                y: 50,
+                scrollTrigger: {
+                    trigger: ".philosophy-text-2-reveal",
+                    start: "top 80%",
+                    toggleActions: "play none none reverse"
+                }
+            });
+
+
+            // PROTOCOL - Sticky Stacking Archive
+            mm.add("(min-width: 768px)", () => { // Desktop animation
+                const protocolCards = gsap.utils.toArray(".protocol-card");
+
+                protocolCards.forEach((card, i) => {
+                    // Start of card stacking animation
+                    gsap.fromTo(card,
+                        { y: i === 0 ? 0 : "100%", opacity: i === 0 ? 1 : 0, scale: i === 0 ? 1 : 0.9 },
+                        {
+                            y: "0%",
+                            opacity: 1,
+                            scale: 1,
+                            ease: "power2.inOut",
+                            scrollTrigger: {
+                                trigger: `#protocol-section`,
+                                start: () => `top top+=${i * window.innerHeight}`,
+                                end: () => `+=${window.innerHeight}`, // Each card lasts for 100vh
+                                scrub: 0.5,
+                                pin: true,
+                                pinSpacing: false, // Prevents adding padding to the wrapper
+                                invalidateOnRefresh: true,
+                            }
+                        }
+                    );
+
+                    // Animation for the SVG inside the card
+                    if (i === 0) { // SVG 1: Rotating geometric motif
+                        gsap.to(card.querySelector('.protocol-svg-1'), {
+                            rotation: 360,
+                            duration: 10,
+                            ease: "none",
+                            repeat: -1,
+                            scrollTrigger: {
+                                trigger: card,
+                                start: "top bottom",
+                                end: "bottom top",
+                                toggleActions: "play pause resume reset"
+                            }
+                        });
+                    } else if (i === 1) { // SVG 2: Scanning horizontal laser-line
+                        const rect = card.querySelector('.protocol-svg-2 rect');
+                        const circle1 = card.querySelector('.protocol-svg-2 circle:nth-child(2)');
+                        const circle2 = card.querySelector('.protocol-svg-2 circle:nth-child(3)');
+                        gsap.timeline({
+                            repeat: -1,
+                            yoyo: true,
+                            ease: "power1.inOut",
+                            scrollTrigger: {
+                                trigger: card,
+                                start: "top bottom",
+                                end: "bottom top",
+                                toggleActions: "play pause resume reset"
+                            }
+                        })
+                        .to(rect, { attr: { x: 5, width: 90 }, duration: 2 })
+                        .to(rect, { attr: { x: 10, width: 80 }, duration: 2 })
+                        .to(circle1, { attr: { cx: 85 }, duration: 2 }, 0)
+                        .to(circle2, { attr: { cx: 15 }, duration: 2 }, 0);
+
+                    } else if (i === 2) { // SVG 3: Pulsing waveform
+                        const path = card.querySelector('.protocol-svg-3 path');
+                        gsap.to(path, {
+                            attr: { d: "M10 50 C 30 70, 70 30, 90 50 S 110 70, 90 50" }, // Morph to new shape
+                            duration: 1.5,
+                            ease: "power1.inOut",
+                            repeat: -1,
+                            yoyo: true,
+                            scrollTrigger: {
+                                trigger: card,
+                                start: "top bottom",
+                                end: "bottom top",
+                                toggleActions: "play pause resume reset"
+                            }
+                        });
+                    }
+
+                    // Animate previous card
+                    if (i > 0) {
+                        const prevCard = protocolCards[i - 1];
+                        ScrollTrigger.create({
+                            trigger: `#protocol-section`,
+                            start: () => `top top+=${i * window.innerHeight}`,
+                            end: () => `top top+=${i * window.innerHeight + 100}`, // Small transition duration
+                            scrub: true,
+                            animation: gsap.to(prevCard, {
+                                scale: 0.9,
+                                filter: 'blur(20px)',
+                                opacity: 0.5,
+                                ease: "power2.inOut",
+                                zIndex: protocolCards.length - 1 - i // Lower z-index as it fades
+                            })
+                        });
+                    }
+                });
+
+                // Reset filter property on cards to allow blur animation
+                gsap.set(".protocol-card", { filter: "blur(0px)" });
+            });
+
+
+            mm.add("(max-width: 767px)", () => { // Mobile animation (simple fade-in)
+                gsap.from(".protocol-card", {
+                    opacity: 0,
+                    y: 50,
+                    stagger: 0.15,
+                    scrollTrigger: {
+                        trigger: "#protocol-section",
+                        start: "top 80%",
+                        toggleActions: "play none none reverse"
+                    }
+                });
+            });
+
+
+            // Case Study Reveals
+            gsap.from(".case-study-heading-reveal", {
+                opacity: 0,
+                y: 50,
+                scrollTrigger: {
+                    trigger: "#case-study",
+                    start: "top 80%",
+                    toggleActions: "play none none reverse"
+                }
+            });
+            gsap.from(".case-study-content-reveal", {
+                opacity: 0,
+                x: -50,
+                duration: 1,
+                scrollTrigger: {
+                    trigger: "#case-study",
+                    start: "top 70%",
+                    toggleActions: "play none none reverse"
+                }
+            });
+            gsap.from(".case-study-image-reveal", {
+                opacity: 0,
+                x: 50,
+                duration: 1,
+                scrollTrigger: {
+                    trigger: "#case-study",
+                    start: "top 70%",
+                    toggleActions: "play none none reverse"
+                }
+            });
+            gsap.from(".quote-reveal", {
+                opacity: 0,
+                y: 50,
+                scrollTrigger: {
+                    trigger: ".quote-reveal",
+                    start: "top 80%",
+                    toggleActions: "play none none reverse"
+                }
+            });
+
+
+            // Pricing Reveals
+            gsap.from(".pricing-heading-reveal", {
+                opacity: 0,
+                y: 50,
+                scrollTrigger: {
+                    trigger: "#pricing",
+                    start: "top 80%",
+                    toggleActions: "play none none reverse"
+                }
+            });
+            gsap.from(".pricing-reveal-item", {
+                opacity: 0,
+                y: 50,
+                stagger: 0.15,
+                scrollTrigger: {
+                    trigger: "#pricing",
+                    start: "top 70%",
+                    toggleActions: "play none none reverse"
+                }
+            });
+            gsap.from(".pricing-guarantee-reveal", {
+                opacity: 0,
+                y: 50,
+                scrollTrigger: {
+                    trigger: ".pricing-guarantee-reveal",
+                    start: "top 80%",
+                    toggleActions: "play none none reverse"
+                }
+            });
+            gsap.from(".pricing-cta-reveal", {
+                opacity: 0,
+                y: 50,
+                scrollTrigger: {
+                    trigger: ".pricing-cta-reveal",
+                    start: "top 90%",
+                    toggleActions: "play none none reverse"
+                }
+            });
+
+            // Footer Reveal
+            gsap.from(".footer-reveal", {
+                opacity: 0,
+                y: 50,
+                scrollTrigger: {
+                    trigger: "#next-steps",
+                    start: "top 90%",
+                    toggleActions: "play none none reverse"
+                }
+            });
+
+        }); // End gsap.context()
+
+        // Clean up ScrollTriggers on page unload
+        window.addEventListener("beforeunload", () => ctx.revert());
+
+    </script>
+</body>
+</html>

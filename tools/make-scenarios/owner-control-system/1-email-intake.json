@@ -1,0 +1,263 @@
+{
+  "name": "Owner Control - Email Intake Pipeline",
+  "flow": [
+    {
+      "id": 1,
+      "module": "google-email:TriggerNewEmail",
+      "version": 2,
+      "parameters": {
+        "account": null
+      },
+      "mapper": {
+        "folder": "INBOX",
+        "markAsRead": true,
+        "maxResults": 10
+      },
+      "metadata": {
+        "designer": {
+          "x": 0,
+          "y": 0
+        },
+        "restore": {},
+        "expect": [
+          {
+            "name": "folder",
+            "type": "text",
+            "label": "Folder"
+          }
+        ]
+      }
+    },
+    {
+      "id": 2,
+      "module": "builtin:BasicRouter",
+      "version": 1,
+      "parameters": {},
+      "mapper": null,
+      "metadata": {
+        "designer": {
+          "x": 300,
+          "y": 0
+        }
+      },
+      "routes": [
+        {
+          "flow": [
+            {
+              "id": 3,
+              "module": "builtin:BasicFilter",
+              "version": 1,
+              "parameters": {},
+              "mapper": {
+                "conditions": [
+                  [
+                    {
+                      "a": "{{1.attachments}}",
+                      "b": "0",
+                      "o": "number:notequal"
+                    }
+                  ]
+                ]
+              },
+              "metadata": {
+                "designer": {
+                  "x": 600,
+                  "y": -150
+                },
+                "label": "Has Attachments"
+              }
+            },
+            {
+              "id": 4,
+              "module": "google-email:ActionIterateAttachments",
+              "version": 2,
+              "parameters": {
+                "account": null
+              },
+              "mapper": {
+                "messageId": "{{1.id}}"
+              },
+              "metadata": {
+                "designer": {
+                  "x": 900,
+                  "y": -150
+                },
+                "label": "Iterate Attachments"
+              }
+            },
+            {
+              "id": 5,
+              "module": "google-drive:ActionUploadAFile",
+              "version": 2,
+              "parameters": {
+                "account": null
+              },
+              "mapper": {
+                "folderId": "",
+                "name": "{{4.fileName}}",
+                "data": "{{4.data}}",
+                "convert": false
+              },
+              "metadata": {
+                "designer": {
+                  "x": 1200,
+                  "y": -150
+                },
+                "label": "Upload to Google Drive (Staging)"
+              }
+            },
+            {
+              "id": 6,
+              "module": "util:TextParser:Match",
+              "version": 1,
+              "parameters": {},
+              "mapper": {
+                "pattern": "([\\s\\S]*)",
+                "text": "{{5.content}}",
+                "global": false
+              },
+              "metadata": {
+                "designer": {
+                  "x": 1500,
+                  "y": -150
+                },
+                "label": "Parse File Content"
+              }
+            },
+            {
+              "id": 7,
+              "module": "datastore:ActionAddRecord",
+              "version": 1,
+              "parameters": {
+                "dataStore": null
+              },
+              "mapper": {
+                "source": "email_attachment",
+                "filename": "{{4.fileName}}",
+                "content": "{{6.array}}",
+                "sender": "{{1.from.address}}",
+                "subject": "{{1.subject}}",
+                "received_date": "{{1.date}}",
+                "drive_file_id": "{{5.id}}",
+                "processed": false
+              },
+              "metadata": {
+                "designer": {
+                  "x": 1800,
+                  "y": -150
+                },
+                "label": "Store in Data Store (Staging)"
+              }
+            }
+          ]
+        },
+        {
+          "flow": [
+            {
+              "id": 8,
+              "module": "builtin:BasicFilter",
+              "version": 1,
+              "parameters": {},
+              "mapper": {
+                "conditions": [
+                  [
+                    {
+                      "a": "{{1.textPlain}}",
+                      "b": "https?://",
+                      "o": "text:matches"
+                    }
+                  ]
+                ]
+              },
+              "metadata": {
+                "designer": {
+                  "x": 600,
+                  "y": 150
+                },
+                "label": "Has Links"
+              }
+            },
+            {
+              "id": 9,
+              "module": "util:TextParser:Match",
+              "version": 1,
+              "parameters": {},
+              "mapper": {
+                "pattern": "(https?://[^\\s]+)",
+                "text": "{{1.textPlain}}",
+                "global": true
+              },
+              "metadata": {
+                "designer": {
+                  "x": 900,
+                  "y": 150
+                },
+                "label": "Extract URLs"
+              }
+            },
+            {
+              "id": 10,
+              "module": "http:ActionGetAFile",
+              "version": 3,
+              "parameters": {},
+              "mapper": {
+                "url": "{{9.array}}",
+                "method": "GET",
+                "shareCookies": false
+              },
+              "metadata": {
+                "designer": {
+                  "x": 1200,
+                  "y": 150
+                },
+                "label": "Fetch Linked Content"
+              }
+            },
+            {
+              "id": 11,
+              "module": "datastore:ActionAddRecord",
+              "version": 1,
+              "parameters": {
+                "dataStore": null
+              },
+              "mapper": {
+                "source": "email_link",
+                "filename": "{{9.array}}",
+                "content": "{{10.data}}",
+                "sender": "{{1.from.address}}",
+                "subject": "{{1.subject}}",
+                "received_date": "{{1.date}}",
+                "drive_file_id": "",
+                "processed": false
+              },
+              "metadata": {
+                "designer": {
+                  "x": 1500,
+                  "y": 150
+                },
+                "label": "Store in Data Store (Staging)"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "instant": false,
+    "version": 1,
+    "scenario": {
+      "roundtrips": 1,
+      "maxErrors": 3,
+      "autoCommit": true,
+      "autoCommitTriggerLast": true,
+      "sequential": false,
+      "confidential": false,
+      "dataloss": false,
+      "dlq": false
+    },
+    "designer": {
+      "orphans": []
+    }
+  }
+}

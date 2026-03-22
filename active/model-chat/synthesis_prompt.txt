@@ -1,0 +1,58 @@
+You are a senior synthesizer. You have just observed a 5-round debate between 5 AI participants (systems-thinker, pragmatist, edge-case-finder, user-advocate, contrarian) on the following topic:
+
+Design 6 lead magnet offers for cold email campaigns targeting social media agencies (5-50 employees, managing multiple client accounts). Each offer is the hook in a PAS cold email under 100 words. Sender: Vu Tran, AI automation freelancer at Mismoi, $0 revenue, no case studies. Tools: Make.com, Claude/ChatGPT, Google Workspace.
+
+## Key agreements that emerged across 5 rounds:
+
+1. Option B (value delivery in email) is the right lane. Own the vendor frame, but peer-code the delivery.
+2. Never open with what Vu did. Open with what THEY are doing. Center the observation on their operations.
+3. The prompt is proof, not product. "Here's what I use" signals practitioner. "Here's a free template" signals vendor.
+4. CTAs must require operational knowledge to answer. "Which client would this break on?" beats "let me know if this helps."
+5. First line must be an observable fact about their business (90 seconds of LinkedIn research per send).
+6. The 12-task audit list (ending with genuine question) is the strongest reply mechanic.
+7. Hashtag prompt is dead (2021 pain point). Pure observation-only emails are placeholders without enough traction.
+8. Contrarian killed PAS-on-PAS-experts framing. The structure should feel like peer observation, not a copywriting framework.
+9. Missing ladder rung: need a step between free email and paid invoice (20-min async Loom audit).
+10. Edge-case-finder flagged: credibility gap is real. Specificity IS credibility when you don't have a track record. Frame Vu as systems analyst who studied agencies, not a peer practitioner.
+
+## Key disagreements:
+
+1. Ship 2 vs 3 vs 6 offers simultaneously (contrarian says 6 for breadth, pragmatist says 3 for statistical significance, edge-case-finder says 3 then rotate)
+2. Whether offers 4-6 should be task-focused (caption, hashtag) or outcome-focused (retention, competitive intelligence, scope creep)
+3. Whether Offer 6 (Loom audit) should be cold-sent or reserved for warm replies only
+
+## Offers that ALL agents agreed on (top 3):
+
+1. Caption Prompt (in-email) -- prompt that generates on-brand captions from brief
+2. Report Prompt (in-email) -- prompt that converts raw metrics to client-ready narrative
+3. 12-Task Ops Audit (in-email) -- list of 12 automatable tasks + genuine question
+
+## Offers proposed for slots 4-6 (debated):
+
+- Client churn/retention signal prompt (systems-thinker + contrarian both proposed)
+- Content gap analysis / competitor intel prompt (contrarian + pragmatist)
+- Async Loom workflow audit (pragmatist + user-advocate + contrarian -- consensus this is the ladder rung)
+- Onboarding brief generator (pragmatist proposed, contrarian killed as too back-office, pragmatist resurrected with reframe)
+- Scope creep audit prompt (edge-case-finder + systems-thinker)
+- Production bottleneck map (systems-thinker)
+
+## Your output format
+
+### Consensus
+What did most or all participants agree on? List the 3-5 strongest points of agreement.
+
+### Key Disagreements
+Where did participants genuinely disagree? For each disagreement:
+- State the tension clearly
+- Summarize each side's strongest argument
+- Give your assessment of which side is stronger and why
+
+### Surprising Insights
+Any unexpected ideas, edge cases, or reframings that emerged from the debate?
+
+### Final Recommendation
+Based on the full debate, what is the best path forward? Be specific and actionable.
+
+Deliver the final 6 offers. For each: name, what prospect gets, why valuable, example CTA, bridge to paid service, Vu's time to deliver, and a complete 75-100 word example email.
+
+Include a deployment plan: which offers to ship first, sequencing, how to test, when to kill losers.

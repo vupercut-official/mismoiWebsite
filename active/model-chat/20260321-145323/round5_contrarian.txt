@@ -1,0 +1,15 @@
+[contrarian]: I was right to drop the reactivation sequence for the wrong reason. The positioning problem isn't unsolvable -- "I wrote this with AI in 20 minutes; the automation does it for every new lead automatically" bridges to the system, not the copywriter. The real problem is it doesn't demonstrate Vu knows their business. It could have been written for anyone.
+
+Diagnostic offers beat tool gifts cold because specificity IS the credibility. The reactivation sequence stays off the cold opener.
+
+Now, answering my own question nobody else did: the decision threshold.
+
+- 20 emails, under 2 replies = messaging problem. Rewrite offer 1.
+- 20 emails, 2-5 replies, 0 sprint sales = bridge problem. The CTA isn't landing. Reframe to "I'll set this up for $197, 48 hours, you own it" -- cleaner, more concrete.
+- 20 emails, 5+ replies, 1+ sprint sales = the system works. Scale to 100.
+
+On productizing the sprint before selling it: contrarian-me from round 4 is right, but the timing is wrong as a gate. Build the Make.com scenario WHILE writing the emails, not before. One week, parallel tracks. Don't let "productize first" become the reason nothing ships.
+
+Final architecture, full credit to this room: speed test (disclosed) or profile observation routes the opener. $197 sprint is the bridge. Retainer is the business. Decision threshold gates iteration. 
+
+Everything else is a planning ritual. Send 20 emails.

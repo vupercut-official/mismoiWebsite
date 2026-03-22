@@ -33,33 +33,25 @@
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    html { scroll-behavior: smooth; font-size: 1.6rem; }
+    html { scroll-behavior: smooth; font-size: 1rem; }
+    @media (min-width: 768px) { html { font-size: 1.6rem; } }
 
     body {
       font-family: 'Outfit', sans-serif;
       background-color: #FDFBF7;
       color: #2C2C2C;
       overflow-x: hidden;
-      line-height: 51px;
-    }
-
-    .sand-lines h1,
-    .sand-lines h2,
-    .sand-lines h3,
-    .sand-lines p,
-    .sand-lines span,
-    .sand-lines a {
-      line-height: 51px;
+      line-height: 1.6;
     }
 
     .sand-lines h1,
     .sand-lines .text-6xl {
-      line-height: 102px;
+      line-height: 1.1;
     }
 
     .sand-lines h2,
     .sand-lines .text-5xl {
-      line-height: 102px;
+      line-height: 1.1;
     }
 
     .zen-transition {
@@ -91,11 +83,24 @@
       background-image: repeating-linear-gradient(
         0deg,
         transparent,
-        transparent 50px,
-        rgba(74, 93, 79, 0.12) 50px,
-        rgba(74, 93, 79, 0.12) 51px
+        transparent 31px,
+        rgba(74, 93, 79, 0.08) 31px,
+        rgba(74, 93, 79, 0.08) 32px
       );
-      background-size: 100% 51px;
+      background-size: 100% 32px;
+    }
+
+    @media (min-width: 768px) {
+      .sand-lines {
+        background-image: repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 50px,
+          rgba(74, 93, 79, 0.12) 50px,
+          rgba(74, 93, 79, 0.12) 51px
+        );
+        background-size: 100% 51px;
+      }
     }
 
     .grain-overlay {
@@ -242,7 +247,9 @@
     }
 
     @media (max-width: 768px) {
-      .max-w-\[80vw\] { max-width: 90vw; padding-left: 1rem; padding-right: 1rem; }
+      .max-w-\[80vw\] { max-width: 90vw; padding-left: 1.25rem; padding-right: 1.25rem; }
+      h1 { font-size: 2.25rem !important; }
+      h2 { font-size: 1.75rem !important; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -273,7 +280,7 @@
         <a href="#approach" class="text-sm text-warm-gray hover:text-charcoal zen-transition font-medium">Approach</a>
         <a href="#investment" class="text-sm text-warm-gray hover:text-charcoal zen-transition font-medium">Investment</a>
         <a href="#faq" class="text-sm text-warm-gray hover:text-charcoal zen-transition font-medium">FAQ</a>
-        <a href="https://stripe.com/PLACEHOLDER" class="cta-btn bg-moss text-cream rounded-full px-5 py-2.5 text-sm font-medium flex items-center gap-2.5 hover:bg-moss-deep zen-transition active:scale-[0.98]">
+        <a href="https://invoice.stripe.com/i/acct_1T9xud3qgIDdNkQS/live_YWNjdF8xVDl4dWQzcWdJRGROa1FTLF9VQmVRMUxnZGNnMG1RNVY4T0NicXV3ZFRWN0VuTjI3LDE2NDYwODA2NA0200SAptaBD3?s=db" class="cta-btn bg-moss text-cream rounded-full px-5 py-2.5 text-sm font-medium flex items-center gap-2.5 hover:bg-moss-deep zen-transition active:scale-[0.98]">
           <span>Approve Proposal</span>
           <span class="arrow-wrap w-6 h-6 rounded-full bg-white/15 flex items-center justify-center zen-transition">
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 9.5L9.5 2.5M9.5 2.5H4M9.5 2.5V8"/></svg>
@@ -293,7 +300,7 @@
     <a href="#approach" class="menu-link font-display text-3xl text-charcoal font-medium" onclick="toggleMenu()">Approach</a>
     <a href="#investment" class="menu-link font-display text-3xl text-charcoal font-medium" onclick="toggleMenu()">Investment</a>
     <a href="#faq" class="menu-link font-display text-3xl text-charcoal font-medium" onclick="toggleMenu()">FAQ</a>
-    <a href="https://stripe.com/PLACEHOLDER" class="menu-link cta-btn bg-moss text-cream rounded-full px-8 py-4 text-lg font-medium flex items-center gap-3 zen-transition active:scale-[0.98]" onclick="toggleMenu()">
+    <a href="https://invoice.stripe.com/i/acct_1T9xud3qgIDdNkQS/live_YWNjdF8xVDl4dWQzcWdJRGROa1FTLF9VQmVRMUxnZGNnMG1RNVY4T0NicXV3ZFRWN0VuTjI3LDE2NDYwODA2NA0200SAptaBD3?s=db" class="menu-link cta-btn bg-moss text-cream rounded-full px-8 py-4 text-lg font-medium flex items-center gap-3 zen-transition active:scale-[0.98]" onclick="toggleMenu()">
       <span>Approve Proposal</span>
       <span class="arrow-wrap w-8 h-8 rounded-full bg-white/15 flex items-center justify-center">
         <svg width="14" height="14" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 9.5L9.5 2.5M9.5 2.5H4M9.5 2.5V8"/></svg>
@@ -339,7 +346,7 @@
   </section>
 
   <!-- Summary Section -->
-  <section class="py-[128px] md:py-[224px]">
+  <section class="py-16 md:py-[160px] lg:py-[288px]">
     <div class="max-w-[80vw] mx-auto">
       <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8 items-center">
         <div class="md:col-span-6">
@@ -386,7 +393,7 @@
   </section>
 
   <!-- Problem Section -->
-  <section id="problem" class="py-[128px] md:py-[224px] bg-charcoal relative overflow-hidden">
+  <section id="problem" class="py-16 md:py-[160px] lg:py-[288px] bg-charcoal relative overflow-hidden">
     <div class="absolute inset-0 opacity-[0.03]" style="background-image: repeating-linear-gradient(0deg, transparent, transparent 24px, rgba(255,255,255,0.3) 24px, rgba(255,255,255,0.3) 25px)" aria-hidden="true"></div>
     <div class="max-w-[80vw] mx-auto relative z-10">
       <div class="mb-16">
@@ -400,7 +407,7 @@
         <!-- Problem 1 -->
         <div class="fade-up stagger-1 card-shell service-card h-full" style="border-color: rgba(255,255,255,0.08); background: rgba(255,255,255,0.03);">
           <div class="card-core p-8 h-full" style="background: #333333;">
-            <div class="flex items-center justify-between mb-6">
+            <div class="flex flex-col items-start gap-2 sm:flex-row sm:items-center sm:justify-between mb-6">
               <span class="font-display text-4xl font-bold text-moss/40 leading-none">01</span>
               <span class="text-xs font-medium text-red-400 uppercase tracking-wider">~$2-3K/mo lost</span>
             </div>
@@ -413,7 +420,7 @@
         <!-- Problem 2 -->
         <div class="fade-up stagger-2 card-shell service-card h-full" style="border-color: rgba(255,255,255,0.08); background: rgba(255,255,255,0.03);">
           <div class="card-core p-8 h-full" style="background: #333333;">
-            <div class="flex items-center justify-between mb-6">
+            <div class="flex flex-col items-start gap-2 sm:flex-row sm:items-center sm:justify-between mb-6">
               <span class="font-display text-4xl font-bold text-moss/40 leading-none">02</span>
               <span class="text-xs font-medium text-red-400 uppercase tracking-wider">87% data loss</span>
             </div>
@@ -426,7 +433,7 @@
         <!-- Problem 3 -->
         <div class="fade-up stagger-3 card-shell service-card h-full" style="border-color: rgba(255,255,255,0.08); background: rgba(255,255,255,0.03);">
           <div class="card-core p-8 h-full" style="background: #333333;">
-            <div class="flex items-center justify-between mb-6">
+            <div class="flex flex-col items-start gap-2 sm:flex-row sm:items-center sm:justify-between mb-6">
               <span class="font-display text-4xl font-bold text-moss/40 leading-none">03</span>
               <span class="text-xs font-medium text-red-400 uppercase tracking-wider">Hours lost daily</span>
             </div>
@@ -441,10 +448,10 @@
   </section>
 
   <!-- Approach Section -->
-  <section id="approach" class="py-[128px] md:py-[224px]">
+  <section id="approach" class="py-16 md:py-[160px] lg:py-[288px]">
     <div class="max-w-[80vw] mx-auto">
       <div class="mb-16 max-w-2xl">
-        <span class="fade-up inline-block rounded-full px-5 py-2 text-[15px] uppercase tracking-[0.2em] font-medium text-moss border border-moss/20 bg-[#EEEBe4] mb-8">The System</span>
+        <span class="fade-up inline-block rounded-full px-5 py-2 text-[15px] uppercase tracking-[0.2em] font-medium text-moss border border-moss/20 bg-[#EEEBe4] mb-8">The Solution</span>
         <h2 class="fade-up stagger-1 font-display text-3xl md:text-5xl tracking-tighter leading-none text-charcoal font-bold mb-8">
           Three layers. Fully automated.
         </h2>
@@ -458,7 +465,7 @@
         <div class="fade-up stagger-1 card-shell service-card h-full">
           <div class="card-core h-full p-8 flex flex-col justify-between">
             <div>
-              <div class="flex items-center justify-between mb-5">
+              <div class="flex flex-col items-start gap-2 sm:flex-row sm:items-center sm:justify-between mb-5">
                 <span class="font-display text-4xl font-bold text-moss/25 leading-none">01</span>
                 <span class="text-xs font-medium text-moss uppercase tracking-wider">+100% lead capture</span>
               </div>
@@ -489,7 +496,7 @@
         <div class="fade-up stagger-2 card-shell service-card h-full">
           <div class="card-core h-full p-8 flex flex-col justify-between">
             <div>
-              <div class="flex items-center justify-between mb-5">
+              <div class="flex flex-col items-start gap-2 sm:flex-row sm:items-center sm:justify-between mb-5">
                 <span class="font-display text-4xl font-bold text-moss/25 leading-none">02</span>
                 <span class="text-xs font-medium text-moss uppercase tracking-wider">AI-powered scoring</span>
               </div>
@@ -520,7 +527,7 @@
         <div class="fade-up stagger-3 card-shell service-card h-full">
           <div class="card-core h-full p-8 flex flex-col justify-between">
             <div>
-              <div class="flex items-center justify-between mb-5">
+              <div class="flex flex-col items-start gap-2 sm:flex-row sm:items-center sm:justify-between mb-5">
                 <span class="font-display text-4xl font-bold text-moss/25 leading-none">03</span>
                 <span class="text-xs font-medium text-moss uppercase tracking-wider">No lead forgotten</span>
               </div>
@@ -552,7 +559,7 @@
   </section>
 
   <!-- How It Works Section -->
-  <section class="py-[128px] md:py-[224px] border-t border-charcoal/8">
+  <section class="py-16 md:py-[160px] lg:py-[288px] border-t border-charcoal/8">
     <div class="max-w-[80vw] mx-auto">
       <div class="mb-20 max-w-2xl">
         <span class="fade-up inline-block rounded-full px-5 py-2 text-[15px] uppercase tracking-[0.2em] font-medium text-moss border border-moss/20 bg-[#EEEBe4] mb-8">Timeline</span>
@@ -617,7 +624,7 @@
   </section>
 
   <!-- Investment Section -->
-  <section id="investment" class="py-[128px] md:py-[224px] border-t border-charcoal/8">
+  <section id="investment" class="py-16 md:py-[160px] lg:py-[288px] border-t border-charcoal/8">
     <div class="max-w-[80vw] mx-auto">
       <div class="mb-16 max-w-2xl">
         <span class="fade-up inline-block rounded-full px-5 py-2 text-[15px] uppercase tracking-[0.2em] font-medium text-moss border border-moss/20 bg-[#EEEBe4] mb-8">Investment</span>
@@ -674,7 +681,7 @@
         <div class="fade-up stagger-2 card-shell service-card h-full">
           <div class="card-core p-8 md:p-10 h-full">
             <div class="flex items-center justify-between mb-8">
-              <span class="text-xs uppercase tracking-[0.15em] text-warm-gray font-semibold">Monthly Retainer</span>
+              <span class="text-xs uppercase tracking-[0.15em] text-warm-gray font-semibold">Peace of Mind Retainer</span>
               <span class="font-display text-3xl md:text-4xl font-bold text-charcoal tracking-tighter">$197<span class="text-lg text-warm-gray font-normal">/mo</span></span>
             </div>
             <ul class="space-y-4">
@@ -732,7 +739,7 @@
   </section>
 
   <!-- FAQ Section -->
-  <section id="faq" class="py-[128px] md:py-[224px] border-t border-charcoal/8">
+  <section id="faq" class="py-16 md:py-[128px] lg:py-[224px] border-t border-charcoal/8">
     <div class="max-w-[80vw] mx-auto">
       <div class="mb-16">
         <span class="fade-up inline-block rounded-full px-5 py-2 text-[15px] uppercase tracking-[0.2em] font-medium text-moss border border-moss/20 bg-[#EEEBe4] mb-8">FAQ</span>
@@ -762,7 +769,7 @@
           <div class="card-core p-8 h-full">
             <h3 class="font-display text-base font-semibold text-charcoal tracking-tight mb-3">Can the AI handle Arabic and English?</h3>
             <p class="text-sm text-warm-gray leading-relaxed">
-              Yes. Claude AI supports both Arabic and English natively. We'll set up the qualification scripts in both languages so leads in Dubai get messaged in their preferred language automatically.
+              Yes. Claude AI supports both Arabic and English natively. If that's how your leads prefer to communicate, we can set up the scoring logic to handle both languages so nothing gets lost in translation.
             </p>
           </div>
         </div>
@@ -770,7 +777,7 @@
           <div class="card-core p-8 h-full">
             <h3 class="font-display text-base font-semibold text-charcoal tracking-tight mb-3">What happens after the 30-day test?</h3>
             <p class="text-sm text-warm-gray leading-relaxed">
-              You get a full conversion report: qualified vs booked, WhatsApp vs IG performance, and recommendations. If you're happy, the system keeps running on the monthly retainer. If not, the guarantee covers you.
+              You get a full conversion report: qualified vs booked, WhatsApp vs IG performance, and recommendations. If you're happy, the system keeps running on the peace of mind retainer. If not, the guarantee covers you.
             </p>
           </div>
         </div>
@@ -795,7 +802,7 @@
   </section>
 
   <!-- CTA Section -->
-  <section class="py-[128px] md:py-[224px]">
+  <section class="py-16 md:py-[128px] lg:py-[224px]">
     <div class="max-w-[80vw] mx-auto">
       <div class="card-shell">
         <div class="card-core bg-charcoal relative overflow-hidden">
@@ -839,7 +846,7 @@
               </div>
               <div class="md:col-span-5 flex flex-col items-center md:items-end gap-6">
                 <div class="fade-up stagger-3">
-                  <a href="https://stripe.com/PLACEHOLDER" class="cta-btn inline-flex items-center gap-3 bg-moss text-cream rounded-full px-8 py-4 md:px-10 md:py-5 text-base md:text-lg font-medium hover:bg-moss-deep zen-transition active:scale-[0.98]">
+                  <a href="https://invoice.stripe.com/i/acct_1T9xud3qgIDdNkQS/live_YWNjdF8xVDl4dWQzcWdJRGROa1FTLF9VQmVRMUxnZGNnMG1RNVY4T0NicXV3ZFRWN0VuTjI3LDE2NDYwODA2NA0200SAptaBD3?s=db" class="cta-btn inline-flex items-center gap-3 bg-moss text-cream rounded-full px-8 py-4 md:px-10 md:py-5 text-base md:text-lg font-medium hover:bg-moss-deep zen-transition active:scale-[0.98]">
                     <span>Approve &amp; Get Started</span>
                     <span class="arrow-wrap w-8 h-8 md:w-9 md:h-9 rounded-full bg-white/15 flex items-center justify-center zen-transition">
                       <svg width="14" height="14" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 9.5L9.5 2.5M9.5 2.5H4M9.5 2.5V8"/></svg>
@@ -893,7 +900,7 @@
         <div class="md:col-span-2">
           <h4 class="text-xs uppercase tracking-[0.15em] text-charcoal font-semibold mb-4">Terms</h4>
           <div class="flex flex-col gap-3">
-            <span class="text-sm text-warm-gray">One-time setup + monthly retainer</span>
+            <span class="text-sm text-warm-gray">One-time setup + peace of mind retainer</span>
             <span class="text-sm text-warm-gray">Cancel monthly anytime</span>
             <span class="text-sm text-warm-gray">You own everything</span>
           </div>

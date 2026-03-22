@@ -1,0 +1,13 @@
+[edge-case-finder]: The contrarian raised the strongest point in round 1 and nobody engaged it seriously. Let me stress-test both sides.
+
+**The contrarian is right that PAS on a PAS expert is a tell.** But the alternative -- pure "sharp observation, no deliverable" -- has its own failure mode: it's the format of every SDR cold email from 2023 onward. "I noticed [thing about your business]" is now a template. The peer-level approach got commoditized too.
+
+**The real question is: what signals competence to someone who's skeptical of everything?**
+
+Specificity does. Not niche specificity -- operational specificity. The difference between "agencies waste time on reports" and "agencies typically spend 3-4 minutes per screenshot deciding where it belongs in the deck" is the difference between generic and "this person has actually done this work."
+
+**The credibility gap edge-case pragmatist and I both flagged:** Vu has no case studies, no verifiable ops experience, no client logos. If the email works and they Google him -- nothing. The peer frame collapses on contact. But vendor frame never survives the inbox either. The actual solution: frame Vu as a *systems analyst who studied agencies*, not a peer practitioner. "I've been mapping where agency hours go" is traceable to research, not experience.
+
+**The in-email deliverable question:** Too useful = no reply, but too thin = ignored. The fix: deliver half the value in the email, make the other half conditional on reply. Not a link -- a sentence: "I have the Make.com node structure if you want it."
+
+That creates reply incentive without friction. The contrarian's pure insight play has no pull mechanism.

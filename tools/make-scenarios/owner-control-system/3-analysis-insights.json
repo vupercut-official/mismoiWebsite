@@ -1,0 +1,220 @@
+{
+  "name": "Owner Control - Analysis & Insight Generation",
+  "flow": [
+    {
+      "id": 1,
+      "module": "builtin:BasicTrigger",
+      "version": 1,
+      "parameters": {
+        "scheduling": "daily"
+      },
+      "mapper": {},
+      "metadata": {
+        "designer": {
+          "x": 0,
+          "y": 0
+        },
+        "label": "Daily Schedule Trigger"
+      }
+    },
+    {
+      "id": 2,
+      "module": "datastore:ActionSearchRecords",
+      "version": 1,
+      "parameters": {
+        "dataStore": null
+      },
+      "mapper": {
+        "filter": [
+          {
+            "field": "processed",
+            "value": false,
+            "operator": "equal"
+          }
+        ],
+        "limit": 50
+      },
+      "metadata": {
+        "designer": {
+          "x": 300,
+          "y": 0
+        },
+        "label": "Get Unprocessed Records"
+      }
+    },
+    {
+      "id": 3,
+      "module": "builtin:BasicAggregator",
+      "version": 1,
+      "parameters": {},
+      "mapper": {
+        "value": "--- Source: {{2.source}} | File: {{2.filename}} | Date: {{2.received_date}} ---\n{{2.content}}\n\n"
+      },
+      "metadata": {
+        "designer": {
+          "x": 600,
+          "y": 0
+        },
+        "label": "Aggregate All Content"
+      }
+    },
+    {
+      "id": 4,
+      "module": "openai:CreateChatCompletion",
+      "version": 2,
+      "parameters": {
+        "account": null
+      },
+      "mapper": {
+        "model": "gpt-4",
+        "messages": [
+          {
+            "role": "system",
+            "content": "You are an executive analyst for a business owner. Your job is to analyze reports, documents, and data from multiple sources and produce structured owner-level insights.\n\nAlways respond in this exact JSON format:\n{\n  \"executive_summary\": \"2-3 sentence overview of key findings\",\n  \"key_metrics\": [\n    {\"metric\": \"name\", \"value\": \"current value\", \"trend\": \"up/down/stable\", \"note\": \"context\"}\n  ],\n  \"action_items\": [\n    {\"priority\": \"high/medium/low\", \"action\": \"what to do\", \"reason\": \"why it matters\", \"deadline_suggestion\": \"when\"}\n  ],\n  \"risks\": [\n    {\"risk\": \"description\", \"severity\": \"high/medium/low\", \"mitigation\": \"suggested action\"}\n  ],\n  \"opportunities\": [\n    {\"opportunity\": \"description\", \"potential_impact\": \"high/medium/low\", \"next_step\": \"what to do\"}\n  ]\n}"
+          },
+          {
+            "role": "user",
+            "content": "Analyze the following reports and data sources. Extract key insights, flag risks, identify opportunities, and recommend owner-level actions.\n\n{{3.result}}"
+          }
+        ],
+        "temperature": 0.3,
+        "max_tokens": 4000
+      },
+      "metadata": {
+        "designer": {
+          "x": 900,
+          "y": 0
+        },
+        "label": "AI Analysis (GPT-4)"
+      }
+    },
+    {
+      "id": 5,
+      "module": "json:ParseJSON",
+      "version": 1,
+      "parameters": {},
+      "mapper": {
+        "json": "{{4.choices[0].message.content}}"
+      },
+      "metadata": {
+        "designer": {
+          "x": 1200,
+          "y": 0
+        },
+        "label": "Parse AI Response"
+      }
+    },
+    {
+      "id": 6,
+      "module": "builtin:BasicRouter",
+      "version": 1,
+      "parameters": {},
+      "mapper": null,
+      "metadata": {
+        "designer": {
+          "x": 1500,
+          "y": 0
+        }
+      },
+      "routes": [
+        {
+          "flow": [
+            {
+              "id": 7,
+              "module": "google-email:ActionSendAnEmail",
+              "version": 2,
+              "parameters": {
+                "account": null
+              },
+              "mapper": {
+                "to": "",
+                "subject": "Owner Insight Report - {{formatDate(now; \"YYYY-MM-DD\")}}",
+                "htmlContent": "<h2>Executive Summary</h2><p>{{5.executive_summary}}</p><h2>Key Metrics</h2><ul>{{join(5.key_metrics; \"<li><b>\" + item.metric + \":</b> \" + item.value + \" (\" + item.trend + \") - \" + item.note + \"</li>\")}}</ul><h2>Action Items</h2><ul>{{join(5.action_items; \"<li>[\" + item.priority + \"] \" + item.action + \" - \" + item.reason + \"</li>\")}}</ul><h2>Risks</h2><ul>{{join(5.risks; \"<li>[\" + item.severity + \"] \" + item.risk + \" - Mitigation: \" + item.mitigation + \"</li>\")}}</ul><h2>Opportunities</h2><ul>{{join(5.opportunities; \"<li>\" + item.opportunity + \" (\" + item.potential_impact + \") - Next: \" + item.next_step + \"</li>\")}}</ul>"
+              },
+              "metadata": {
+                "designer": {
+                  "x": 1800,
+                  "y": -150
+                },
+                "label": "Email Summary to Owner"
+              }
+            }
+          ]
+        },
+        {
+          "flow": [
+            {
+              "id": 8,
+              "module": "google-sheets:ActionAddRow",
+              "version": 4,
+              "parameters": {
+                "account": null
+              },
+              "mapper": {
+                "spreadsheetId": "",
+                "sheetId": "",
+                "values": {
+                  "date": "{{formatDate(now; \"YYYY-MM-DD\")}}",
+                  "executive_summary": "{{5.executive_summary}}",
+                  "action_items_count": "{{length(5.action_items)}}",
+                  "high_priority_actions": "{{length(filter(5.action_items; \"priority\"; \"high\"))}}",
+                  "risks_count": "{{length(5.risks)}}",
+                  "opportunities_count": "{{length(5.opportunities)}}",
+                  "full_json": "{{4.choices[0].message.content}}"
+                }
+              },
+              "metadata": {
+                "designer": {
+                  "x": 1800,
+                  "y": 0
+                },
+                "label": "Log to Dashboard Sheet"
+              }
+            }
+          ]
+        },
+        {
+          "flow": [
+            {
+              "id": 9,
+              "module": "datastore:ActionUpdateRecord",
+              "version": 1,
+              "parameters": {
+                "dataStore": null
+              },
+              "mapper": {
+                "key": "{{2.key}}",
+                "processed": true,
+                "processed_date": "{{now}}"
+              },
+              "metadata": {
+                "designer": {
+                  "x": 1800,
+                  "y": 150
+                },
+                "label": "Mark Records as Processed"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "instant": false,
+    "version": 1,
+    "scenario": {
+      "roundtrips": 1,
+      "maxErrors": 3,
+      "autoCommit": true,
+      "autoCommitTriggerLast": true,
+      "sequential": false,
+      "confidential": false,
+      "dataloss": false,
+      "dlq": false
+    },
+    "designer": {
+      "orphans": []
+    }
+  }
+}

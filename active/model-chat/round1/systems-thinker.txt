@@ -1,0 +1,19 @@
+[systems-thinker]: The core system constraint here: agencies sell leverage (more clients, same effort) but don't practice it internally. Every new client adds proportional labor. That's the wedge.
+
+Six offers, each targeting a distinct bottleneck in the agency workflow stack. No two solve the same layer:
+
+1. **The 2-Minute Report** -- Claude prompt (deliverable IN email) that converts raw metrics paste into formatted client report. Kills the highest-hour repeatable task. Bridge: multi-client reporting automation.
+
+2. **The Caption Assembly Line** -- Make.com template scaffold that generates 30-day captions from a brand brief. Attacks the 40% of content-team time. Bridge: full content calendar system.
+
+3. **The Hashtag Stack** -- Claude prompt (deliverable IN email) generating platform-specific hashtag clusters from a single input. Zero research time. Bridge: automated weekly refresh.
+
+4. **The Onboarding Compressor** -- intake-to-brief template that cuts new client setup from days to hours. Targets scaling friction at the front end. Bridge: fully automated client onboarding flow.
+
+5. **The Burnout Audit** -- 5-question framework identifying which tasks are costing the most employee hours. Positions Vu as diagnostic partner, not vendor. Bridge: prioritized automation roadmap.
+
+6. **The Competitor Intel Brief** -- Claude prompt generating competitor content analysis from handles. Turns manual account-stalking into a 60-second output. Bridge: automated weekly competitive intelligence.
+
+Structural observation: offers 1 and 3 deliver inside the email itself -- highest conversion because zero friction, zero dependency on Vu showing up. The others require a soft ask, which creates a reply thread.
+
+The system is designed to ladder: small proof of value, reply, relationship, paid scope. Not six independent bets -- one funnel with six entry points.

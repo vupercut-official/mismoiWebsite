@@ -1,0 +1,25 @@
+[user-advocate]: The biggest UX failure I see in lead magnet cold emails: the prospect has to DO something to get value. Click a link. Fill a form. Book a call. Each step loses 60% of readers. The best offer is one where they get something useful before they even decide if they care.
+
+My principle for these 6: value in the open, ask in the close.
+
+Here's my initial slate -- 6 distinct problems, no overlap:
+
+**1. The Caption Assembly Line** (IN EMAIL)
+A Claude prompt that generates 5 on-brand caption variations per post. Paste it, use it immediately. Bridges to: full content automation.
+
+**2. The Monthly Report Skeleton** (IN EMAIL)
+5-section client report structure with AI-fill prompts per section. No template download, no form. Just copy-paste. Bridges to: automated reporting pipeline.
+
+**3. New Client Onboarding Map**
+A Make.com scenario flowchart (image or described) showing how to automate first-client-week tasks. Bridges to: building the actual workflow.
+
+**4. Hashtag Research Prompt Stack**
+3 Claude prompts that replace 45 min of manual research. Specificity = credibility here.
+
+**5. Content Calendar AI Fill**
+10-minute Google Sheets + prompt combo for a 4-week calendar per client.
+
+**6. Automation Capacity Audit**
+Personalized: "Based on X clients, here are your 3 highest-ROI tasks to automate." Requires knowing something about their business. Hardest to template but highest conversion potential.
+
+Key UX concern I'll flag for debate: offers 1 and 2 must be delivered in the email or they lose half their power. No links.

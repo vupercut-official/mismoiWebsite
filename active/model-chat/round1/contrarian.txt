@@ -1,0 +1,13 @@
+[contrarian]: The brief contradicts itself and nobody's caught it yet.
+
+"Agencies are marketing experts -- they'll recognize a pitch instantly." Then the brief says use PAS framework. PAS is the most famous copywriting formula in marketing. These people teach PAS to clients. You're going to PAS a PAS expert and call it peer-level outreach.
+
+Second assumption to kill: delivering value IN the email. The brief frames this as "zero friction." But think about what signals peer credibility vs. vendor desperation. Peers don't cold-send freebies. Vendors do. If I got an email from a senior automation consultant, it wouldn't contain a free content calendar template. It would contain one sharp observation that made me feel slightly exposed.
+
+Third: the "free" framing. For an agency owner billing $5K-$20K/month per client, "free audit" or "free template" reads as low leverage. They associate free with people who can't sell. Price anchoring -- even implied -- signals confidence.
+
+What if the strongest offers here are the ones that feel like intelligence, not gifts? A 2-sentence observation about a specific inefficiency in how agencies like theirs operate, with a question at the end. No deliverable. No template. Just: "Here's something I noticed. Does this match what you're seeing?"
+
+That's peer-level. That's what survives a 6-second email scan from someone who knows every trick.
+
+My challenge to the room: before we design 6 offers, can we agree on whether we're doing vendor outreach dressed as peer insight -- or actual peer insight? Because those are two completely different strategies.

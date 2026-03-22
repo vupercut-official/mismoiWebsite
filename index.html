@@ -1,580 +1,969 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sarah Chen - AI Lead Automation Proposal</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mismoi — AI Automation That Makes You Money</title>
+  <meta name="description" content="Mismoi builds AI automation systems for real estate agents, influencers, and sales consultants. Systems that run quietly and deliver results." />
+  <meta property="og:title" content="Mismoi — AI Automation That Makes You Money" />
+  <meta property="og:description" content="AI automation systems that grow your business. Built to run. Built to last." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Serif+JP:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cream: '#FDFBF7',
+            sand: '#F5F0E8',
+            stone: '#D4CBC0',
+            moss: '#4A5D4F',
+            'moss-deep': '#3A4A3E',
+            charcoal: '#2C2C2C',
+            'warm-gray': '#8B8279',
+          },
+          fontFamily: {
+            display: ['Outfit', 'sans-serif'],
+            serif: ['"Noto Serif JP"', 'serif'],
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    html { scroll-behavior: smooth; font-size: 1.6rem; }
 
-    <!-- Google Fonts: Inter, Playfair Display, JetBrains Mono -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital@0;1&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    body {
+      font-family: 'Outfit', sans-serif;
+      background-color: #FDFBF7;
+      color: #2C2C2C;
+      overflow-x: hidden;
+      line-height: 51px;
+    }
 
-    <!-- GSAP & ScrollTrigger -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    .sand-lines h1,
+    .sand-lines h2,
+    .sand-lines h3,
+    .sand-lines p,
+    .sand-lines span,
+    .sand-lines a {
+      line-height: 51px;
+    }
 
-    <style>
-        * {
-            font-family: 'Inter', sans-serif;
-        }
+    .sand-lines h1,
+    .sand-lines .text-6xl {
+      line-height: 102px;
+    }
 
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Inter', sans-serif;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-        }
+    .sand-lines h2,
+    .sand-lines .text-5xl {
+      line-height: 102px;
+    }
 
-        .serif-drama {
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-        }
+    .zen-transition {
+      transition: all 0.7s cubic-bezier(0.32, 0.72, 0, 1);
+    }
 
-        .mono-data {
-            font-family: 'JetBrains Mono', monospace;
-        }
+    .fade-up {
+      opacity: 0;
+      transform: translateY(2.5rem);
+      transition: opacity 0.9s cubic-bezier(0.32, 0.72, 0, 1),
+                  transform 0.9s cubic-bezier(0.32, 0.72, 0, 1);
+    }
 
-        /* Noise overlay */
-        .noise-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            opacity: 0.05;
-            mix-blend-mode: overlay;
-            z-index: -1;
-        }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-        /* Midnight Luxe palette */
-        .primary { color: #0D0D12; }
-        .accent { color: #C9A84C; }
-        .bg-primary { background-color: #0D0D12; }
-        .bg-accent { background-color: #C9A84C; }
-        .bg-ivory { background-color: #FAF8F5; }
-        .text-slate { color: #2A2A35; }
+    .stagger-1 { transition-delay: 0.05s; }
+    .stagger-2 { transition-delay: 0.12s; }
+    .stagger-3 { transition-delay: 0.2s; }
+    .stagger-4 { transition-delay: 0.28s; }
+    .stagger-5 { transition-delay: 0.36s; }
+    .stagger-6 { transition-delay: 0.44s; }
 
-        /* Smooth scroll */
-        html { scroll-behavior: smooth; }
+    #dotGrid { display: block; }
 
-        /* Magnetic button effect */
-        .btn-magnetic {
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
+    .sand-lines {
+      background-image: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 50px,
+        rgba(74, 93, 79, 0.12) 50px,
+        rgba(74, 93, 79, 0.12) 51px
+      );
+      background-size: 100% 51px;
+    }
 
-        .btn-magnetic:hover {
-            transform: scale(1.03);
-        }
+    .grain-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    }
 
-        .btn-magnetic span {
-            position: relative;
-            z-index: 1;
-        }
+    .nav-pill {
+      backdrop-filter: blur(0px);
+      -webkit-backdrop-filter: blur(0px);
+      background: #FDFBF7;
+      border: 2px solid rgba(74, 93, 79, 0.25);
+      box-shadow: 0 8px 32px -8px rgba(0, 0, 0, 0.12);
+      transition: all 0.7s cubic-bezier(0.32, 0.72, 0, 1);
+      animation: none;
+    }
 
-        /* Card animations */
-        .card-fade-up {
-            opacity: 0;
-            transform: translateY(40px);
-        }
+    .nav-pill.nav-scrolled {
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      background: rgba(253, 251, 247, 0.4);
+      border: 1px solid rgba(74, 93, 79, 0.06);
+      box-shadow: 0 4px 20px -6px rgba(0, 0, 0, 0.04);
+      overflow: hidden;
+    }
 
-        /* Rounded corners */
-        .rounded-luxury {
-            border-radius: 2rem;
-        }
-    </style>
+    .nav-pill.nav-scrolled > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .nav-pill.nav-scrolled a {
+      color: #2C2C2C;
+    }
+
+    .nav-pill.nav-scrolled::after {
+      content: '';
+      position: absolute;
+      width: 40%;
+      top: -50%;
+      bottom: -50%;
+      z-index: 0;
+      background: radial-gradient(
+        ellipse 50% 100% at center,
+        rgba(253, 251, 247, 0.5) 0%,
+        rgba(253, 251, 247, 0.25) 40%,
+        transparent 70%
+      );
+      pointer-events: none;
+      animation: ripple-x 15s ease-in-out infinite alternate;
+    }
+
+    @keyframes ripple-x {
+      0% { left: -10%; }
+      100% { left: 70%; }
+    }
+
+    .cta-btn {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: #3A4A3E;
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.6s cubic-bezier(0.32, 0.72, 0, 1);
+    }
+
+    .cta-btn:hover::before {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
+    .cta-btn span, .cta-btn .arrow-wrap {
+      position: relative;
+      z-index: 1;
+    }
+
+    .card-shell {
+      background: rgba(0, 0, 0, 0.04);
+      border: 2px solid rgba(74, 93, 79, 0.18);
+      padding: 6px;
+      border-radius: 2rem;
+    }
+
+    .card-core {
+      background: #FFFFFF;
+      border-radius: calc(2rem - 6px);
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.8),
+                  0 20px 40px -10px rgba(0, 0, 0, 0.1);
+    }
+
+    .service-card:hover .card-core {
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.8),
+                  0 24px 48px -12px rgba(74, 93, 79, 0.1);
+    }
+
+    .mobile-menu {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s cubic-bezier(0.32, 0.72, 0, 1);
+    }
+
+    .mobile-menu.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .mobile-menu .menu-link {
+      transform: translateY(3rem);
+      opacity: 0;
+      transition: all 0.6s cubic-bezier(0.32, 0.72, 0, 1);
+    }
+
+    .mobile-menu.open .menu-link {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .mobile-menu.open .menu-link:nth-child(1) { transition-delay: 0.1s; }
+    .mobile-menu.open .menu-link:nth-child(2) { transition-delay: 0.15s; }
+    .mobile-menu.open .menu-link:nth-child(3) { transition-delay: 0.2s; }
+    .mobile-menu.open .menu-link:nth-child(4) { transition-delay: 0.25s; }
+    .mobile-menu.open .menu-link:nth-child(5) { transition-delay: 0.3s; }
+
+    .hamburger-line {
+      transition: all 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+    }
+
+    .hamburger.active .hamburger-line:first-child {
+      transform: translateY(6px) rotate(45deg);
+    }
+
+    .hamburger.active .hamburger-line:last-child {
+      transform: translateY(-6px) rotate(-45deg);
+    }
+
+    @media (max-width: 768px) {
+      .max-w-\[80vw\] { max-width: 90vw; padding-left: 1rem; padding-right: 1rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+      .fade-up { opacity: 1; transform: none; filter: none; }
+    }
+  </style>
 </head>
-<body class="bg-ivory text-text-slate">
+<body class="sand-lines">
+  <div class="grain-overlay" aria-hidden="true"></div>
 
-    <!-- Noise Overlay SVG -->
-    <svg class="noise-overlay" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-        <filter id="noise">
-            <feTurbulence type="fractalNoise" baseFrequency="0.5" numOctaves="4" result="noise"/>
-        </filter>
-        <rect width="1000" height="1000" filter="url(#noise)"/>
-    </svg>
+  <!-- Navigation -->
+  <nav class="fixed top-0 left-0 right-0 z-40 px-4 pt-6">
+    <div class="nav-pill max-w-[80vw] mx-auto rounded-full px-6 py-3.5 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-2.5">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="14" cy="14" r="13" stroke="#4A5D4F" stroke-width="1.2"/>
+          <circle cx="14" cy="14" r="4" fill="#4A5D4F" opacity="0.7"/>
+          <circle cx="14" cy="7" r="1.5" fill="#4A5D4F" opacity="0.4"/>
+        </svg>
+        <span class="font-display font-semibold text-charcoal tracking-tight text-lg">Mismoi</span>
+      </a>
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#work" class="text-sm text-warm-gray hover:text-charcoal zen-transition font-medium">Work</a>
+        <a href="#services" class="text-sm text-warm-gray hover:text-charcoal zen-transition font-medium">Services</a>
+        <a href="#about" class="text-sm text-warm-gray hover:text-charcoal zen-transition font-medium">About</a>
+        <a href="#process" class="text-sm text-warm-gray hover:text-charcoal zen-transition font-medium">Process</a>
+        <a href="https://calendly.com/vu-mismoi/30-min-discovery-call" class="cta-btn bg-moss text-cream rounded-full px-5 py-2.5 text-sm font-medium flex items-center gap-2.5 hover:bg-moss-deep zen-transition active:scale-[0.98]">
+          <span>Book a call</span>
+          <span class="arrow-wrap w-6 h-6 rounded-full bg-white/15 flex items-center justify-center group-hover:translate-x-0.5 zen-transition">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 9.5L9.5 2.5M9.5 2.5H4M9.5 2.5V8"/></svg>
+          </span>
+        </a>
+      </div>
+      <button class="hamburger md:hidden flex flex-col gap-1.5 p-2" onclick="toggleMenu()" aria-label="Toggle navigation menu">
+        <span class="hamburger-line w-5 h-[1.5px] bg-charcoal block"></span>
+        <span class="hamburger-line w-5 h-[1.5px] bg-charcoal block"></span>
+      </button>
+    </div>
+  </nav>
 
-    <!-- Navbar -->
-    <nav class="fixed top-8 left-1/2 -translate-x-1/2 z-50 px-8 py-4 rounded-full bg-opacity-20 backdrop-blur-lg border border-white/10 transition-all duration-300">
-        <div class="flex items-center justify-between gap-12">
-            <div class="text-xl font-bold text-primary">mismoi</div>
-            <div class="hidden md:flex gap-8 text-sm font-medium">
-                <a href="#hero" class="hover:text-accent transition">Proposal</a>
-                <a href="#problems" class="hover:text-accent transition">Problems</a>
-                <a href="#solution" class="hover:text-accent transition">Solution</a>
-                <a href="#pricing" class="hover:text-accent transition">Investment</a>
-            </div>
-            <button class="btn-magnetic px-6 py-2 bg-accent text-primary font-semibold rounded-full hover:bg-opacity-90">
-                <span>Approve</span>
-            </button>
+  <!-- Mobile Menu -->
+  <div class="mobile-menu fixed inset-0 z-30 bg-cream/95 backdrop-blur-xl flex flex-col items-center justify-center gap-8" id="mobileMenu">
+    <a href="#work" class="menu-link font-display text-3xl text-charcoal font-medium" onclick="toggleMenu()">Work</a>
+    <a href="#services" class="menu-link font-display text-3xl text-charcoal font-medium" onclick="toggleMenu()">Services</a>
+    <a href="#about" class="menu-link font-display text-3xl text-charcoal font-medium" onclick="toggleMenu()">About</a>
+    <a href="#process" class="menu-link font-display text-3xl text-charcoal font-medium" onclick="toggleMenu()">Process</a>
+    <a href="https://calendly.com/vu-mismoi/30-min-discovery-call" class="menu-link cta-btn bg-moss text-cream rounded-full px-8 py-4 text-lg font-medium flex items-center gap-3 zen-transition active:scale-[0.98]" onclick="toggleMenu()">
+      <span>Book a call</span>
+      <span class="arrow-wrap w-8 h-8 rounded-full bg-white/15 flex items-center justify-center">
+        <svg width="14" height="14" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 9.5L9.5 2.5M9.5 2.5H4M9.5 2.5V8"/></svg>
+      </span>
+    </a>
+  </div>
+
+  <main>
+  <!-- Hero Section -->
+  <section id="hero" class="min-h-[100dvh] relative flex items-center">
+    <div class="max-w-[80vw] mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-8 items-center pt-36 pb-24 md:pt-32 md:pb-0">
+      <!-- Left: Content -->
+      <div class="max-w-xl">
+        <h1 class="fade-up stagger-2 font-display text-4xl md:text-6xl tracking-tighter leading-none text-charcoal font-bold mb-8">
+          AI systems<br />
+          that <span class="text-moss">grow</span><br />
+          your business<br />
+          quietly.
+        </h1>
+        <p class="fade-up stagger-3 text-base md:text-lg text-warm-gray leading-relaxed max-w-[50ch] mb-10">
+          AI automation for real estate agents, social media marketers, and sales consultants. More leads, more revenue.
+        </p>
+        <div class="fade-up stagger-4 flex flex-col sm:flex-row gap-4">
+          <a href="https://calendly.com/vu-mismoi/30-min-discovery-call" class="cta-btn bg-moss text-cream rounded-full px-7 py-4 text-base font-medium flex items-center gap-3 hover:bg-moss-deep zen-transition active:scale-[0.98] w-fit">
+            <span>Book a call</span>
+            <span class="arrow-wrap w-8 h-8 rounded-full bg-white/15 flex items-center justify-center zen-transition">
+              <svg width="14" height="14" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 9.5L9.5 2.5M9.5 2.5H4M9.5 2.5V8"/></svg>
+            </span>
+          </a>
+          <a href="#services" class="rounded-full px-7 py-4 text-base font-medium text-charcoal border-2 border-charcoal/40 hover:border-charcoal/60 bg-[#EEEBe4] zen-transition active:scale-[0.98] w-fit text-center">
+            Explore my work
+          </a>
         </div>
-    </nav>
+      </div>
 
-    <!-- Hero Section -->
-    <section id="hero" class="relative w-full h-[100dvh] flex items-end overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-t from-primary via-primary/50 to-transparent z-10"></div>
-        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&h=1600&fit=crop" alt="Luxury real estate" class="absolute inset-0 w-full h-full object-cover">
+      <!-- Right: Interactive Dot Grid -->
+      <div class="relative flex items-center justify-center min-h-[400px] md:min-h-[500px] hidden md:flex">
+        <canvas id="dotGrid" class="absolute inset-0 w-full h-full"></canvas>
+      </div>
+    </div>
 
-        <div class="relative z-20 pb-16 px-8 md:px-16 max-w-2xl">
-            <div class="mb-4 text-sm text-gray-300 mono-data">March 12, 2026</div>
-            <h1 class="text-5xl md:text-7xl font-bold text-white mb-2 leading-tight">
-                Turn 15 Hours
-            </h1>
-            <h2 class="text-4xl md:text-6xl serif-drama text-accent mb-8">
-                Into Automated Closings.
+    <!-- Scroll Indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 fade-up stagger-5">
+      <span class="text-[10px] uppercase tracking-[0.2em] text-warm-gray/50 font-medium">Scroll</span>
+      <div class="w-[1px] h-8 bg-gradient-to-b from-warm-gray/30 to-transparent"></div>
+    </div>
+  </section>
+
+  <!-- Intro / Results Section -->
+  <section class="py-[128px] md:py-[224px]">
+    <div class="max-w-[80vw] mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8 items-center">
+        <div class="md:col-span-6">
+          <span class="fade-up inline-block rounded-full px-5 py-2 text-[15px] uppercase tracking-[0.2em] font-medium text-moss border border-moss/20 bg-[#EEEBe4] mb-8">Introducing Mismoi</span>
+          <h2 class="fade-up stagger-1 font-display text-3xl md:text-5xl tracking-tighter leading-none text-charcoal font-bold mb-8">
+            Systems that run<br />so you don't have to.
+          </h2>
+          <p class="fade-up stagger-2 text-base text-warm-gray leading-relaxed max-w-[50ch] mb-8">
+            I design AI-powered automation that removes the manual work from your business. Lead capture, outreach, content, CRM -- all running on autopilot while you focus on closing deals and growing.
+          </p>
+          <a href="https://calendly.com/vu-mismoi/30-min-discovery-call" class="fade-up stagger-3 inline-flex items-center gap-3 text-moss font-medium text-sm hover:gap-4 zen-transition">
+            <span>Start a conversation</span>
+            <svg width="14" height="14" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6h8m0 0L7 3m3 3L7 9"/></svg>
+          </a>
+        </div>
+        <div class="md:col-span-5 md:col-start-8 relative">
+          <canvas class="decor-dots absolute -inset-8 w-[calc(100%+4rem)] h-[calc(100%+4rem)] pointer-events-none" aria-hidden="true"></canvas>
+          <div class="fade-up stagger-2 card-shell relative z-10">
+            <div class="card-core p-8 md:p-10">
+              <div class="grid grid-cols-2 gap-8">
+                <div>
+                  <span class="font-display text-3xl md:text-4xl font-bold text-charcoal tracking-tighter">$60K</span>
+                  <p class="text-warm-gray text-sm mt-1">Revenue scaled</p>
+                </div>
+                <div>
+                  <span class="font-display text-3xl md:text-4xl font-bold text-charcoal tracking-tighter">250M+</span>
+                  <p class="text-warm-gray text-sm mt-1">Views per month generated</p>
+                </div>
+                <div>
+                  <span class="font-display text-3xl md:text-4xl font-bold text-charcoal tracking-tighter">150K+</span>
+                  <p class="text-warm-gray text-sm mt-1">Followers built</p>
+                </div>
+                <div>
+                  <span class="font-display text-3xl md:text-4xl font-bold text-charcoal tracking-tighter">52K</span>
+                  <p class="text-warm-gray text-sm mt-1">YouTube subscribers grown</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Case Studies Section -->
+  <section id="work" class="py-[128px] md:py-[224px] bg-charcoal relative overflow-hidden">
+    <div class="absolute inset-0 opacity-[0.03]" style="background-image: repeating-linear-gradient(0deg, transparent, transparent 24px, rgba(255,255,255,0.3) 24px, rgba(255,255,255,0.3) 25px)" aria-hidden="true"></div>
+    <div class="max-w-[80vw] mx-auto relative z-10">
+      <div class="mb-16">
+        <span class="fade-up inline-block rounded-full px-5 py-2 text-[15px] uppercase tracking-[0.2em] font-medium text-moss border border-moss/30 bg-moss/10 mb-8">Case studies</span>
+        <h2 class="fade-up stagger-1 font-display text-3xl md:text-5xl tracking-tighter leading-none text-cream font-bold">
+          Some of my work.
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Project 1: Barber Brand -->
+        <div class="fade-up stagger-1">
+          <div class="rounded-[2rem] overflow-hidden mb-5 aspect-[4/3] bg-moss-deep/30">
+            <img src="resources/barberCaseStudy.png" alt="Barber brand scaled to $18K/mo" class="w-full h-full object-cover opacity-80 hover:opacity-100 hover:scale-105 zen-transition" loading="lazy" />
+          </div>
+          <h3 class="font-display text-lg font-semibold text-cream tracking-tight mb-1">Service Brand to $18K/mo</h3>
+          <p class="text-stone/50 text-sm">Scaled a service-based brand to $18,000/month recurring revenue in 6 months with automated lead capture and content systems</p>
+        </div>
+        <!-- Project 2: Social/Content -->
+        <div class="fade-up stagger-2">
+          <div class="rounded-[2rem] overflow-hidden mb-5 aspect-[4/3] bg-moss-deep/30">
+            <img src="resources/cameraCaseStudy.png" alt="Content engine with 250M+ views/month" class="w-full h-full object-cover opacity-80 hover:opacity-100 hover:scale-105 zen-transition" loading="lazy" />
+          </div>
+          <h3 class="font-display text-lg font-semibold text-cream tracking-tight mb-1">250M Views/Month Engine</h3>
+          <p class="text-stone/50 text-sm">Built a content system reaching 250M+ monthly views across Instagram and TikTok with 150K+ followers</p>
+        </div>
+        <!-- Project 3: Restaurant -->
+        <div class="fade-up stagger-3">
+          <div class="rounded-[2rem] overflow-hidden mb-5 aspect-[4/3] bg-moss-deep/30">
+            <img src="resources/restaurantCaseStudy.jpg" alt="Restaurant automation system" class="w-full h-full object-cover opacity-80 hover:opacity-100 hover:scale-105 zen-transition" loading="lazy" />
+          </div>
+          <h3 class="font-display text-lg font-semibold text-cream tracking-tight mb-1">Restaurant Outreach System</h3>
+          <p class="text-stone/50 text-sm">Automated influencer outreach, Google My Business management, and email/SMS campaigns for restaurant clients</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="py-[128px] md:py-[224px]">
+    <div class="max-w-[80vw] mx-auto">
+      <div class="mb-16">
+        <span class="fade-up inline-block rounded-full px-5 py-2 text-[15px] uppercase tracking-[0.2em] font-medium text-moss border border-moss/20 bg-[#EEEBe4] mb-8">My services</span>
+        <h2 class="fade-up stagger-1 font-display text-3xl md:text-5xl tracking-tighter leading-none text-charcoal font-bold">
+          What I specialize in.
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8">
+        <!-- Niche 1: Real Estate -->
+        <div class="fade-up stagger-1">
+          <h3 class="font-display text-lg font-semibold text-charcoal tracking-tight mb-4 pb-4 border-b border-charcoal/20">For Real Estate Agents</h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="rounded-full px-3.5 py-1.5 text-xs font-medium text-charcoal border border-charcoal/20 bg-cream shadow-sm zen-transition hover:scale-105 hover:-translate-y-0.5 hover:shadow-md cursor-default">Lead Capture Automation</span>
+            <span class="rounded-full px-3.5 py-1.5 text-xs font-medium text-charcoal border border-charcoal/20 bg-cream shadow-sm zen-transition hover:scale-105 hover:-translate-y-0.5 hover:shadow-md cursor-default">Conversion Optimization</span>
+            <span class="rounded-full px-3.5 py-1.5 text-xs font-medium text-charcoal border border-charcoal/20 bg-cream shadow-sm zen-transition hover:scale-105 hover:-translate-y-0.5 hover:shadow-md cursor-default">CRM Workflows</span>
+            <span class="rounded-full px-3.5 py-1.5 text-xs font-medium text-charcoal border border-charcoal/20 bg-cream shadow-sm zen-transition hover:scale-105 hover:-translate-y-0.5 hover:shadow-md cursor-default">Follow-Up Sequences</span>
+          </div>
+        </div>
+        <!-- Niche 2: Influencers -->
+        <div class="fade-up stagger-2">
+          <h3 class="font-display text-lg font-semibold text-charcoal tracking-tight mb-4 pb-4 border-b border-charcoal/20">For Influencers</h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="rounded-full px-3.5 py-1.5 text-xs font-medium text-charcoal border border-charcoal/20 bg-cream shadow-sm zen-transition hover:scale-105 hover:-translate-y-0.5 hover:shadow-md cursor-default">Content Pipelines</span>
+            <span class="rounded-full px-3.5 py-1.5 text-xs font-medium text-charcoal border border-charcoal/20 bg-cream shadow-sm zen-transition hover:scale-105 hover:-translate-y-0.5 hover:shadow-md cursor-default">Growth Automation</span>
+            <span class="rounded-full px-3.5 py-1.5 text-xs font-medium text-charcoal border border-charcoal/20 bg-cream shadow-sm zen-transition hover:scale-105 hover:-translate-y-0.5 hover:shadow-md cursor-default">Monetization Systems</span>
+            <span class="rounded-full px-3.5 py-1.5 text-xs font-medium text-charcoal border border-charcoal/20 bg-cream shadow-sm zen-transition hover:scale-105 hover:-translate-y-0.5 hover:shadow-md cursor-default">Audience Analytics</span>
+          </div>
+        </div>
+        <!-- Niche 3: Sales Consultants -->
+        <div class="fade-up stagger-3">
+          <h3 class="font-display text-lg font-semibold text-charcoal tracking-tight mb-4 pb-4 border-b border-charcoal/20">For Sales Consultants</h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="rounded-full px-3.5 py-1.5 text-xs font-medium text-charcoal border border-charcoal/20 bg-cream shadow-sm zen-transition hover:scale-105 hover:-translate-y-0.5 hover:shadow-md cursor-default">Lead Generation</span>
+            <span class="rounded-full px-3.5 py-1.5 text-xs font-medium text-charcoal border border-charcoal/20 bg-cream shadow-sm zen-transition hover:scale-105 hover:-translate-y-0.5 hover:shadow-md cursor-default">Outreach Automation</span>
+            <span class="rounded-full px-3.5 py-1.5 text-xs font-medium text-charcoal border border-charcoal/20 bg-cream shadow-sm zen-transition hover:scale-105 hover:-translate-y-0.5 hover:shadow-md cursor-default">Pipeline Management</span>
+            <span class="rounded-full px-3.5 py-1.5 text-xs font-medium text-charcoal border border-charcoal/20 bg-cream shadow-sm zen-transition hover:scale-105 hover:-translate-y-0.5 hover:shadow-md cursor-default">Closing Workflows</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="py-[128px] md:py-[224px] border-t border-charcoal/8">
+    <div class="max-w-[80vw] mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8 items-center">
+        <div class="md:col-span-5">
+          <div class="fade-up card-shell">
+            <div class="card-core overflow-hidden rounded-[calc(2rem-6px)]">
+              <img src="resources/haircuttingimage.png" alt="Vu Tran" class="w-full h-auto object-cover" loading="lazy" />
+            </div>
+          </div>
+        </div>
+        <div class="md:col-span-6 md:col-start-7">
+          <span class="fade-up inline-block rounded-full px-5 py-2 text-[15px] uppercase tracking-[0.2em] font-medium text-moss border border-moss/20 bg-[#EEEBe4] mb-8">About me</span>
+          <h2 class="fade-up stagger-1 font-display text-3xl md:text-5xl tracking-tighter leading-none text-charcoal font-bold mb-8">
+            I build systems that<br />do the work for you.
+          </h2>
+          <p class="fade-up stagger-2 text-base text-warm-gray leading-relaxed max-w-[50ch] mb-6">
+            I'm Vu Tran. I scaled a service business to $18K/month and built a content engine that hit 250 million views a month. Now I take those same systems and build them for other businesses.
+          </p>
+          <p class="fade-up stagger-3 text-base text-warm-gray leading-relaxed max-w-[50ch] mb-8">
+            I work with real estate agents, influencers, and sales consultants who are tired of doing everything manually. I automate lead capture, outreach, content, and CRM so you can focus on what actually makes you money.
+          </p>
+          <a href="https://calendly.com/vu-mismoi/30-min-discovery-call" class="fade-up stagger-4 cta-btn inline-flex items-center gap-3 bg-moss text-cream rounded-full px-7 py-4 text-base font-medium hover:bg-moss-deep zen-transition active:scale-[0.98] w-fit">
+            <span>Let's talk</span>
+            <span class="arrow-wrap w-8 h-8 rounded-full bg-white/15 flex items-center justify-center zen-transition">
+              <svg width="14" height="14" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 9.5L9.5 2.5M9.5 2.5H4M9.5 2.5V8"/></svg>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process Section -->
+  <section id="process" class="py-[128px] md:py-[224px] border-t border-charcoal/8">
+    <div class="max-w-[80vw] mx-auto">
+      <div class="mb-20 max-w-2xl">
+        <span class="fade-up inline-block rounded-full px-5 py-2 text-[15px] uppercase tracking-[0.2em] font-medium text-moss border border-moss/20 bg-[#EEEBe4] mb-8">How I work</span>
+        <h2 class="fade-up stagger-1 font-display text-3xl md:text-5xl tracking-tighter leading-none text-charcoal font-bold">
+          From first call to launch.
+        </h2>
+      </div>
+
+      <div class="relative">
+        <canvas class="decor-dots absolute -inset-8 w-[calc(100%+4rem)] h-[calc(100%+4rem)] pointer-events-none" aria-hidden="true"></canvas>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
+        <!-- Step 1 -->
+        <div class="fade-up stagger-1 card-shell service-card h-full">
+          <div class="card-core h-full p-8 flex flex-col justify-between">
+            <div>
+              <span class="font-display text-4xl font-bold text-moss/25 leading-none mb-5 block">01</span>
+              <h3 class="font-display text-lg font-semibold text-charcoal tracking-tight mb-2">Discovery Call</h3>
+              <p class="text-warm-gray text-sm leading-relaxed">
+                A free 30-minute session where I audit your operations and map out exactly where AI moves the needle.
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- Step 2 -->
+        <div class="fade-up stagger-2 card-shell service-card h-full">
+          <div class="card-core h-full p-8 flex flex-col justify-between">
+            <div>
+              <span class="font-display text-4xl font-bold text-moss/25 leading-none mb-5 block">02</span>
+              <h3 class="font-display text-lg font-semibold text-charcoal tracking-tight mb-2">Proposal</h3>
+              <p class="text-warm-gray text-sm leading-relaxed">
+                I deliver a clear scope, timeline, and fixed price. No surprises. You know exactly what you're getting.
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- Step 3 -->
+        <div class="fade-up stagger-3 card-shell service-card h-full">
+          <div class="card-core h-full p-8 flex flex-col justify-between">
+            <div>
+              <span class="font-display text-4xl font-bold text-moss/25 leading-none mb-5 block">03</span>
+              <h3 class="font-display text-lg font-semibold text-charcoal tracking-tight mb-2">Build</h3>
+              <p class="text-warm-gray text-sm leading-relaxed">
+                I build, test, and deploy your systems. You get a working product, not a deck full of promises.
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- Step 4 -->
+        <div class="fade-up stagger-4 card-shell service-card h-full">
+          <div class="card-core h-full p-8 flex flex-col justify-between">
+            <div>
+              <span class="font-display text-4xl font-bold text-moss/25 leading-none mb-5 block">04</span>
+              <h3 class="font-display text-lg font-semibold text-charcoal tracking-tight mb-2">Ongoing Management</h3>
+              <p class="text-warm-gray text-sm leading-relaxed">
+                Optional retainer for monitoring, optimization, and iteration. Watch compounding returns over time.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section id="book" class="py-[128px] md:py-[224px]">
+    <div class="max-w-[80vw] mx-auto">
+      <div class="card-shell">
+        <div class="card-core bg-charcoal relative overflow-hidden">
+          <div class="absolute inset-0 opacity-[0.03]" style="background-image: repeating-linear-gradient(0deg, transparent, transparent 20px, rgba(255,255,255,0.3) 20px, rgba(255,255,255,0.3) 21px)" aria-hidden="true"></div>
+          <div class="relative z-10 p-10 md:p-16 lg:p-24 text-center">
+            <span class="fade-up inline-block rounded-full px-5 py-2 text-[15px] uppercase tracking-[0.2em] font-medium text-moss border border-moss/30 bg-moss/10 mb-8">Start here</span>
+            <h2 class="fade-up stagger-1 font-display text-3xl md:text-5xl lg:text-6xl tracking-tighter leading-none text-cream font-bold mb-8 max-w-3xl mx-auto">
+              Ready to automate<br />what's slowing<br />you down?
             </h2>
-            <p class="text-lg text-gray-200 mb-8 max-w-xl">
-                Your leads deserve personalized follow-up. Your time deserves automation.
+            <p class="fade-up stagger-2 text-stone/60 text-base md:text-lg leading-relaxed max-w-[50ch] mx-auto mb-10">
+              A 30-minute conversation. No pitch decks. Just an honest look at where automation can save you time and make you money.
             </p>
-            <button class="btn-magnetic px-8 py-3 bg-accent text-primary font-semibold rounded-full hover:bg-opacity-90 text-lg">
-                <span>See How It Works</span>
-            </button>
-        </div>
-    </section>
-
-    <!-- Problems Section -->
-    <section id="problems" class="py-24 px-8 md:px-16 bg-ivory">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-4xl font-bold text-primary mb-4">Your Real Estate Challenge</h2>
-            <p class="text-lg text-text-slate mb-16">
-                You're doing the work of three people. Here's what's costing you.
-            </p>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Problem 1 -->
-                <div class="bg-white rounded-luxury p-8 border border-gray-200 card-fade-up">
-                    <h3 class="text-2xl font-bold text-primary mb-4">Low Conversion Rate</h3>
-                    <p class="text-text-slate mb-4">
-                        You get 40-50 leads every month from Google Ads and Facebook, but only 3-5 close. That's a 6-12% conversion rate.
-                    </p>
-                    <p class="text-accent font-semibold mono-data">
-                        Cost: $100K+ monthly opportunity
-                    </p>
-                </div>
-
-                <!-- Problem 2 -->
-                <div class="bg-white rounded-luxury p-8 border border-gray-200 card-fade-up">
-                    <h3 class="text-2xl font-bold text-primary mb-4">15+ Hours Lost Weekly</h3>
-                    <p class="text-text-slate mb-4">
-                        Manual emails, texts, and calls consume 700+ hours annually. That's time you're not closing deals.
-                    </p>
-                    <p class="text-accent font-semibold mono-data">
-                        Cost: $50K+ in lost opportunity
-                    </p>
-                </div>
-
-                <!-- Problem 3 -->
-                <div class="bg-white rounded-luxury p-8 border border-gray-200 card-fade-up">
-                    <h3 class="text-2xl font-bold text-primary mb-4">No Lead Intelligence</h3>
-                    <p class="text-text-slate mb-4">
-                        Leads live in a spreadsheet. No way to tell which ones are serious, which channels convert best.
-                    </p>
-                    <p class="text-accent font-semibold mono-data">
-                        Cost: Blind marketing spend
-                    </p>
-                </div>
-
-                <!-- Problem 4 -->
-                <div class="bg-white rounded-luxury p-8 border border-gray-200 card-fade-up">
-                    <h3 class="text-2xl font-bold text-primary mb-4">Losing to Better Nurturers</h3>
-                    <p class="text-text-slate mb-4">
-                        Agents with automated follow-up stay top-of-mind. Your prospects go silent, then sign with someone else.
-                    </p>
-                    <p class="text-accent font-semibold mono-data">
-                        Cost: Lost deals every month
-                    </p>
-                </div>
+            <div class="fade-up stagger-3">
+              <a href="https://calendly.com/vu-mismoi/30-min-discovery-call" class="cta-btn inline-flex items-center gap-3 bg-moss text-cream rounded-full px-8 py-4 md:px-10 md:py-5 text-base md:text-lg font-medium hover:bg-moss-deep zen-transition active:scale-[0.98]">
+                <span>Book a call</span>
+                <span class="arrow-wrap w-8 h-8 md:w-9 md:h-9 rounded-full bg-white/15 flex items-center justify-center zen-transition">
+                  <svg width="14" height="14" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 9.5L9.5 2.5M9.5 2.5H4M9.5 2.5V8"/></svg>
+                </span>
+              </a>
             </div>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Philosophy Section -->
-    <section class="py-24 px-8 md:px-16 bg-primary text-white relative overflow-hidden">
-        <div class="absolute inset-0 opacity-10">
-            <img src="https://images.unsplash.com/photo-1600573472550-8090b5e0745e?w=1200&h=800&fit=crop" alt="Dark marble" class="w-full h-full object-cover">
+  </main>
+  <!-- Footer -->
+  <footer class="py-16 border-t border-charcoal/8">
+    <div class="max-w-[80vw] mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8">
+        <div class="md:col-span-4">
+          <div class="flex items-center gap-2.5 mb-4">
+            <svg width="24" height="24" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="14" cy="14" r="13" stroke="#4A5D4F" stroke-width="1.2"/>
+              <circle cx="14" cy="14" r="4" fill="#4A5D4F" opacity="0.7"/>
+              <circle cx="14" cy="7" r="1.5" fill="#4A5D4F" opacity="0.4"/>
+            </svg>
+            <span class="font-display font-semibold text-charcoal tracking-tight">Mismoi</span>
+          </div>
+          <p class="text-warm-gray text-sm leading-relaxed max-w-[35ch]">
+            AI automation systems that grow your business. Built to run. Built to last.
+          </p>
         </div>
-
-        <div class="relative z-10 max-w-4xl mx-auto text-center">
-            <p class="text-lg text-gray-300 mb-6">
-                Most real estate agents use generic email services or expensive CRMs. That means impersonal blasts or clunky interfaces that eat 2 hours daily.
-            </p>
-            <h3 class="text-5xl serif-drama text-accent mb-8">
-                We focus on AI-powered personalization at automation scale.
-            </h3>
-            <p class="text-gray-200">
-                Every lead gets a truly personal experience (using their name, property interest, timeline). You spend zero time managing sequences. Your system works while you sleep.
-            </p>
+        <div class="md:col-span-2 md:col-start-7">
+          <h4 class="text-xs uppercase tracking-[0.15em] text-charcoal font-semibold mb-4">Company</h4>
+          <div class="flex flex-col gap-3">
+            <a href="#work" class="text-sm text-warm-gray hover:text-charcoal zen-transition">Work</a>
+            <a href="#services" class="text-sm text-warm-gray hover:text-charcoal zen-transition">Services</a>
+            <a href="#about" class="text-sm text-warm-gray hover:text-charcoal zen-transition">About</a>
+            <a href="#process" class="text-sm text-warm-gray hover:text-charcoal zen-transition">Process</a>
+          </div>
         </div>
-    </section>
-
-    <!-- Solution / Protocol Section -->
-    <section id="solution" class="py-24 px-8 md:px-16 bg-ivory">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-4xl font-bold text-primary mb-16">What We'll Build</h2>
-
-            <!-- Solution Cards -->
-            <div class="space-y-8">
-                <!-- Component 1 -->
-                <div class="bg-white rounded-luxury p-12 border-2 border-accent shadow-lg card-fade-up">
-                    <div class="flex items-start gap-8">
-                        <div class="text-5xl mono-data text-accent font-bold">01</div>
-                        <div class="flex-1">
-                            <h3 class="text-3xl font-bold text-primary mb-4">AI Lead Scorer</h3>
-                            <ul class="space-y-3 text-text-slate">
-                                <li class="flex gap-3">
-                                    <span class="text-accent">→</span>
-                                    <span>Every new lead automatically analyzed against your ideal buyer profile</span>
-                                </li>
-                                <li class="flex gap-3">
-                                    <span class="text-accent">→</span>
-                                    <span>Claude AI assigns "hot," "warm," or "cold" labels based on intent</span>
-                                </li>
-                                <li class="flex gap-3">
-                                    <span class="text-accent">→</span>
-                                    <span>Dashboard sorted by priority, not chronologically</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Component 2 -->
-                <div class="bg-white rounded-luxury p-12 border-2 border-accent shadow-lg card-fade-up">
-                    <div class="flex items-start gap-8">
-                        <div class="text-5xl mono-data text-accent font-bold">02</div>
-                        <div class="flex-1">
-                            <h3 class="text-3xl font-bold text-primary mb-4">Personalized Follow-Up Sequences</h3>
-                            <ul class="space-y-3 text-text-slate">
-                                <li class="flex gap-3">
-                                    <span class="text-accent">→</span>
-                                    <span>Automated email and SMS sequences that feel personal, not robotic</span>
-                                </li>
-                                <li class="flex gap-3">
-                                    <span class="text-accent">→</span>
-                                    <span>First message within 2 hours (highest-converting window)</span>
-                                </li>
-                                <li class="flex gap-3">
-                                    <span class="text-accent">→</span>
-                                    <span>Each message uses their name, property info, local market insights</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Component 3 -->
-                <div class="bg-white rounded-luxury p-12 border-2 border-accent shadow-lg card-fade-up">
-                    <div class="flex items-start gap-8">
-                        <div class="text-5xl mono-data text-accent font-bold">03</div>
-                        <div class="flex-1">
-                            <h3 class="text-3xl font-bold text-primary mb-4">Multi-Channel Nurture Engine</h3>
-                            <ul class="space-y-3 text-text-slate">
-                                <li class="flex gap-3">
-                                    <span class="text-accent">→</span>
-                                    <span>Leads automatically routed through email, SMS, calendar reminders</span>
-                                </li>
-                                <li class="flex gap-3">
-                                    <span class="text-accent">→</span>
-                                    <span>Smart fallback: if email unopened, SMS takes over</span>
-                                </li>
-                                <li class="flex gap-3">
-                                    <span class="text-accent">→</span>
-                                    <span>Silent for 5 days? Personal text reminder pulls them back in</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Component 4 -->
-                <div class="bg-white rounded-luxury p-12 border-2 border-accent shadow-lg card-fade-up">
-                    <div class="flex items-start gap-8">
-                        <div class="text-5xl mono-data text-accent font-bold">04</div>
-                        <div class="flex-1">
-                            <h3 class="text-3xl font-bold text-primary mb-4">Conversion Tracking & Insights</h3>
-                            <ul class="space-y-3 text-text-slate">
-                                <li class="flex gap-3">
-                                    <span class="text-accent">→</span>
-                                    <span>Real-time dashboard: lead source, conversion by channel, ROI per dollar</span>
-                                </li>
-                                <li class="flex gap-3">
-                                    <span class="text-accent">→</span>
-                                    <span>Which Google Ads keywords and Facebook audiences actually convert</span>
-                                </li>
-                                <li class="flex gap-3">
-                                    <span class="text-accent">→</span>
-                                    <span>Monthly report with actionable optimization recommendations</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="md:col-span-2">
+          <h4 class="text-xs uppercase tracking-[0.15em] text-charcoal font-semibold mb-4">Connect</h4>
+          <div class="flex flex-col gap-3">
+            <a href="mailto:vu@mismoi.com" class="text-sm text-warm-gray hover:text-charcoal zen-transition">Email</a>
+            <a href="https://calendly.com/vu-mismoi/30-min-discovery-call" class="text-sm text-warm-gray hover:text-charcoal zen-transition">Book a Call</a>
+          </div>
         </div>
-    </section>
-
-    <!-- Case Study Section -->
-    <section class="py-24 px-8 md:px-16 bg-white">
-        <div class="max-w-4xl mx-auto">
-            <h2 class="text-4xl font-bold text-primary mb-4">How This Works in Practice</h2>
-            <p class="text-lg text-text-slate mb-12">
-                Here's what happened when we implemented this system for another real estate professional:
-            </p>
-
-            <div class="bg-gradient-to-br from-primary/5 to-accent/5 rounded-luxury p-12 border border-gray-200">
-                <h3 class="text-2xl font-bold text-primary mb-6">Real Estate Lead Automation Example</h3>
-
-                <div class="space-y-8">
-                    <div>
-                        <h4 class="font-semibold text-primary mb-2">Situation</h4>
-                        <p class="text-text-slate">
-                            An Austin-based agent getting 45 leads/month, converting at 8%, losing 18 hours/week to manual follow-up. $2K/month ad spend with unclear ROI.
-                        </p>
-                    </div>
-
-                    <div>
-                        <h4 class="font-semibold text-primary mb-2">What We Built</h4>
-                        <p class="text-text-slate">
-                            AI lead scorer (Claude API), 5-email + 3-SMS automation sequences (Make.com), conversion tracking dashboard, Google Ads integration for ROI measurement.
-                        </p>
-                    </div>
-
-                    <div class="border-t border-accent/30 pt-8">
-                        <h4 class="font-semibold text-primary mb-6">Results</h4>
-                        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                            <div class="text-center">
-                                <div class="text-3xl font-bold text-accent mb-2">22%</div>
-                                <p class="text-sm text-text-slate">Conversion Rate<br>(from 8%)</p>
-                            </div>
-                            <div class="text-center">
-                                <div class="text-3xl font-bold text-accent mb-2">+10</div>
-                                <p class="text-sm text-text-slate">Additional Closes<br>per month</p>
-                            </div>
-                            <div class="text-center">
-                                <div class="text-3xl font-bold text-accent mb-2">2 hrs</div>
-                                <p class="text-sm text-text-slate">Weekly Follow-up<br>(from 18)</p>
-                            </div>
-                            <div class="text-center">
-                                <div class="text-3xl font-bold text-accent mb-2">+$70K</div>
-                                <p class="text-sm text-text-slate">Monthly Revenue<br>Increase</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="md:col-span-2">
+          <h4 class="text-xs uppercase tracking-[0.15em] text-charcoal font-semibold mb-4">Legal</h4>
+          <div class="flex flex-col gap-3">
+            <a href="#" class="text-sm text-warm-gray hover:text-charcoal zen-transition">Privacy</a>
+            <a href="#" class="text-sm text-warm-gray hover:text-charcoal zen-transition">Terms</a>
+          </div>
         </div>
-    </section>
+      </div>
+      <div class="mt-16 pt-8 border-t border-charcoal/8 flex flex-col md:flex-row items-center justify-between gap-4">
+        <p class="text-xs text-warm-gray/50">&copy; 2026 Mismoi. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
 
-    <!-- Timeline Section -->
-    <section class="py-24 px-8 md:px-16 bg-primary text-white">
-        <div class="max-w-4xl mx-auto">
-            <h2 class="text-4xl font-bold mb-16">Your Implementation Timeline</h2>
+  <script>
+    function toggleMenu() {
+      var menu = document.getElementById('mobileMenu');
+      var btn = document.querySelector('.hamburger');
+      if (menu) menu.classList.toggle('open');
+      if (btn) btn.classList.toggle('active');
+      document.body.style.overflow = (menu && menu.classList.contains('open')) ? 'hidden' : '';
+    }
 
-            <div class="space-y-6">
-                <!-- Phase 1 -->
-                <div class="flex gap-6">
-                    <div class="flex-shrink-0">
-                        <div class="w-12 h-12 rounded-full bg-accent text-primary flex items-center justify-center font-bold text-lg mono-data">1</div>
-                    </div>
-                    <div>
-                        <h3 class="text-2xl font-bold mb-2">Week 1-2: Setup & Configuration</h3>
-                        <ul class="space-y-2 text-gray-300">
-                            <li class="flex gap-2">
-                                <span class="text-accent">✓</span>
-                                <span>Kickoff call: lead scoring rules, Gmail/SMS connection</span>
-                            </li>
-                            <li class="flex gap-2">
-                                <span class="text-accent">✓</span>
-                                <span>5 personalized email templates drafted</span>
-                            </li>
-                            <li class="flex gap-2">
-                                <span class="text-accent">✓</span>
-                                <span>SMS sequences configured, Make.com automation built & tested</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Phase 2 -->
-                <div class="flex gap-6">
-                    <div class="flex-shrink-0">
-                        <div class="w-12 h-12 rounded-full bg-accent text-primary flex items-center justify-center font-bold text-lg mono-data">2</div>
-                    </div>
-                    <div>
-                        <h3 class="text-2xl font-bold mb-2">Week 3: Launch</h3>
-                        <ul class="space-y-2 text-gray-300">
-                            <li class="flex gap-2">
-                                <span class="text-accent">✓</span>
-                                <span>System goes live with your next incoming leads</span>
-                            </li>
-                            <li class="flex gap-2">
-                                <span class="text-accent">✓</span>
-                                <span>Live monitoring first 30 days, refinements based on real behavior</span>
-                            </li>
-                            <li class="flex gap-2">
-                                <span class="text-accent">✓</span>
-                                <span>Week 4: Performance report + optimization recommendations</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pricing Section -->
-    <section id="pricing" class="py-24 px-8 md:px-16 bg-ivory">
-        <div class="max-w-4xl mx-auto">
-            <h2 class="text-4xl font-bold text-primary mb-16 text-center">Investment</h2>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Setup -->
-                <div class="bg-white rounded-luxury p-10 border-2 border-gray-200">
-                    <h3 class="text-2xl font-bold text-primary mb-6">One-Time Setup</h3>
-                    <div class="text-4xl font-bold text-accent mb-8">$3,000</div>
-                    <ul class="space-y-3 text-text-slate">
-                        <li class="flex gap-2">
-                            <span class="text-accent">•</span>
-                            <span>Lead scoring system config & testing</span>
-                        </li>
-                        <li class="flex gap-2">
-                            <span class="text-accent">•</span>
-                            <span>5 email + 3 SMS templates</span>
-                        </li>
-                        <li class="flex gap-2">
-                            <span class="text-accent">•</span>
-                            <span>Make.com automation build</span>
-                        </li>
-                        <li class="flex gap-2">
-                            <span class="text-accent">•</span>
-                            <span>Dashboard setup & training</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Recurring (Highlighted) -->
-                <div class="bg-primary text-white rounded-luxury p-10 border-2 border-accent relative md:scale-105">
-                    <h3 class="text-2xl font-bold mb-6">Monthly Recurring</h3>
-                    <div class="text-4xl font-bold text-accent mb-8">$1,500</div>
-                    <ul class="space-y-3">
-                        <li class="flex gap-2">
-                            <span class="text-accent">•</span>
-                            <span>System monitoring & optimization</span>
-                        </li>
-                        <li class="flex gap-2">
-                            <span class="text-accent">•</span>
-                            <span>Template updates (seasonal, A/B tests)</span>
-                        </li>
-                        <li class="flex gap-2">
-                            <span class="text-accent">•</span>
-                            <span>New integrations as needed</span>
-                        </li>
-                        <li class="flex gap-2">
-                            <span class="text-accent">•</span>
-                            <span>Monthly performance report</span>
-                        </li>
-                        <li class="flex gap-2">
-                            <span class="text-accent">•</span>
-                            <span>Priority support</span>
-                        </li>
-                    </ul>
-                    <p class="text-sm text-gray-300 mt-8">
-                        No long-term contract. Cancel anytime.
-                    </p>
-                </div>
-            </div>
-
-            <div class="mt-12 p-8 bg-white rounded-luxury border border-gray-200">
-                <p class="text-text-slate text-center">
-                    <span class="font-semibold">First payment:</span> $3,000 setup + $1,500 first month due before build starts. Billed monthly thereafter.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section class="py-24 px-8 md:px-16 bg-white border-t-2 border-gray-200">
-        <div class="max-w-4xl mx-auto">
-            <h3 class="text-2xl font-bold text-primary mb-6">About mismoi</h3>
-            <p class="text-lg text-text-slate mb-6">
-                We build AI automation systems for real estate agents, sales consultants, and marketing agencies. We specialize in lead automation and conversion systems that replace 10+ hours of manual work per week.
-            </p>
-            <p class="text-lg text-text-slate">
-                Our systems use Make.com, Claude AI, and Google Workspace to handle lead scoring, multi-channel follow-up, and ROI tracking. We've designed systems that automatically nurture 50-200 leads per month for agents focused on growth.
-            </p>
-        </div>
-    </section>
-
-    <!-- CTA Footer -->
-    <footer class="py-16 px-8 md:px-16 bg-primary text-white rounded-t-[3rem]">
-        <div class="max-w-4xl mx-auto text-center">
-            <h3 class="text-3xl font-bold mb-4">Ready to Automate Your Lead Follow-Up?</h3>
-            <p class="text-lg text-gray-300 mb-8">
-                Let's build a system that closes more deals while you sleep.
-            </p>
-
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <button class="btn-magnetic px-8 py-3 bg-accent text-primary font-semibold rounded-full hover:bg-opacity-90 text-lg">
-                    <span>Book Kickoff Call</span>
-                </button>
-                <button class="btn-magnetic px-8 py-3 border-2 border-accent text-accent font-semibold rounded-full hover:bg-accent/10">
-                    <span>Reply with Questions</span>
-                </button>
-            </div>
-
-            <p class="text-sm text-gray-400 mt-12 mono-data flex items-center justify-center gap-2">
-                <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
-                System Operational
-            </p>
-        </div>
-    </footer>
-
-    <script>
-        gsap.registerPlugin(ScrollTrigger);
-
-        // Initialize animations
-        window.addEventListener('load', function() {
-            // Fade-up animations for cards
-            gsap.utils.toArray('.card-fade-up').forEach((el) => {
-                gsap.to(el, {
-                    scrollTrigger: {
-                        trigger: el,
-                        start: 'top bottom',
-                        toggleActions: 'play none none none'
-                    },
-                    opacity: 1,
-                    y: 0,
-                    duration: 0.8,
-                    ease: 'power3.out'
-                });
-            });
-
-            // Stagger text animations
-            gsap.utils.toArray('h1, h2, h3, p').forEach((el) => {
-                if (el.offsetParent) { // visible
-                    gsap.from(el, {
-                        opacity: 0,
-                        y: 20,
-                        duration: 0.6,
-                        ease: 'power3.out',
-                        stagger: 0.08
-                    });
-                }
-            });
+    if ('IntersectionObserver' in window) {
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
         });
+      }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -60px 0px'
+      });
 
-        // Navbar morph on scroll
-        const navbar = document.querySelector('nav');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 100) {
-                navbar.classList.add('bg-white/10', 'border-white/20');
+      document.querySelectorAll('.fade-up').forEach(function(el) {
+        observer.observe(el);
+      });
+
+      var navPill = document.querySelector('.nav-pill');
+      var heroSection = document.getElementById('hero');
+      if (navPill && heroSection) {
+        var navObserver = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              navPill.classList.remove('nav-scrolled');
             } else {
-                navbar.classList.remove('bg-white/10', 'border-white/20');
+              navPill.classList.add('nav-scrolled');
             }
+          });
+        }, {
+          threshold: 0,
+          rootMargin: '-80px 0px 0px 0px'
         });
-    </script>
+        navObserver.observe(heroSection);
+      }
+    } else {
+      document.querySelectorAll('.fade-up').forEach(function(el) {
+        el.classList.add('visible');
+      });
+    }
+  </script>
+
+  <script>
+    (function() {
+      var canvas = document.getElementById('dotGrid');
+      if (!canvas) return;
+      var ctx = canvas.getContext('2d');
+      var dpr = window.devicePixelRatio || 1;
+      var mouseX = -9999;
+      var mouseY = -9999;
+      var dots = [];
+      var SPACING = 22;
+      var BASE_RADIUS = 3.5;
+      var MAX_RADIUS = 9;
+      var EFFECT_RANGE = 120;
+      var EASE_SPEED = 0.08;
+
+      function resize() {
+        var rect = canvas.getBoundingClientRect();
+        canvas.width = rect.width * dpr;
+        canvas.height = rect.height * dpr;
+        ctx.scale(dpr, dpr);
+        buildDots(rect.width, rect.height);
+      }
+
+      function blobRadius(angle, base) {
+        return base
+          + base * 0.15 * Math.sin(angle * 3 + 0.5)
+          + base * 0.1 * Math.sin(angle * 5 + 1.2)
+          + base * 0.08 * Math.cos(angle * 2 + 2.8)
+          + base * 0.05 * Math.sin(angle * 7 + 0.3);
+      }
+
+      function buildDots(w, h) {
+        dots = [];
+        var cx = w / 2;
+        var cy = h / 2;
+        var blobBase = Math.min(w, h) * 0.4;
+
+        for (var x = SPACING; x < w - SPACING; x += SPACING) {
+          for (var y = SPACING; y < h - SPACING; y += SPACING) {
+            var dx = x - cx;
+            var dy = y - cy;
+            var dist = Math.sqrt(dx * dx + dy * dy);
+            var angle = Math.atan2(dy, dx);
+            var maxDist = blobRadius(angle, blobBase);
+
+            if (dist < maxDist) {
+              dots.push({
+                x: x,
+                y: y,
+                currentRadius: BASE_RADIUS,
+                currentColor: 0
+              });
+            }
+          }
+        }
+      }
+
+      function lerp(a, b, t) {
+        return a + (b - a) * t;
+      }
+
+      function draw() {
+        var rect = canvas.getBoundingClientRect();
+        ctx.clearRect(0, 0, rect.width, rect.height);
+
+        for (var i = 0; i < dots.length; i++) {
+          var dot = dots[i];
+          var dx = dot.x - mouseX;
+          var dy = dot.y - mouseY;
+          var dist = Math.sqrt(dx * dx + dy * dy);
+
+          var targetRadius = BASE_RADIUS;
+          var targetColor = 0;
+
+          if (dist < EFFECT_RANGE) {
+            var t = 1 - (dist / EFFECT_RANGE);
+            t = t * t;
+            targetRadius = BASE_RADIUS + (MAX_RADIUS - BASE_RADIUS) * t;
+            targetColor = t;
+          }
+
+          dot.currentRadius = lerp(dot.currentRadius, targetRadius, EASE_SPEED);
+          dot.currentColor = lerp(dot.currentColor, targetColor, EASE_SPEED);
+
+          var r = Math.round(lerp(139, 74, dot.currentColor));
+          var g = Math.round(lerp(130, 93, dot.currentColor));
+          var b = Math.round(lerp(121, 79, dot.currentColor));
+          var alpha = lerp(0.55, 0.95, dot.currentColor);
+
+          ctx.beginPath();
+          ctx.arc(dot.x, dot.y, dot.currentRadius, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(' + r + ',' + g + ',' + b + ',' + alpha + ')';
+          ctx.fill();
+        }
+
+        requestAnimationFrame(draw);
+      }
+
+      canvas.addEventListener('mousemove', function(e) {
+        var rect = canvas.getBoundingClientRect();
+        mouseX = e.clientX - rect.left;
+        mouseY = e.clientY - rect.top;
+      });
+
+      canvas.addEventListener('mouseleave', function() {
+        mouseX = -9999;
+        mouseY = -9999;
+      });
+
+      canvas.addEventListener('touchmove', function(e) {
+        var rect = canvas.getBoundingClientRect();
+        var touch = e.touches[0];
+        mouseX = touch.clientX - rect.left;
+        mouseY = touch.clientY - rect.top;
+      }, { passive: true });
+
+      canvas.addEventListener('touchend', function() {
+        mouseX = -9999;
+        mouseY = -9999;
+      });
+
+      window.addEventListener('resize', resize);
+      resize();
+      draw();
+    })();
+  </script>
+
+  <script>
+    (function() {
+      var canvases = document.querySelectorAll('.decor-dots');
+      if (!canvases.length) return;
+      var dpr = window.devicePixelRatio || 1;
+      var EASE = 0.08;
+      var EFFECT_RANGE = 80;
+      var BASE_R = 1.8;
+      var MAX_R = 5;
+
+      function blobShape(angle, base) {
+        return base
+          + base * 0.2 * Math.sin(angle * 2 + 1.1)
+          + base * 0.12 * Math.cos(angle * 3 + 2.4)
+          + base * 0.08 * Math.sin(angle * 5 + 0.7);
+      }
+
+      function seededRandom(seed) {
+        var x = Math.sin(seed) * 10000;
+        return x - Math.floor(x);
+      }
+
+      function lerp(a, b, t) { return a + (b - a) * t; }
+
+      function initCanvas(canvas, index) {
+        var ctx = canvas.getContext('2d');
+        var dots = [];
+        var mouseX = -9999;
+        var mouseY = -9999;
+
+        // Remove pointer-events-none so we can track mouse
+        canvas.style.pointerEvents = 'auto';
+
+        function resize() {
+          var rect = canvas.getBoundingClientRect();
+          canvas.width = rect.width * dpr;
+          canvas.height = rect.height * dpr;
+          ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+          buildDots(rect.width, rect.height);
+        }
+
+        function buildDots(w, h) {
+          dots = [];
+          var blobs = [
+            { x: w * 0.08, y: h * 0.12, r: 45 },
+            { x: w * 0.92, y: h * 0.18, r: 55 },
+            { x: w * 0.05, y: h * 0.85, r: 50 },
+            { x: w * 0.88, y: h * 0.9, r: 40 },
+            { x: w * 0.15, y: h * 0.5, r: 35 },
+            { x: w * 0.95, y: h * 0.55, r: 42 },
+            { x: w * 0.5, y: h * 0.05, r: 38 },
+            { x: w * 0.45, y: h * 0.95, r: 44 },
+          ];
+          var spacing = 12;
+
+          for (var b = 0; b < blobs.length; b++) {
+            var blob = blobs[b];
+            for (var dx = -blob.r; dx <= blob.r; dx += spacing) {
+              for (var dy = -blob.r; dy <= blob.r; dy += spacing) {
+                var px = blob.x + dx;
+                var py = blob.y + dy;
+                var dist = Math.sqrt(dx * dx + dy * dy);
+                var angle = Math.atan2(dy, dx);
+                var maxDist = blobShape(angle, blob.r * 0.8);
+                if (dist < maxDist && px > 0 && px < w && py > 0 && py < h) {
+                  var rand = seededRandom(px * 31 + py * 17 + index * 7 + b);
+                  var edgeFade = 1 - (dist / maxDist);
+                  dots.push({
+                    x: px, y: py,
+                    baseAlpha: 0.15 + edgeFade * 0.25 + rand * 0.08,
+                    baseSize: BASE_R * (0.7 + rand * 0.6),
+                    currentRadius: BASE_R * (0.7 + rand * 0.6),
+                    currentColor: 0
+                  });
+                }
+              }
+            }
+          }
+        }
+
+        function draw() {
+          var rect = canvas.getBoundingClientRect();
+          ctx.clearRect(0, 0, rect.width, rect.height);
+
+          for (var i = 0; i < dots.length; i++) {
+            var dot = dots[i];
+            var dx = dot.x - mouseX;
+            var dy = dot.y - mouseY;
+            var dist = Math.sqrt(dx * dx + dy * dy);
+
+            var targetRadius = dot.baseSize;
+            var targetColor = 0;
+
+            if (dist < EFFECT_RANGE) {
+              var t = 1 - (dist / EFFECT_RANGE);
+              t = t * t;
+              targetRadius = dot.baseSize + (MAX_R - dot.baseSize) * t;
+              targetColor = t;
+            }
+
+            dot.currentRadius = lerp(dot.currentRadius, targetRadius, EASE);
+            dot.currentColor = lerp(dot.currentColor, targetColor, EASE);
+
+            var r = Math.round(lerp(139, 74, dot.currentColor));
+            var g = Math.round(lerp(130, 93, dot.currentColor));
+            var b = Math.round(lerp(121, 79, dot.currentColor));
+            var alpha = lerp(dot.baseAlpha, 0.9, dot.currentColor);
+
+            ctx.beginPath();
+            ctx.arc(dot.x, dot.y, dot.currentRadius, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(' + r + ',' + g + ',' + b + ',' + alpha + ')';
+            ctx.fill();
+          }
+
+          requestAnimationFrame(draw);
+        }
+
+        canvas.addEventListener('mousemove', function(e) {
+          var rect = canvas.getBoundingClientRect();
+          mouseX = e.clientX - rect.left;
+          mouseY = e.clientY - rect.top;
+        });
+
+        canvas.addEventListener('mouseleave', function() {
+          mouseX = -9999;
+          mouseY = -9999;
+        });
+
+        window.addEventListener('resize', resize);
+        resize();
+        draw();
+      }
+
+      canvases.forEach(function(c, i) { initCanvas(c, i); });
+    })();
+  </script>
 </body>
 </html>

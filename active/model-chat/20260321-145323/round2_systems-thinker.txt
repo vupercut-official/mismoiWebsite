@@ -1,0 +1,14 @@
+[systems-thinker]: Edge-case-finder named the real structural gap: free audit to $500/mo is too wide a jump with no proof. I want to answer that directly and add a systems fix for the specificity-at-scale problem nobody solved.
+
+**The routing system fix:** These 6 offers aren't a menu -- they're a decision tree. One 10-15 min research session per agent determines which email fires. If their response time is already under 10 min, Offer 1 dies -- route to Offer 2 (profile gaps) or 5 (competitor report). Build a simple lookup table: condition X fires offer Y. This is how specificity stays genuine at scale without 90 min per email.
+
+**The missing middle step:** Edge-case-finder is right that free-to-$500/mo is a trust cliff. The bridge isn't a smaller retainer -- it's a one-time implementation. "I'll set this up for you for $197, no monthly commitment." That lets Vu deliver something real, get a testimonial, and *then* pitch the retainer as the maintenance layer. Every free offer should CTA into this $197 build, not the retainer.
+
+**Concrete structure:**
+- Free offer = diagnosis
+- $197 one-time = first proof point + testimonial
+- $500-2K/mo = ongoing maintenance they now understand the value of
+
+The contrarian is right that the ROI calculator reads as pitch. But the buyer scorecard is different -- it's a tool, not a formula. Keep that one.
+
+The sequencing of the six matters more than the six themselves.

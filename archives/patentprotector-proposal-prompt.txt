@@ -1,0 +1,329 @@
+You are a world-class frontend engineer and conversion copywriter. Generate a SINGLE STANDALONE HTML FILE — a cinematic, scroll-driven proposal webpage. No build step. Works when opened directly in a browser.
+
+---
+
+# PART A — DESIGN SYSTEM
+
+## Aesthetic Preset: "Brutalist Signal" (Raw Precision)
+
+**Identity:** A control room for the future — no decoration, pure information density.
+
+**Palette:**
+- Paper `#E8E4DD` (Primary/Background sections)
+- Signal Red `#E63B2E` (Accent — CTAs, highlights, emphasis)
+- Off-white `#F5F3EE` (Background)
+- Black `#111111` (Text/Dark sections)
+
+**Typography:**
+- Headings: "Space Grotesk" (tight tracking, letter-spacing: -0.02em)
+- Drama/Display: "DM Serif Display" Italic (large statements, hero)
+- Data/Mono: "Space Mono" (stats, labels, dates)
+- Body: "Space Grotesk" at 400 weight
+
+**Image Mood:** concrete, brutalist architecture, raw materials, industrial textures.
+
+## Fixed Design Rules (apply to ALL sections)
+
+### Visual Texture
+- Global CSS noise overlay using inline SVG `<feTurbulence>` filter at 0.05 opacity
+- Use `border-radius: 2rem` to `3rem` for all containers. No sharp corners.
+
+### Micro-Interactions
+- All buttons: "magnetic" feel with subtle `scale(1.03)` on hover, `cubic-bezier(0.25, 0.46, 0.45, 0.94)` transition
+- Buttons use `overflow-hidden` with a sliding background `<span>` layer for color transitions on hover
+- Links and interactive elements: `translateY(-1px)` lift on hover
+
+### Animation Lifecycle
+- Use `gsap.context()` for ALL animations with proper cleanup
+- Default easing: `power3.out` for entrances, `power2.inOut` for morphs
+- Stagger value: `0.08` for text, `0.15` for cards/containers
+- ScrollTrigger for all scroll-based reveals
+
+---
+
+# PART B — PROPOSAL CONTENT (10 Sections)
+
+## Client Information
+- **Client:** Auro (Aurobinda Panda)
+- **Company:** PatentProtector.ai
+- **Industry:** AI SaaS / Legal Tech / Patent Drafting
+- **Location:** Bhubaneswar, India
+- **Date:** March 16, 2026
+- **Prepared by:** Vu Tran, mismoi
+
+## Section 1: Cover
+- Title: "End-to-End Content Pipeline"
+- Subtitle: "AI Automation Proposal for PatentProtector.ai"
+- Client: Auro, PatentProtector.ai
+- Brand: mismoi
+- Date: March 16, 2026
+
+## Section 2: Executive Summary
+
+Auro,
+
+Thanks for the call. You mentioned your team is lean, you're splitting time between the consulting business and the SaaS product, and creating content every day is "too time-taking." Your YouTube videos get 10K-17K views but single-digit likes — views without engagement, engagement without conversions.
+
+That's exactly what this proposal solves.
+
+We'll build an automated content pipeline using Make.com, AI scripting, and multi-platform posting that generates 1-2 short-form videos per day — researched, scripted, produced, and posted without your team touching it. The system learns from performance data and gets smarter every cycle.
+
+Within 3 months, you'll have a self-improving content engine driving you toward 1,000 paid users. And if it doesn't deliver 250 extra paid users in that time — you don't pay.
+
+Let's build it.
+
+## Section 3: Problem Statement (3 problems)
+
+**Problem 1: Content Takes Too Much Time**
+Your team has no content creation background. Creating videos manually or through partners is "too time-taking." Every hour spent on content is an hour not spent on demos, operations, or closing deals. With a lean team, you can't afford to split focus.
+
+**Problem 2: Views Without Conversions**
+Your YouTube Shorts get 10K-17K views but single-digit likes. That means people see the video and scroll immediately — no engagement, no click-through, no downloads. You're paying for attention that doesn't convert. Running ads on videos that don't engage organically just burns budget.
+
+**Problem 3: No Feedback Loop**
+You don't have a system to track which content converts into paid users. No client feedback process. No performance data flowing back into content decisions. You're creating content blind — no way to know what's working and double down on it.
+
+**The cost of inaction:** Every day without a working content engine is a day your 500 users stay flat while competitors with automated systems scale past you.
+
+## Section 4: Solution (4 components)
+
+**Component 1: Market Research Engine**
+- Apify scrapes competitor content, Reddit, Twitter, and Instagram for patent-related pain points and angles
+- Identifies trending topics and language your ICP actually uses
+- Feeds research directly into the intelligence hub — no manual input needed
+- Updates weekly to stay current with market shifts
+
+**Component 2: Central Intelligence Hub**
+- Aggregates all performance data from YouTube, Instagram, TikTok
+- Signal aggregator identifies high-performing outliers automatically
+- Weeds out factors that caused underperforming content
+- Stores ICP language, winning angles, and client feedback data (once you start collecting it)
+
+**Component 3: AI Video Generation Pipeline**
+- Claude scripts 1-2 videos per day (30 sec - 1 min) based on intelligence hub data
+- Google Veo generates the video from scripts — fully AI, no recording needed
+- Each batch of videos is better than the last because scripts are informed by real performance data
+- Content style: testimonial-style, product demos, "how I filed a patent in minutes" angles
+
+**Component 4: Multi-Platform Auto-Poster**
+- Posts automatically to YouTube Shorts, Instagram Reels, TikTok
+- Schedules for optimal posting times per platform
+- Performance data feeds back into the signal aggregator
+- The flywheel: research → script → generate → post → measure → improve → repeat
+
+## Section 5: Differentiation
+
+Most SaaS companies hire freelancers to make content, post it manually, and hope something sticks. It's slow, expensive, and doesn't compound.
+
+We build systems that learn. Every video your pipeline produces feeds data back into the next one. Bad performers get filtered out. Good performers get doubled down on. Your content gets sharper every cycle — automatically. No freelancers. No guesswork. Just a machine that improves itself.
+
+## Section 6: Deliverables + Timeline
+
+**Phase 1: Setup (Week 1-2)**
+- Market research engine configured (Apify + data sources)
+- Central intelligence hub built and connected
+- AI video generation pipeline tested and calibrated
+- Multi-platform poster configured (YouTube, Instagram, TikTok)
+- Full system integration and end-to-end testing
+
+**Phase 2: Launch (Week 3)**
+- System goes live — 1-2 videos posted daily
+- First performance data collected and analyzed
+- Initial calibration based on early results
+- Training call: how to tweak preferences and review dashboards
+
+**Phase 3: Optimization (Week 4+)**
+- Weekly performance check-ins
+- System self-optimizes based on engagement and conversion data
+- Monthly strategy review with Auro
+- Continuous improvement cycle running on autopilot
+
+## Section 7: Case Study / Social Proof
+
+**The Barber Content Flywheel**
+
+I built this exact system for myself as a barber. Same flywheel: research what's working → script content → post → measure → feed winners back in → repeat.
+
+Result: Booked out a full month in advance. Videos started popping off — not because I was filming more, but because the system was learning what my audience actually responded to and doubling down on those angles automatically.
+
+The same engine that filled my calendar is the same engine we're building for PatentProtector.ai — adapted for SaaS user acquisition instead of appointment booking.
+
+## Section 8: Investment / Pricing
+
+**SETUP: $627**
+End-to-End Content Pipeline
+- Market research engine (Apify + data sources)
+- Central intelligence hub + signal aggregator
+- AI video generation pipeline (Claude + Google Veo)
+- Multi-platform auto-poster (YouTube, Instagram, TikTok)
+- Full integration, testing, and calibration
+- Training call on system management
+
+**ONGOING: $250/month**
+- Weekly performance check-ins
+- 24-hour bug fix SLA
+- System monitoring and optimization
+- Monthly strategy review
+- Manual tweaks and adjustments as needed
+
+**AI Credits (on you): ~$50-100/month**
+- Covers AI generation costs for 1-2 videos/day
+- Claude API + Google Veo usage
+
+**Guarantee:** If the system doesn't generate 250 extra paid users within 3 months, you get a full refund. Every dollar.
+
+## Section 9: About
+
+**About mismoi**
+
+We build AI automation systems that make businesses money or save them time. Specializing in content pipelines, lead generation, and marketing automation using Make.com, Claude, and Google Workspace. We don't do one-off projects — we build machines that compound.
+
+## Section 10: Terms & Next Steps
+
+**How we get started:**
+
+1. You pay the $627 setup fee (link below)
+2. We schedule a kickoff call within 48 hours
+3. System is built and tested in 2 weeks
+4. Videos start posting daily in week 3
+5. Weekly check-ins every Friday
+
+**What we need from you:**
+- Access to YouTube, Instagram, TikTok accounts
+- Brand guidelines or preferences (if any)
+- User feedback data (as you collect it)
+
+**What you get:**
+- 1-2 AI-generated short-form videos posted daily
+- Self-improving content engine that gets better every cycle
+- Weekly performance reports
+- 24-hour support SLA
+- Full refund guarantee if 250 paid users aren't delivered in 3 months
+
+---
+
+# PART C — WEBPAGE LAYOUT (map sections to components)
+
+Build the following sections in order:
+
+## NAVBAR — "The Floating Island"
+- Fixed, pill-shaped, horizontally centered
+- Contains: "mismoi" logo text, nav links (Problem, Solution, Pricing, Next Steps), CTA button "Pay & Get Started" linking to Stripe URL
+- Transparent at top, morphs to `bg-[#E8E4DD]/60 backdrop-blur-xl` with border on scroll
+- Use IntersectionObserver or ScrollTrigger for morph
+
+## HERO — "The Opening Shot" (maps to Cover + Exec Summary)
+- 100dvh height
+- Background: Unsplash image of brutalist concrete architecture with heavy gradient overlay (black to transparent)
+- Content pushed to bottom-left third
+- Headline pattern (Brutalist Signal):
+  - "Automate the" (Bold Space Grotesk, large)
+  - "Content Engine." (Massive DM Serif Display Italic, 3-5x larger, Signal Red accent on "Engine")
+- Subtitle: "An end-to-end content pipeline for PatentProtector.ai. 1-2 videos per day. Zero manual effort. Self-improving."
+- Subtext in Space Mono: "Prepared for Auro — March 16, 2026"
+- CTA button: "Pay & Get Started" → Stripe URL
+- GSAP staggered fade-up animation (y: 40 → 0, opacity: 0 → 1)
+
+## EXECUTIVE SUMMARY (between Hero and Features)
+- Clean section on off-white background
+- Display the exec summary text from Section 2
+- Key stats in Space Mono: "500 users" → "10,000 target" | "85% free" → "1,000 paid goal" | "3-6 month timeline"
+- Subtle scroll-triggered fade-in
+
+## FEATURES — "Interactive Functional Artifacts" (maps to Problem Statement)
+- Three problem cards as interactive micro-UIs
+
+**Card 1 — "Diagnostic Shuffler" → Content Takes Too Much Time**
+3 overlapping cards cycling vertically every 3s with spring-bounce. Sub-labels: "Manual video creation", "Partner coordination", "Daily posting burden"
+
+**Card 2 — "Telemetry Typewriter" → Views Without Conversions**
+Monospace live-text feed typing out: "17,421 views... 5 likes... 0 conversions... 10,892 views... 7 likes... 0 downloads..." with blinking red cursor and "Live Feed" label with pulsing dot.
+
+**Card 3 — "Cursor Protocol Scheduler" → No Feedback Loop**
+Weekly grid where animated cursor enters, clicks on random days, but nothing activates — representing the lack of a feedback system. Label: "No data. No signal. No optimization."
+
+## PHILOSOPHY — "The Manifesto" (maps to Differentiation)
+- Full-width section, black (#111111) background
+- Parallaxing texture image (concrete, industrial) at low opacity
+- Statement 1 (neutral, smaller): "Most SaaS companies hire freelancers, post manually, and hope something sticks."
+- Statement 2 (massive, DM Serif Display Italic, Signal Red keyword): "We build systems that learn."
+- GSAP word-by-word or line-by-line fade-up on ScrollTrigger
+
+## PROTOCOL — "Sticky Stacking Archive" (maps to Solution + Timeline)
+3 full-screen stacking cards on scroll:
+
+**Card 1: "Research & Intelligence"**
+- SVG animation: slowly rotating geometric motif (concentric circles)
+- Content: Market research engine + intelligence hub. Apify scrapes competitors, Reddit, Twitter. Signal aggregator tracks performance. Data flows in automatically.
+
+**Card 2: "Script & Generate"**
+- SVG animation: scanning horizontal laser-line across grid
+- Content: AI video pipeline. Claude scripts 1-2 videos/day from intelligence data. Google Veo generates videos. Each batch better than the last.
+
+**Card 3: "Post & Optimize"**
+- SVG animation: pulsing waveform (EKG-style)
+- Content: Multi-platform auto-poster. YouTube, Instagram, TikTok. Performance feeds back into intelligence hub. The flywheel compounds.
+
+- Stacking: GSAP ScrollTrigger with `pin: true`. Underneath card scales to 0.9, blurs 20px, fades to 0.5.
+
+## CASE STUDY (after Protocol)
+- Section with the barber content flywheel story
+- Before/after visual: "Before: Empty calendar, inconsistent content" → "After: Booked out 30 days, videos popping off"
+- Quote styled prominently: "The same engine that filled my calendar is the same engine we're building for PatentProtector.ai."
+- Signal Red accent on key metrics
+
+## PRICING (maps to Investment)
+- NOT a 3-tier grid. Instead: 2 clear sections side by side
+
+**Left card: "Setup — $627"**
+- End-to-End Content Pipeline
+- Bullet list of everything included
+- One-time payment
+
+**Right card: "Monthly — $250" (highlighted, slightly larger, Signal Red border)**
+- Ongoing optimization
+- Bullet list of everything included
+- Recurring
+
+**Below both:** Note about AI credits (~$50-100/month, on client)
+
+**Guarantee banner:** "250 extra paid users in 3 months — or your money back. Every dollar." — styled boldly with Signal Red background, white text
+
+**CTA Button:** "Pay & Get Started" → Stripe URL
+
+## FOOTER (maps to About + Terms + Next Steps)
+- Deep black background, `border-radius: 4rem 4rem 0 0` on top
+- Grid: mismoi brand + tagline | How to get started (5 steps) | What we need from you
+- CTA button: "Secure Your Spot" → Stripe URL
+- "System Operational" status indicator with pulsing green dot and Space Mono label
+- Small legal text at bottom
+
+---
+
+# PART D — OUTPUT SPECIFICATION
+
+CRITICAL: Output a single standalone HTML file that:
+1. Uses Tailwind CSS v3 via CDN (`<script src="https://cdn.tailwindcss.com"></script>`)
+2. Uses GSAP 3 via CDN (`<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>` and ScrollTrigger plugin)
+3. Loads Google Fonts via `<link>` tags: Space Grotesk, DM Serif Display, Space Mono
+4. Requires zero build step — works when opened in a browser
+5. Implements ALL GSAP animations:
+   - gsap.context() with proper cleanup
+   - ScrollTrigger for scroll reveals on every section
+   - Stagger animations for text (stagger: 0.08) and cards (stagger: 0.15)
+   - Magnetic buttons with overflow-hidden + sliding background span
+   - Noise overlay via inline SVG feTurbulence at 0.05 opacity
+6. Every animation is wired and functional
+7. Responsive: mobile-first, cards stack on mobile, font sizes scale down
+8. No placeholder content — all sections fully populated with real proposal text
+9. Brutalist Signal colors applied throughout (Paper, Signal Red, Off-white, Black)
+10. All CTA buttons link to this Stripe URL: https://invoice.stripe.com/i/acct_1T9xud3qgIDdNkQS/live_YWNjdF8xVDl4dWQzcWdJRGROa1FTLF9VOXlrTDVQZlNiU0REUENaZjZ3VnRzOTh2MGpDREN6LDE2NDIyMjUzOQ0200cSq1egLL?s=db
+11. CTA button labels: "Pay & Get Started" (hero + pricing) and "Secure Your Spot" (footer)
+12. Use real Unsplash image URLs matching brutalist/concrete/industrial mood (use source.unsplash.com or images.unsplash.com with relevant search terms)
+13. Make the page feel like a control room dashboard — information-dense, raw, precise. No generic marketing fluff.
+14. Total page should be scrollable with smooth, intentional animations. Every scroll should feel weighted and professional.
+15. The sticky stacking Protocol section MUST work — cards pin and stack as user scrolls through them.
+16. Include smooth scroll behavior for nav links.
+17. Page title should be: "PatentProtector.ai — Content Pipeline Proposal | mismoi"
+
+OUTPUT ONLY THE HTML. No explanation. No markdown code blocks. Just the raw HTML starting with <!DOCTYPE html>.

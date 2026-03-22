@@ -1,14 +1,17 @@
-# mismoi - AI Automation Services
+# Mismoi - AI Automation Services
 
-**Company:** mismoi
+**Company:** Mismoi
+
+**Website:** index.html (deployed on Vercel)
+
+**Email:** vu@mismoi.com
 
 **Current Revenue:** $0 (pre-launch, onboarding first paying clients)
 
 ## Target Niches & Services
 
 - **Real Estate Agents** | CRO systems to improve conversion and lead flow
-- **Instagram Influencers** | Marketing systems to grow audience and monetize
-- **Project Management Consultants** | Sales systems to land clients
+- **Instagram Influencers / Social Media** | Marketing systems to grow audience and monetize
 - **Restaurants** (transitioning away due to lower ROI potential)
 
 ## Core Tools

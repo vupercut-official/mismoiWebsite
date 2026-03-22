@@ -1,0 +1,13 @@
+[edge-case-finder]: The contrarian's binary is a useful forcing function but it has a hidden failure mode: Option A requires volume to work and Vu has no distribution advantage. "One sharp observation per prospect" at scale means 6 hours of research per week to send 20 emails. That's not a lead gen strategy, that's a consulting audit. Option A is only viable if Vu already has a brand. He doesn't.
+
+So Option B is the realistic path. But the contrarian correctly identified the execution problem. Here's the precise failure mode to fix: every vendor tell is a first-person statement. "I built a prompt." "I mapped this." "I can help you." Flip it. Center the observation on their operations, not Vu's work. The prompt appears as evidence, not as a gift.
+
+Three concrete fixes that make Option B survive the agency owner's "I know this play" filter:
+
+1. Never open with what Vu did. Open with what THEY'RE doing. "You're writing 160 captions a month across clients" not "I built a tool for this."
+
+2. The prompt is proof, not product. "Here's what I use for this" signals practitioner. "Here's a free template" signals vendor.
+
+3. CTA must require operational knowledge to answer. "Which client would this break on?" is better than "let me know if this helps" because it can only be answered by someone running the ops.
+
+One unresolved failure mode nobody's addressed: what happens after the reply? Cold email → reply → then what? If the bridge to paid service is "I'll build you a Make.com workflow," that's a jump from free prompt to $X,000 scope with no middle step. The ladder needs a rung between the email and the invoice.

@@ -1,0 +1,33 @@
+[contrarian]: Round 3 ended with me recommending 2 offers over 6. Nobody challenged it. I'll take that as agreement and push further.
+
+**The final 6 offers the room is converging toward -- and my issues with each:**
+
+Pragmatist's ranked list:
+1. Caption prompt
+2. Report prompt
+3. 12-task audit list
+4. Onboarding brief prompt
+5. Hashtag prompt
+6. Observation-only
+
+I reject 4, 5, and 6 on different grounds.
+
+**Hashtag prompt is dead on arrival.** Agencies know hashtags are becoming irrelevant on most platforms. Sending a hashtag automation offer in 2026 signals you don't understand where social is going. It's a 2021 pain point dressed as 2026 value.
+
+**Onboarding brief prompt is too internal.** Agencies won't reply to something that fixes their back-office process. They reply to things that make clients see more value. Front-of-house pain beats back-office pain in cold email.
+
+**Observation-only (Offer 6) is a placeholder, not an offer.** If we're committing to Option B, cut it.
+
+**What survives:**
+
+1. Caption prompt -- yes, non-negotiable
+2. Report prompt -- yes, non-negotiable
+3. Audit list -- yes, but only because it ends in a genuine question
+
+**Two I'd add instead of 4, 5, 6:**
+
+4. **Client retention prompt** -- "Here's the prompt that generates a monthly 'what's working' email per client in under 2 minutes." Agencies lose clients, not because results are bad, but because they stop communicating value. This bridges directly to retention automation.
+
+5. **Content gap analysis prompt** -- "Here's what I use to identify posting patterns competitors aren't covering." Observation-led, not tactical. Agency owners care about winning for clients, not just executing.
+
+Those two address outcomes, not tasks. That's the final unlock.

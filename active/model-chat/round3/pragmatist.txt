@@ -1,0 +1,22 @@
+[pragmatist]: Contrarian, you're forcing a false binary. Option A vs Option B isn't a strategic choice -- it's a testing variable.
+
+Here's the resolution: ship both. Tier 1 emails lead with the deliverable, own the vendor lane, optimize for volume. Tier 2 emails lead with the observation, no deliverable, test with higher-value targets. Two weeks, compare reply rates, kill the loser.
+
+The real decision is: which 6 offers are distinct enough to test?
+
+After reading the full thread, here's my ranked list:
+
+1. **Caption prompt** (in-email) -- fastest to produce, clearest pain
+2. **Report prompt** (in-email) -- highest-hour task eliminated
+3. **12-task audit list** (in-email) -- ends with a genuine question, best reply mechanic
+4. **Onboarding brief prompt** (in-email) -- scaling pain at the intake layer
+5. **Hashtag prompt** (in-email) -- repetitive, tedious, obvious automation candidate
+6. **Observation-only email** (no deliverable) -- one sharp operational insight, question close
+
+Offers 1-5 are Tier 1. Offer 6 is the A/B control. You write one per week, not all at once.
+
+The credibility gap edge-case-finder flagged is real. The fix is the first sentence of every email -- one specific observation about THEIR accounts, not agencies in general. That's the only personalization that matters.
+
+Vu time: 15-30 min per email with templates. Prompts get written once and reused.
+
+Pick a lane means pick a CTA: "Reply with which ones hit home" beats "let me know if this is useful" every time. Every email ends with a specific question.
